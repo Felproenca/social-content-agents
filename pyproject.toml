@@ -25,11 +25,16 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-# Instalar só se usar LLM_PROVIDER=anthropic / openai / google
+# LLM providers (só instalar se usar provider específico)
 anthropic = ["anthropic>=0.40.0"]
 openai    = ["openai>=1.50.0"]
 google    = ["google-generativeai>=0.8.0"]
 all-llm   = ["anthropic>=0.40.0", "openai>=1.50.0", "google-generativeai>=0.8.0"]
+# Pipeline visual (HTMLRenderer + PuppeteerExporter)
+visual = [
+    "pyppeteer>=1.0.2",
+    "Pillow>=10.0.0",
+]
 dev = [
     "pytest>=8.0.0",
     "pytest-asyncio>=0.24.0",
