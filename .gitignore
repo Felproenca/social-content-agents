@@ -1,6 +1,7 @@
 .env
 data/*.db
 data/*.sqlite
+data/niches/*.json
 __pycache__/
 *.pyc
 *.pyo

@@ -24,6 +24,19 @@ class LLMProvider(ABC):
         max_tokens: int = 4096,
     ) -> LLMResponse: ...
 
+    async def generate(
+        self,
+        user: str,
+        system: str | None = None,
+        temperature: float = 0.7,
+    ) -> str:
+        """Convenience wrapper: single user message → plain text response."""
+        response = await self.chat(
+            messages=[{"role": "user", "content": user}],
+            system=system,
+        )
+        return response.text
+
 
 class ClaudeCodeProvider(LLMProvider):
     """
