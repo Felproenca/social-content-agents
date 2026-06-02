@@ -153,3 +153,38 @@ class VisualSpec:
     slides:        list[SlideSpec]
     global_css:    str
 
+
+# ── Pipeline / hybrid flow models ─────────────────────────────────────────────
+
+class SlideProcessingMode(Enum):
+    HTML_ONLY   = "html_only"    # renderiza diretamente
+    NEEDS_IMAGE = "needs_image"  # precisa de imagem externa
+    IMAGE_READY = "image_ready"  # imagem uploadada, pronto
+
+
+@dataclass
+class ImagePrompt:
+    """Prompt de imagem gerado para um slide específico."""
+    slide_number:  int
+    prompt_en:     str   # prompt em inglês (melhor resultado)
+    prompt_pt:     str   # prompt em português (referência)
+    negative:      str   # o que evitar na geração
+    style_notes:   str   # notas de estilo para o operador
+    aspect_ratio:  str   # "1:1" | "4:5" | "9:16"
+    service_hints: dict  # dicas por serviço externo
+    status:        SlideProcessingMode = SlideProcessingMode.NEEDS_IMAGE
+    image_path:    Optional[str] = None  # preenchido após upload
+
+
+@dataclass
+class PipelineStatus:
+    """Status completo do pipeline de um conteúdo."""
+    client_slug:     str
+    content_id:      str
+    total_slides:    int
+    html_only:       list[int]         # slides processados automaticamente
+    needs_image:     list[int]         # slides aguardando imagem
+    image_prompts:   list[ImagePrompt]
+    ready_to_render: bool = False
+    rendered_pngs:   list[str] = field(default_factory=list)
+

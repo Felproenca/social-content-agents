@@ -1,17 +1,21 @@
 """
 ContentFactory: pipeline principal de criação de conteúdo.
 
-Fluxo com NicheIntelligence + VisualSpec:
+Fluxo com NicheIntelligence + VisualSpec + PromptEngineer (híbrido):
   NicheIntelligenceAgent
   → ResearchAgent
   → TrendAgent + ProspectingAgent (paralelo)
   → CopyAgent
   → VisualSpecAgent + PerformanceAgent (paralelo)
-  → HTMLRenderer → PuppeteerExporter
-  → [PublishingAgent]
+  → PromptEngineerAgent (decide HTML-only vs imagem externa)
+  → se ready_to_render: HTMLRenderer → PuppeteerExporter
+  → se aguardando imagem: pausa, notifica operador, salva status
 """
 
+import dataclasses
+import json
 from dataclasses import dataclass, field
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -19,7 +23,8 @@ from src.core.agent import AgentContext
 from src.core.llm import build_provider
 from src.core.models import (
     ClientContext, ClientPalette, ClientTypography,
-    NicheInput, VisualSpec, VisualStyle,
+    NicheInput, PipelineStatus, SlideProcessingMode,
+    VisualSpec, VisualStyle,
 )
 from src.core.orchestrator import Orchestrator
 from src.agents.research_agent import ResearchAgent
@@ -31,17 +36,22 @@ from src.agents.performance_agent import PerformanceAgent
 from src.agents.publishing_agent import PublishingAgent
 from src.agents.niche_intelligence_agent import NicheIntelligenceAgent
 from src.agents.visual_spec_agent import VisualSpecAgent
+from src.agents.prompt_engineer_agent import PromptEngineerAgent
 from src.skills.niche_discovery import NicheDiscoverySkill
 from src.skills.html_renderer import HTMLRenderer
+from src.skills.operator_notifier import OperatorNotifier
 
 
 @dataclass
 class ContentFactoryResult:
     topic: str
     platform: str
+    status: str = "completo"          # completo | aguardando_imagens
+    content_id: str = ""
     niche_context: dict[str, Any] = field(default_factory=dict)
     copies: list[dict[str, Any]] = field(default_factory=list)
     visual_spec: VisualSpec | None = None
+    pipeline_status: PipelineStatus | None = None
     html_paths: list[Path] = field(default_factory=list)
     png_paths: list[Path] = field(default_factory=list)
     performance: dict[str, Any] = field(default_factory=dict)
@@ -55,7 +65,9 @@ class ContentFactory:
         self._provider = build_provider()
         self.discovery = NicheDiscoverySkill(llm=self._provider)
         self.visual_spec_agent = VisualSpecAgent(provider=self._provider)
+        self.prompt_engineer = PromptEngineerAgent(provider=self._provider)
         self.html_renderer = HTMLRenderer()
+        self._notifier = OperatorNotifier()
         self._register_agents()
 
     def _register_agents(self) -> None:
@@ -116,10 +128,12 @@ class ContentFactory:
 
         copies = context.metadata.get("CopyAgent", {}).get("copies", [])
 
-        # Visual pipeline (opt-in)
         visual_spec: VisualSpec | None = None
         html_paths: list[Path] = []
         png_paths: list[Path] = []
+        pipeline_status: PipelineStatus | None = None
+        content_id = ""
+        result_status = "completo"
 
         if enable_visual and client_context is not None:
             niche_data = context.metadata.get("NicheIntelligenceAgent", {})
@@ -131,15 +145,29 @@ class ContentFactory:
                     copies=self._copies_to_slides(copies),
                     platform=platform,
                 )
-                output_dir = Path(f"tmp/{client_context.slug}/slides")
-                html_paths = await self.html_renderer.render(visual_spec, output_dir)
+                content_id = self._generate_content_id(topic, client_context.slug)
+                pipeline_status = await self.prompt_engineer.analyze(visual_spec, content_id)
+
+                if not pipeline_status.ready_to_render:
+                    notification = self._notifier.format_notification(pipeline_status)
+                    print(notification)
+                    output_dir = Path(f"tmp/{client_context.slug}/slides")
+                    html_paths = await self.html_renderer.render(visual_spec, output_dir)
+                    await self.save_pipeline_status(pipeline_status, client_context.slug)
+                    result_status = "aguardando_imagens"
+                else:
+                    output_dir = Path(f"tmp/{client_context.slug}/slides")
+                    html_paths = await self.html_renderer.render(visual_spec, output_dir)
 
         return ContentFactoryResult(
             topic=topic,
             platform=platform,
+            status=result_status,
+            content_id=content_id,
             niche_context=context.metadata.get("NicheIntelligenceAgent", {}),
             copies=copies,
             visual_spec=visual_spec,
+            pipeline_status=pipeline_status,
             html_paths=html_paths,
             png_paths=png_paths,
             performance=context.metadata.get("PerformanceAgent", {}),
@@ -166,6 +194,9 @@ class ContentFactory:
             enable_visual=enable_visual,
         )
 
+        if result.status == "aguardando_imagens":
+            return result
+
         # Export PNGs if pyppeteer available and HTML was generated
         if result.html_paths and client_context:
             result.png_paths = await self._try_export_pngs(
@@ -174,7 +205,64 @@ class ContentFactory:
 
         return result
 
+    async def resume_after_images(self, content_id: str, client_slug: str) -> ContentFactoryResult:
+        """
+        Retoma o pipeline após todas as imagens terem sido uploadadas.
+        Chamado pelo CLI upload-image quando todos os slides ficam IMAGE_READY.
+        """
+        pipeline_status = await self.load_pipeline_status(content_id, client_slug)
+        if pipeline_status is None:
+            raise FileNotFoundError(f"Status não encontrado para content_id={content_id}")
+
+        if not pipeline_status.ready_to_render:
+            pending = [p.slide_number for p in pipeline_status.image_prompts
+                       if p.status != SlideProcessingMode.IMAGE_READY]
+            raise RuntimeError(f"Slides ainda aguardando imagem: {pending}")
+
+        html_dir = Path(f"tmp/{client_slug}/slides")
+        png_paths = await self._try_export_pngs(
+            list(html_dir.glob("slide-*.html")), client_slug, "1:1"
+        )
+
+        return ContentFactoryResult(
+            topic=content_id,
+            platform="",
+            status="completo",
+            content_id=content_id,
+            pipeline_status=pipeline_status,
+            html_paths=list(html_dir.glob("slide-*.html")),
+            png_paths=png_paths,
+        )
+
+    # ── persistence ───────────────────────────────────────────────────────────
+
+    async def save_pipeline_status(self, status: PipelineStatus, client_slug: str) -> Path:
+        status_dir = Path(f"tmp/{client_slug}/status")
+        status_dir.mkdir(parents=True, exist_ok=True)
+        path = status_dir / f"{status.content_id}.json"
+        path.write_text(
+            json.dumps(dataclasses.asdict(status), ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+        return path
+
+    async def load_pipeline_status(
+        self, content_id: str, client_slug: str
+    ) -> PipelineStatus | None:
+        path = Path(f"tmp/{client_slug}/status/{content_id}.json")
+        if not path.exists():
+            return None
+        data = json.loads(path.read_text(encoding="utf-8"))
+        return self._dict_to_pipeline_status(data)
+
     # ── helpers ───────────────────────────────────────────────────────────────
+
+    @staticmethod
+    def _generate_content_id(topic: str, client_slug: str = "") -> str:
+        ts = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
+        slug = topic.lower()[:20].replace(" ", "-").replace("/", "-")
+        prefix = f"{client_slug}-" if client_slug else ""
+        return f"{prefix}{slug}-{ts}"
 
     def _build_client_context(self, brief: dict) -> ClientContext | None:
         ctx = brief.get("contexto_cliente")
@@ -205,7 +293,6 @@ class ContentFactory:
             return None
 
     def _copies_to_slides(self, copies: list[dict]) -> list[dict]:
-        """Normaliza copies do CopyAgent para o formato de slides do VisualSpecAgent."""
         slides = []
         for copy in copies:
             slides.append({
@@ -233,3 +320,31 @@ class ContentFactory:
             return await exporter.export(html_paths, output_dir)
         except (ImportError, Exception):
             return []
+
+    @staticmethod
+    def _dict_to_pipeline_status(data: dict) -> PipelineStatus:
+        from src.core.models import ImagePrompt
+        prompts = [
+            ImagePrompt(
+                slide_number=p["slide_number"],
+                prompt_en=p["prompt_en"],
+                prompt_pt=p["prompt_pt"],
+                negative=p["negative"],
+                style_notes=p["style_notes"],
+                aspect_ratio=p["aspect_ratio"],
+                service_hints=p["service_hints"],
+                status=SlideProcessingMode(p["status"]),
+                image_path=p.get("image_path"),
+            )
+            for p in data.get("image_prompts", [])
+        ]
+        return PipelineStatus(
+            client_slug=data["client_slug"],
+            content_id=data["content_id"],
+            total_slides=data["total_slides"],
+            html_only=data["html_only"],
+            needs_image=data["needs_image"],
+            image_prompts=prompts,
+            ready_to_render=data["ready_to_render"],
+            rendered_pngs=data.get("rendered_pngs", []),
+        )
