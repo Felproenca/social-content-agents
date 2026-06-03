@@ -1,16 +1,17 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from pydantic import Field
 
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
     # LLM
+    # claude_code  → usa o CLI `claude` autenticado no VS Code (padrão, sem API key)
+    # anthropic    → chama a API diretamente (requer ANTHROPIC_API_KEY)
     anthropic_api_key: str = ""
     openai_api_key: str = ""
     google_api_key: str = ""
-    llm_provider: str = "anthropic"
-    llm_model: str = "claude-sonnet-4-6"
+    llm_provider: str = "claude_code"
+    llm_model: str = ""  # vazio = usa o modelo padrão do provider
 
     # Storage
     database_url: str = "sqlite+aiosqlite:///./data/agents.db"

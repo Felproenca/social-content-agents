@@ -4,11 +4,9 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from typing import Any
 
-import anthropic
-
-from src.core.config import settings
 from src.core.memory import Memory
 from src.core.skill import Skill
+from src.core.llm import LLMProvider, LLMResponse, build_provider
 
 
 @dataclass
@@ -32,18 +30,22 @@ class AgentResult:
 
 class Agent(ABC):
     """
-    Base agent. Wraps an LLM with a system prompt, a set of skills,
+    Base agent. Wraps an LLM provider with a system prompt, a set of skills,
     and optional memory. Subclasses implement `run()`.
+
+    Por padrão usa o Claude Code CLI (VS Code) — sem precisar de API key.
+    Para usar a API Anthropic diretamente, defina LLM_PROVIDER=anthropic
+    e ANTHROPIC_API_KEY no .env.
     """
 
     name: str
     role: str
     goal: str
 
-    def __init__(self, memory: Memory | None = None):
+    def __init__(self, memory: Memory | None = None, provider: LLMProvider | None = None):
         self.memory = memory or Memory()
         self.skills: list[Skill] = []
-        self._client = anthropic.AsyncAnthropic(api_key=settings.anthropic_api_key)
+        self._provider = provider or build_provider()
 
     def register_skill(self, skill: Skill) -> None:
         self.skills.append(skill)
@@ -57,20 +59,14 @@ class Agent(ABC):
         self,
         messages: list[dict[str, Any]],
         system: str | None = None,
-        use_tools: bool = True,
+        use_tools: bool = False,
         max_tokens: int = 4096,
-    ) -> anthropic.types.Message:
-        kwargs: dict[str, Any] = {
-            "model": settings.llm_model,
-            "max_tokens": max_tokens,
-            "messages": messages,
-        }
-        if system:
-            kwargs["system"] = system
-        if use_tools and self.skills:
-            kwargs["tools"] = [s.to_tool_definition() for s in self.skills]
-
-        return await self._client.messages.create(**kwargs)
+    ) -> LLMResponse:
+        return await self._provider.chat(
+            messages=messages,
+            system=system,
+            max_tokens=max_tokens,
+        )
 
     def _system_prompt(self) -> str:
         return (
