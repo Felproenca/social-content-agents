@@ -1,0 +1,59 @@
+{
+  "id": "notion",
+  "type": "competitor",
+  "category": "competitors",
+  "name": "Notion",
+  "source_url": "https://www.notion.so",
+  "source_context": "Análise do site principal, pricing page e campanha 'The connected workspace'",
+  "captured_at": "2026-06-10",
+  "updated_at": "2026-06-10",
+  "maturity": "stable",
+  "tags": ["saas", "productivity", "b2b", "b2c", "no-code", "workspace", "docs"],
+  "tensions": [
+    "infinitamente flexível para quem aguenta o onboarding",
+    "quer ser tudo e às vezes não é nada com clareza"
+  ],
+  "summary": "Notion dominou a categoria de workspace conectado mas carrega o peso de seu próprio sucesso: o produto é tão flexível que a landing page não consegue explicar o que ele é para nenhum público específico. A estratégia de conteúdo (templates, comunidade) é mais eficaz que a página de produto.",
+  "use_cases": [
+    "Benchmark de como não comunicar um produto horizontal",
+    "Referência de como templates viram canal de aquisição",
+    "Caso de estudo de branding minimalista que perdeu força com escala"
+  ],
+  "competitor": {
+    "positioning": "The connected workspace for your wiki, docs, and projects.",
+    "target_audience": "Times de produto, startups, criadores de conteúdo, estudantes — posicionamento amplo demais",
+    "strengths": [
+      "Flexibilidade extrema — qualquer caso de uso pode ser construído",
+      "Comunidade de criadores de template com alcance orgânico imenso",
+      "Marca associada a 'bem-organizado' e 'profissional moderno'",
+      "Plano gratuito generoso que cria hábito antes da conversão",
+      "Integrações extensas — virou hub central de muitos times"
+    ],
+    "weaknesses": [
+      "Onboarding confuso para novos usuários sem contexto",
+      "Landing page genérica — não fala com ninguém específico",
+      "Performance percebida como lenta vs concorrentes focados",
+      "IA chegou tarde e parece bolted-on, não nativa",
+      "Dificuldade de comunicar proposta de valor em uma frase"
+    ],
+    "key_pages": [
+      {
+        "label": "Home",
+        "url": "https://www.notion.so",
+        "notes": "Hero tenta abraçar todos os casos de uso — resultado é genérico"
+      },
+      {
+        "label": "Templates",
+        "url": "https://www.notion.so/templates",
+        "notes": "Canal de aquisição mais forte. Templates como SEO e onboarding."
+      },
+      {
+        "label": "Pricing",
+        "url": "https://www.notion.so/pricing",
+        "notes": "Estrutura clara mas sem urgência. Não há FOMO no plano gratuito."
+      }
+    ],
+    "last_reviewed": "2026-06-10"
+  },
+  "notes": "Notion é o benchmark de 'como uma ferramenta horizontal perde clareza de comunicação ao crescer'. Útil para mostrar clientes a diferença entre posicionamento amplo e específico."
+}

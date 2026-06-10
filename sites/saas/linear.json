@@ -1,0 +1,67 @@
+{
+  "id": "linear",
+  "type": "site",
+  "category": "sites/saas",
+  "name": "Linear",
+  "source_url": "https://linear.app",
+  "captured_at": "2026-06-10",
+  "updated_at": "2026-06-10",
+  "maturity": "stable",
+  "tags": ["saas", "dark", "minimal", "productivity", "b2b", "precision", "technical"],
+  "tensions": [
+    "precisão sem alarde",
+    "velocidade como estética, não como feature",
+    "ferramenta séria que parece prazer de usar"
+  ],
+  "summary": "Linear redefiniu o padrão visual de ferramentas B2B. Enquanto concorrentes empilham features na landing page, Linear usa espaço, velocidade e copy cirúrgico para comunicar que a ferramenta é diferente sem precisar explicar por que. O dark mode não é preferência — é posicionamento.",
+  "use_cases": [
+    "Referência de dark SaaS premium para qualquer produto B2B técnico",
+    "Benchmark de hero section com copy de alta densidade semântica",
+    "Exemplo de como vender velocidade sem mostrar benchmarks",
+    "Padrão de changelog como asset de marketing"
+  ],
+  "related": ["vercel", "stripe", "raycast"],
+  "visual": {
+    "style": "dark",
+    "mood": ["preciso", "veloz", "premium", "técnico", "denso"],
+    "palette": {
+      "background": "#0f0f0f",
+      "surface": "#1a1a1a",
+      "primary_text": "#f0f0f0",
+      "accent": "#5e6ad2",
+      "border": "rgba(255,255,255,0.08)"
+    },
+    "typography": {
+      "heading": "Inter",
+      "body": "Inter",
+      "weight_heading": "500–600",
+      "size_scale": "Contido — H1 não maior que 48px no hero"
+    },
+    "layout_principles": [
+      "Hero com produto visível acima do fold — não promessa, entrega",
+      "Copy curto e denso — cada palavra carrega peso",
+      "Muito padding entre seções — respiração como sinal de confiança",
+      "Animações de produto rápidas e funcionais, nunca decorativas"
+    ],
+    "screenshots": []
+  },
+  "copy": {
+    "headline_style": "Declaração funcional — descreve o que o produto é, não o que você vai sentir",
+    "cta_style": "Verbo direto + contexto mínimo — 'Start building', não 'Comece sua jornada'",
+    "voice": "Técnico sem ser árido. Confiante sem ser arrogante. Sem exclamações.",
+    "examples": [
+      {
+        "text": "Linear is a purpose-built tool for planning and building products.",
+        "context": "Hero headline — descreve o produto literalmente, sem hipérbole",
+        "source_url": "https://linear.app"
+      }
+    ]
+  },
+  "motion": {
+    "library": "css",
+    "complexity": "low",
+    "performance_cost": "low",
+    "analysis": "Transições suaves, curtas (150–200ms). Produto demonstrado em loop discreto. Nenhuma animação de entrada em scroll — o produto está lá quando você chega. O movimento é do produto, não da página."
+  },
+  "notes": "O changelog do Linear (linear.app/changelog) é possivelmente o melhor case de changelog como produto de marketing. Vale uma referência separada."
+}

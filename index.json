@@ -1,0 +1,252 @@
+{
+  "$schema": "./index.schema.json",
+  "version": "2.0",
+  "description": "Índice de todas as referências do MarketingOS. Carregue este arquivo primeiro — é a memória curta do sistema. Depois abra os arquivos completos para memória profunda.",
+  "updated_at": "2026-06-10",
+  "stats": {
+    "total": 17,
+    "by_type": {
+      "site": 1,
+      "copy": 1,
+      "motion": 6,
+      "visual": 7,
+      "color-system": 0,
+      "industry": 0,
+      "competitor": 1,
+      "framework": 0
+    },
+    "by_maturity": {
+      "seed": 0,
+      "growing": 0,
+      "stable": 17,
+      "outdated": 0,
+      "deprecated": 0
+    }
+  },
+  "entries": [
+
+    {
+      "id": "linear",
+      "type": "site",
+      "category": "sites/saas",
+      "name": "Linear",
+      "maturity": "stable",
+      "tags": ["saas", "dark", "minimal", "productivity", "b2b", "precision", "technical"],
+      "tensions": ["precisão sem alarde", "velocidade como estética, não como feature"],
+      "captured_at": "2026-06-10",
+      "updated_at": "2026-06-10",
+      "path": "sites/saas/linear.json",
+      "description": "Referência de dark SaaS premium — copy denso, produto visível no hero, zero hipérbole"
+    },
+
+    {
+      "id": "notion",
+      "type": "competitor",
+      "category": "competitors",
+      "name": "Notion",
+      "maturity": "stable",
+      "tags": ["saas", "productivity", "b2b", "workspace", "docs", "no-code"],
+      "tensions": ["infinitamente flexível para quem aguenta o onboarding", "quer ser tudo e às vezes não é nada com clareza"],
+      "captured_at": "2026-06-10",
+      "updated_at": "2026-06-10",
+      "path": "competitors/notion.json",
+      "description": "Case de posicionamento horizontal que perde clareza com escala. Forças e fraquezas mapeadas."
+    },
+
+    {
+      "id": "hooks-collection",
+      "type": "copy",
+      "category": "copy",
+      "name": "Hooks — Coleção de Padrões de Abertura",
+      "maturity": "stable",
+      "tags": ["copy", "hook", "headline", "social", "linkedin", "opening", "engagement"],
+      "tensions": ["parar o scroll sem mentir", "criar curiosidade sem clickbait"],
+      "captured_at": "2026-06-10",
+      "updated_at": "2026-06-10",
+      "path": "copy/hooks.json",
+      "description": "8 padrões estruturados de hook com fórmula, exemplo e quando usar"
+    },
+
+    {
+      "id": "three-js-particle-systems",
+      "type": "motion",
+      "category": "motion/three-js",
+      "name": "Particle Systems (Three.js)",
+      "maturity": "stable",
+      "tags": ["particles", "three-js", "background", "ambient", "webgl", "generative"],
+      "tensions": ["presença sem chamar atenção"],
+      "captured_at": "2026-06-10",
+      "updated_at": "2026-06-10",
+      "path": "motion/three-js/particle-systems.json",
+      "description": "Partículas flutuantes para backgrounds ambientes — código completo com config_options"
+    },
+
+    {
+      "id": "three-js-scroll-scene",
+      "type": "motion",
+      "category": "motion/three-js",
+      "name": "Scroll-Driven 3D Scene (Three.js)",
+      "maturity": "stable",
+      "tags": ["scroll", "three-js", "camera", "parallax", "webgl", "storytelling"],
+      "tensions": ["3D que não precisa ser justificado"],
+      "captured_at": "2026-06-10",
+      "updated_at": "2026-06-10",
+      "path": "motion/three-js/scroll-scene.json",
+      "description": "Cena 3D com scrub de scroll — produto orbita enquanto usuário desce"
+    },
+
+    {
+      "id": "three-js-morphing-geometry",
+      "type": "motion",
+      "category": "motion/three-js",
+      "name": "Morphing Geometry (Three.js)",
+      "maturity": "stable",
+      "tags": ["morphing", "three-js", "geometry", "transform", "webgl", "logo"],
+      "tensions": ["forma que não decide o que quer ser — e isso é a identidade"],
+      "captured_at": "2026-06-10",
+      "updated_at": "2026-06-10",
+      "path": "motion/three-js/morphing-geometry.json",
+      "description": "Transição fluida entre formas 3D — código completo, funciona sem SplitText"
+    },
+
+    {
+      "id": "gsap-scroll-trigger",
+      "type": "motion",
+      "category": "motion/gsap",
+      "name": "ScrollTrigger — Reveal de Seções (GSAP)",
+      "maturity": "stable",
+      "tags": ["scroll", "gsap", "reveal", "entrance", "trigger", "parallax"],
+      "tensions": ["movimento que serve à leitura, não ao ego do designer"],
+      "captured_at": "2026-06-10",
+      "updated_at": "2026-06-10",
+      "path": "motion/gsap/scroll-trigger.json",
+      "description": "Fade up, clip reveal, parallax e pin — 4 padrões com código e config"
+    },
+
+    {
+      "id": "gsap-text-reveal",
+      "type": "motion",
+      "category": "motion/gsap",
+      "name": "Text Reveal Animations (GSAP)",
+      "maturity": "stable",
+      "tags": ["text", "gsap", "typography", "reveal", "headline", "cinematic"],
+      "tensions": ["tipografia que chega como se sempre soubesse que ia chegar"],
+      "captured_at": "2026-06-10",
+      "updated_at": "2026-06-10",
+      "path": "motion/gsap/text-reveal.json",
+      "description": "Linha por linha, palavra, char e contador — sem SplitText pago"
+    },
+
+    {
+      "id": "gsap-stagger-entrance",
+      "type": "motion",
+      "category": "motion/gsap",
+      "name": "Stagger Entrance — Cards e Listas (GSAP)",
+      "maturity": "stable",
+      "tags": ["stagger", "gsap", "cards", "grid", "list", "entrance", "cascade"],
+      "tensions": ["ordem que parece descoberta, não planejamento"],
+      "captured_at": "2026-06-10",
+      "updated_at": "2026-06-10",
+      "path": "motion/gsap/stagger-entrance.json",
+      "description": "Linear, grid, random e flip 3D — 4 variantes com CSS helper"
+    },
+
+    {
+      "id": "editorial-dark",
+      "type": "visual",
+      "category": "visual/styles",
+      "name": "Estilo Editorial Dark",
+      "maturity": "stable",
+      "tags": ["dark", "luxury", "editorial", "serif", "premium", "magazine"],
+      "tensions": ["sofisticação que não depende de explicação", "escuridão como hospitalidade"],
+      "captured_at": "2026-06-10",
+      "updated_at": "2026-06-10",
+      "path": "visual/styles/editorial-dark.json",
+      "description": "Paleta escura, serif leve, espaço negativo generoso — CSS snippet incluído"
+    },
+
+    {
+      "id": "bold-typographic",
+      "type": "visual",
+      "category": "visual/styles",
+      "name": "Estilo Bold Typographic",
+      "maturity": "stable",
+      "tags": ["bold", "typography", "impact", "high-contrast", "assertive", "brutalist"],
+      "tensions": ["tipografia como argumento, não como decoração"],
+      "captured_at": "2026-06-10",
+      "updated_at": "2026-06-10",
+      "path": "visual/styles/bold-typographic.json",
+      "description": "Fontes pesadas, contraste extremo, seções alternando claro/escuro"
+    },
+
+    {
+      "id": "clean-minimal",
+      "type": "visual",
+      "category": "visual/styles",
+      "name": "Estilo Clean Minimal",
+      "maturity": "stable",
+      "tags": ["clean", "minimal", "professional", "light", "saas", "b2b"],
+      "tensions": ["confiança por subtração"],
+      "captured_at": "2026-06-10",
+      "updated_at": "2026-06-10",
+      "path": "visual/styles/clean-minimal.json",
+      "description": "Múltiplos de 8px, radius 8px, sombra discreta — CSS snippet + shadow scale"
+    },
+
+    {
+      "id": "color-finance",
+      "type": "visual",
+      "category": "visual/color-systems",
+      "name": "Sistema de Cores — Finanças",
+      "maturity": "stable",
+      "tags": ["finance", "banking", "fintech", "trust", "wealth", "money"],
+      "tensions": ["dinheiro que não precisa gritar que é dinheiro"],
+      "captured_at": "2026-06-10",
+      "updated_at": "2026-06-10",
+      "path": "visual/color-systems/finance.json",
+      "description": "Trust Blue · Fintech Dark · Wealth Gold — 3 paletas com notas de uso por sub-setor"
+    },
+
+    {
+      "id": "color-tech-saas",
+      "type": "visual",
+      "category": "visual/color-systems",
+      "name": "Sistema de Cores — Tech & SaaS",
+      "maturity": "stable",
+      "tags": ["tech", "saas", "software", "startup", "devtools", "ai", "b2b"],
+      "tensions": ["tecnologia que escolhe entre parecer ferramenta ou parecer produto"],
+      "captured_at": "2026-06-10",
+      "updated_at": "2026-06-10",
+      "path": "visual/color-systems/tech-saas.json",
+      "description": "Corporate SaaS · Dev Dark · Startup Vibrant · AI Native — 4 paletas"
+    },
+
+    {
+      "id": "color-wellness",
+      "type": "visual",
+      "category": "visual/color-systems",
+      "name": "Sistema de Cores — Wellness & Saúde",
+      "maturity": "stable",
+      "tags": ["wellness", "health", "fitness", "nutrition", "mental-health", "organic"],
+      "tensions": ["cura que não precisa parecer hospital"],
+      "captured_at": "2026-06-10",
+      "updated_at": "2026-06-10",
+      "path": "visual/color-systems/wellness.json",
+      "description": "Natural Earth · Clinical Trust · Fitness Energy · Mindful Lavender"
+    },
+
+    {
+      "id": "color-creative-agency",
+      "type": "visual",
+      "category": "visual/color-systems",
+      "name": "Sistema de Cores — Agências Criativas",
+      "maturity": "stable",
+      "tags": ["creative", "agency", "design", "advertising", "marketing", "bold"],
+      "tensions": ["vender criatividade sem parecer que tenta"],
+      "captured_at": "2026-06-10",
+      "updated_at": "2026-06-10",
+      "path": "visual/color-systems/creative-agency.json",
+      "description": "Brutalist Pop · Digital Noir · Vibrant Studio — 3 paletas com uso por sub-setor"
+    }
+  ]
+}

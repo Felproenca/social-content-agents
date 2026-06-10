@@ -1,14 +1,14 @@
 """
-Reference Library Query CLI
-
-Busca referências de animação, estilo visual e identidade de clientes.
+MarketingOS Reference Library — Query CLI
 
 Uso:
-  python -m src.query "particle background dark"
-  python -m src.query --category animations/three-js
-  python -m src.query --category visual/color-systems --tag finance
-  python -m src.query --id three-js-particle-systems
-  python -m src.query --client acme-corp
+  python -m src.query search "dark luxury saas"
+  python -m src.query search --category sites/saas
+  python -m src.query search --type competitor
+  python -m src.query search --maturity stable --category motion/gsap
+  python -m src.query get linear
+  python -m src.query list
+  python -m src.query stats
 """
 
 import argparse
@@ -16,47 +16,44 @@ import json
 import sys
 from pathlib import Path
 
-REFERENCES_DIR = Path(__file__).parent.parent / "references"
-INDEX_FILE = REFERENCES_DIR / "index.json"
+ROOT = Path(__file__).parent.parent
+INDEX_FILE = ROOT / "index.json"
 
 
 def load_index() -> list[dict]:
-    if not INDEX_FILE.exists():
-        print(f"Erro: index.json não encontrado em {INDEX_FILE}", file=sys.stderr)
-        sys.exit(1)
-    return json.loads(INDEX_FILE.read_text(encoding="utf-8"))["entries"]
+    data = json.loads(INDEX_FILE.read_text(encoding="utf-8"))
+    return data["entries"]
 
 
-def load_reference(file_path: str) -> dict:
-    path = Path(file_path)
-    if not path.is_absolute():
-        path = Path(__file__).parent.parent / file_path
-    return json.loads(path.read_text(encoding="utf-8"))
+def load_reference(path: str) -> dict:
+    return json.loads((ROOT / path).read_text(encoding="utf-8"))
 
 
-def search(keywords: list[str], category: str | None = None, tag: str | None = None) -> list[dict]:
-    # Normaliza keywords: split frases passadas como string única
+def search(
+    keywords: list[str],
+    category: str | None = None,
+    ref_type: str | None = None,
+    maturity: str | None = None,
+) -> list[dict]:
     flat_kws = []
     for kw in keywords:
         flat_kws.extend(kw.lower().split())
 
-    entries = load_index()
     results = []
-
-    for entry in entries:
-        # Filtros diretos
+    for entry in load_index():
         if category and not entry["category"].startswith(category):
             continue
-        if tag and tag.lower() not in [t.lower() for t in entry.get("tags", [])]:
+        if ref_type and entry["type"] != ref_type:
+            continue
+        if maturity and entry["maturity"] != maturity:
             continue
 
-        # Score por keywords
         if flat_kws:
             searchable = " ".join([
-                entry.get("title", ""),
+                entry.get("name", ""),
                 entry.get("description", ""),
                 " ".join(entry.get("tags", [])),
-                " ".join(entry.get("use_cases_short", [])),
+                " ".join(entry.get("tensions", [])),
             ]).lower()
             score = sum(1 for kw in flat_kws if kw in searchable)
             if score == 0:
@@ -68,124 +65,131 @@ def search(keywords: list[str], category: str | None = None, tag: str | None = N
     return [e for _, e in sorted(results, key=lambda x: -x[0])]
 
 
-def search_for_marketing_os(brief: dict) -> list[dict]:
+def search_for_agent(brief: dict) -> list[dict]:
     """
-    Ponto de entrada para o MarketingOS.
-    Recebe um dict com campos do brief e retorna referências relevantes.
+    Entry point para o MarketingOS.
+    Recebe campos do brief e retorna referências relevantes.
+
+    Exemplo:
+        refs = search_for_agent({
+            "sector": "finance",
+            "style": "dark",
+            "mood": "luxury premium",
+            "type": "visual"
+        })
     """
     keywords = []
-    if brief.get("sector"):
-        keywords.append(brief["sector"])
-    if brief.get("style"):
-        keywords.append(brief["style"])
-    if brief.get("animations"):
-        keywords.extend(brief["animations"] if isinstance(brief["animations"], list) else [brief["animations"]])
-    if brief.get("mood"):
-        keywords.extend(brief["mood"].split())
-    if brief.get("tags"):
-        keywords.extend(brief["tags"])
+    for field in ["sector", "style", "mood", "tags", "industry"]:
+        val = brief.get(field)
+        if val:
+            if isinstance(val, list):
+                keywords.extend(val)
+            else:
+                keywords.extend(str(val).split())
 
-    return search(keywords, category=brief.get("category"))
+    return search(
+        keywords,
+        category=brief.get("category"),
+        ref_type=brief.get("type"),
+        maturity=brief.get("maturity", "stable"),
+    )
 
 
-def print_entry(entry: dict, verbose: bool = False) -> None:
-    cat = entry["category"]
-    title = entry["title"]
-    desc = entry["description"]
-    tags = ", ".join(entry.get("tags", [])[:6])
-    file = entry["file"]
-
-    print(f"\n  [{cat}] {title}")
-    print(f"  {desc}")
-    print(f"  Tags: {tags}")
-    print(f"  Arquivo: {file}")
-
-    if verbose:
-        print(f"\n  Use cases: {', '.join(entry.get('use_cases_short', []))}")
-        complexity = entry.get("complexity")
-        if complexity:
-            print(f"  Complexidade: {complexity}")
-
+# ── CLI commands ──────────────────────────────────────────────────────────────
 
 def cmd_search(args: argparse.Namespace) -> None:
-    keywords = args.keywords or []
-    results = search(keywords, category=args.category, tag=args.tag)
-
+    results = search(
+        args.keywords or [],
+        category=args.category,
+        ref_type=args.type,
+        maturity=args.maturity,
+    )
     if not results:
         print("Nenhuma referência encontrada.")
         return
-
-    print(f"\nEncontradas {len(results)} referência(s):")
+    print(f"\n{len(results)} referência(s):\n")
     for entry in results:
-        print_entry(entry, verbose=args.verbose)
+        _print_entry(entry, verbose=args.verbose)
     print()
 
 
 def cmd_get(args: argparse.Namespace) -> None:
     entries = load_index()
     match = next((e for e in entries if e["id"] == args.id), None)
-
     if not match:
-        print(f"Referência '{args.id}' não encontrada.", file=sys.stderr)
+        print(f"ID '{args.id}' não encontrado.", file=sys.stderr)
         sys.exit(1)
-
-    ref = load_reference(match["file"])
+    ref = load_reference(match["path"])
     print(json.dumps(ref, ensure_ascii=False, indent=2))
-
-
-def cmd_client(args: argparse.Namespace) -> None:
-    path = REFERENCES_DIR / "identities" / args.slug / "identity.json"
-    if not path.exists():
-        print(f"Identidade '{args.slug}' não encontrada em {path}", file=sys.stderr)
-        sys.exit(1)
-    identity = json.loads(path.read_text(encoding="utf-8"))
-    print(json.dumps(identity, ensure_ascii=False, indent=2))
 
 
 def cmd_list(args: argparse.Namespace) -> None:
     entries = load_index()
-
     if args.category:
         entries = [e for e in entries if e["category"].startswith(args.category)]
+    if args.type:
+        entries = [e for e in entries if e["type"] == args.type]
 
-    by_category: dict[str, list] = {}
+    by_cat: dict[str, list] = {}
     for e in entries:
-        by_category.setdefault(e["category"], []).append(e)
+        by_cat.setdefault(e["category"], []).append(e)
 
-    for cat, items in sorted(by_category.items()):
+    for cat, items in sorted(by_cat.items()):
         print(f"\n{cat}/")
         for item in items:
-            print(f"  {item['id']:<40} {item['description'][:60]}")
+            maturity_badge = {"stable": "✓", "growing": "~", "seed": "·", "outdated": "!", "deprecated": "✗"}.get(item["maturity"], "?")
+            print(f"  {maturity_badge} {item['id']:<40} {(item.get('description') or '')[:55]}")
+    print()
+
+
+def cmd_stats(_: argparse.Namespace) -> None:
+    data = json.loads(INDEX_FILE.read_text(encoding="utf-8"))
+    stats = data.get("stats", {})
+    print(f"\nTotal de referências: {stats.get('total', '?')}")
+    print("\nPor tipo:")
+    for k, v in stats.get("by_type", {}).items():
+        if v > 0:
+            print(f"  {k:<20} {v}")
+    print("\nPor maturity:")
+    for k, v in stats.get("by_maturity", {}).items():
+        if v > 0:
+            print(f"  {k:<20} {v}")
+    print()
+
+
+def _print_entry(entry: dict, verbose: bool = False) -> None:
+    print(f"  [{entry['type']}] [{entry['maturity']}] {entry['name']}")
+    if entry.get("description"):
+        print(f"  {entry['description']}")
+    tensions = entry.get("tensions", [])
+    if tensions:
+        print(f"  Tensions: {' · '.join(tensions)}")
+    if verbose:
+        print(f"  Tags: {', '.join(entry.get('tags', []))}")
+        print(f"  Path: {entry['path']}")
     print()
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(
-        prog="python -m src.query",
-        description="Busca no diretório de referências do MarketingOS",
-    )
-    sub = parser.add_subparsers(dest="command")
+    p = argparse.ArgumentParser(prog="python -m src.query", description="MarketingOS Reference Library")
+    sub = p.add_subparsers(dest="command")
 
-    # search
-    s = sub.add_parser("search", help="Busca por keywords, categoria ou tag")
-    s.add_argument("keywords", nargs="*", help="Palavras-chave (ex: 'dark particle scroll')")
-    s.add_argument("--category", "-c", help="Filtrar por categoria (ex: animations/three-js)")
-    s.add_argument("--tag", "-t", help="Filtrar por tag específica")
+    s = sub.add_parser("search", help="Busca por keywords, tipo, categoria ou maturity")
+    s.add_argument("keywords", nargs="*")
+    s.add_argument("--category", "-c")
+    s.add_argument("--type", "-t", dest="type")
+    s.add_argument("--maturity", "-m")
     s.add_argument("--verbose", "-v", action="store_true")
 
-    # get
-    g = sub.add_parser("get", help="Retorna a referência completa (JSON) por ID")
-    g.add_argument("id", help="ID da referência (ex: three-js-particle-systems)")
+    g = sub.add_parser("get", help="Retorna o JSON completo de uma referência por ID")
+    g.add_argument("id")
 
-    # client
-    c = sub.add_parser("client", help="Retorna a identidade de um cliente")
-    c.add_argument("slug", help="Slug do cliente (ex: acme-corp)")
+    ll = sub.add_parser("list", help="Lista todas as referências agrupadas por categoria")
+    ll.add_argument("--category", "-c")
+    ll.add_argument("--type", "-t", dest="type")
 
-    # list
-    l = sub.add_parser("list", help="Lista todas as referências disponíveis")
-    l.add_argument("--category", "-c", help="Filtrar por categoria")
-
-    return parser
+    sub.add_parser("stats", help="Resumo do estado do repositório")
+    return p
 
 
 def main() -> None:
@@ -196,24 +200,21 @@ def main() -> None:
         cmd_search(args)
     elif args.command == "get":
         cmd_get(args)
-    elif args.command == "client":
-        cmd_client(args)
     elif args.command == "list":
         cmd_list(args)
-    else:
-        # Comportamento padrão: search por keywords passados direto
-        if len(sys.argv) > 1:
-            keywords = sys.argv[1:]
-            results = search(keywords)
-            if not results:
-                print("Nenhuma referência encontrada.")
-            else:
-                print(f"\nEncontradas {len(results)} referência(s):")
-                for entry in results:
-                    print_entry(entry)
-                print()
+    elif args.command == "stats":
+        cmd_stats(args)
+    elif len(sys.argv) > 1:
+        # shorthand: python -m src.query dark luxury
+        results = search(sys.argv[1:])
+        if not results:
+            print("Nenhuma referência encontrada.")
         else:
-            parser.print_help()
+            print(f"\n{len(results)} referência(s):\n")
+            for e in results:
+                _print_entry(e)
+    else:
+        parser.print_help()
 
 
 if __name__ == "__main__":
