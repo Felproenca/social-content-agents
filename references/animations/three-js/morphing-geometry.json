@@ -1,0 +1,49 @@
+{
+  "id": "three-js-morphing-geometry",
+  "title": "Morphing Geometry",
+  "description": "Transição fluida entre formas geométricas 3D — esfera → torus → icosaedro. Cria identidade visual única e dinâmica para marcas que querem transmitir transformação.",
+  "category": "animations",
+  "subcategory": "three-js",
+  "tags": ["morphing", "three.js", "geometry", "shape", "transition", "transform", "WebGL", "logo"],
+  "use_cases": [
+    "Logo animado em hero section",
+    "Representação visual de transformação / mudança de estado",
+    "Elemento decorativo de fundo com identidade forte",
+    "Transição entre fases de um produto ou serviço"
+  ],
+  "complexity": "medium",
+  "performance_cost": "low",
+  "dependencies": ["three", "gsap"],
+  "install": "npm install three gsap",
+  "visual": {
+    "mood": ["transformação", "premium", "tecnológico", "artístico", "fluido"],
+    "styles_pair_well": ["CLEAN", "DARK", "EDITORIAL"],
+    "best_on_backgrounds": ["dark", "white", "neutral"]
+  },
+  "variants": [
+    {
+      "name": "Wireframe Morph",
+      "description": "Morph em wireframe — elegante, technical, minimalista"
+    },
+    {
+      "name": "Solid Morph",
+      "description": "Formas sólidas com material do cliente — mais impactante"
+    },
+    {
+      "name": "Noise Distortion",
+      "description": "Esfera que se distorce organicamente com noise — orgânico, vivo"
+    }
+  ],
+  "code": {
+    "html": "<canvas id=\"morph-canvas\"></canvas>",
+    "css": "#morph-canvas {\n  position: absolute;\n  top: 50%; left: 50%;\n  transform: translate(-50%, -50%);\n  width: min(600px, 90vw);\n  height: min(600px, 90vw);\n}",
+    "js": "import * as THREE from 'three';\nimport { gsap } from 'gsap';\n\nconst canvas = document.getElementById('morph-canvas');\nconst W = canvas.clientWidth;\nconst H = canvas.clientHeight;\n\nconst renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });\nrenderer.setSize(W, H);\nrenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));\n\nconst scene = new THREE.Scene();\nconst camera = new THREE.PerspectiveCamera(70, W / H, 0.01, 10);\ncamera.position.z = 3;\n\n// — Geometrias —\n// IMPORTANTE: todas precisam ter o mesmo número de vértices para morphing funcionar.\n// Solução: usar detail alto na mais simples e garantir consistência.\nconst detail = 4;\nconst shapes = [\n  new THREE.IcosahedronGeometry(1, detail),\n  new THREE.OctahedronGeometry(1.1, detail),\n  new THREE.TorusGeometry(0.75, 0.35, 32, 48),\n].map(g => {\n  g.computeVertexNormals();\n  return g;\n});\n\nconst material = new THREE.MeshNormalMaterial({\n  wireframe: false,\n  side: THREE.DoubleSide,\n});\n\nconst mesh = new THREE.Mesh(shapes[0], material);\nscene.add(mesh);\n\n// — Morph helper —\nlet currentIdx = 0;\nlet isMorphing = false;\n\nfunction morphTo(nextIdx) {\n  if (isMorphing || nextIdx === currentIdx) return;\n  isMorphing = true;\n\n  const from = shapes[currentIdx].attributes.position.array;\n  const to   = shapes[nextIdx].attributes.position.array;\n  const current = mesh.geometry.attributes.position.array;\n\n  // Copiar estado atual para poder animar\n  const snapshot = Float32Array.from(current);\n  const obj = { t: 0 };\n\n  gsap.to(obj, {\n    t: 1,\n    duration: 1.6,\n    ease: 'power2.inOut',\n    onUpdate() {\n      for (let i = 0; i < snapshot.length; i++) {\n        current[i] = snapshot[i] + (to[i] - snapshot[i]) * obj.t;\n      }\n      mesh.geometry.attributes.position.needsUpdate = true;\n      mesh.geometry.computeVertexNormals();\n    },\n    onComplete() {\n      currentIdx = nextIdx;\n      isMorphing = false;\n    }\n  });\n}\n\n// Auto-ciclo a cada 3s\nsetInterval(() => morphTo((currentIdx + 1) % shapes.length), 3000);\n\n// — Loop —\nconst clock = new THREE.Clock();\nfunction animate() {\n  requestAnimationFrame(animate);\n  mesh.rotation.y = clock.getElapsedTime() * 0.3;\n  mesh.rotation.x = clock.getElapsedTime() * 0.15;\n  renderer.render(scene, camera);\n}\nanimate();",
+    "config_options": {
+      "shapes": "Adicione ou remova formas do array. Todas precisam ter o mesmo count de vértices — ajuste via subdivision/detail.",
+      "duration": "Velocidade do morph (0.8–2.5s). Mais lento = mais dramático.",
+      "wireframe": "true para estilo editorial; false para formas sólidas com material do cliente.",
+      "interval": "Tempo entre morphs em ms (2000–5000)."
+    }
+  },
+  "adaptation_notes": "Para usar a cor do cliente: troque MeshNormalMaterial por `new THREE.MeshStandardMaterial({ color: clientPrimary, metalness: 0.3, roughness: 0.4 })` e adicione iluminação `AmbientLight + DirectionalLight`."
+}

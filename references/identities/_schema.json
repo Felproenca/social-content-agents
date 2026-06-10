@@ -1,0 +1,48 @@
+{
+  "_schema_version": "1.0",
+  "_description": "Template para adicionar a identidade visual de um cliente. Copie este arquivo para references/identities/{client-slug}/identity.json e preencha.",
+  "client_slug": "",
+  "name": "",
+  "sector": "",
+  "sub_sector": "",
+  "description_short": "",
+  "tags": [],
+  "visual_style_ref": "",
+  "color_system_ref": "",
+  "palette": {
+    "primary":    "",
+    "secondary":  "",
+    "accent":     "",
+    "background": "",
+    "surface":    "",
+    "text":       "",
+    "text_light": ""
+  },
+  "typography": {
+    "heading": "",
+    "body":    "",
+    "mono":    ""
+  },
+  "tone": {
+    "voice": "",
+    "personality_words": [],
+    "avoid_words": [],
+    "examples_good": [],
+    "examples_bad": []
+  },
+  "animation_preferences": {
+    "speed": "slow | medium | fast",
+    "style": "subtle | moderate | expressive",
+    "preferred_patterns": [],
+    "avoid_patterns": []
+  },
+  "logo": {
+    "url": "",
+    "background_usage": "dark | light | both",
+    "clear_space": ""
+  },
+  "references_external": [],
+  "notes": "",
+  "created_at": "",
+  "updated_at": ""
+}

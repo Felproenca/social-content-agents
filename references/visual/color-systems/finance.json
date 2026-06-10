@@ -1,0 +1,74 @@
+{
+  "id": "color-finance",
+  "title": "Sistema de Cores — Finanças",
+  "description": "Paletas para setor financeiro. Duas direções opostas: confiança tradicional (azuis profundos, branco) e fintech disruptiva (dark + neon + acents saturados).",
+  "category": "visual",
+  "subcategory": "color-systems",
+  "tags": ["finance", "banking", "fintech", "investment", "insurance", "trust", "professional", "money"],
+  "sector_notes": "Finanças exige equilíbrio entre confiança (azul, verde escuro) e modernidade. Vermelho = perda — evitar como accent principal. Ouro/champagne = riqueza acumulada.",
+  "palettes": [
+    {
+      "name": "Trust Blue",
+      "sub_sector": "Banco tradicional, seguro, gestão de patrimônio",
+      "mood": "Confiança, solidez, tradição, seriedade",
+      "colors": {
+        "primary":    "#1a3a5c",
+        "secondary":  "#2d5f8a",
+        "accent":     "#4a9fd4",
+        "background": "#f8fafc",
+        "surface":    "#ffffff",
+        "text":       "#1a2533",
+        "text_muted": "#5a7896",
+        "success":    "#2e7d32",
+        "border":     "#d0dce8"
+      },
+      "usage": "Tom institucional. Para landing pages de bancos, gestoras e seguradoras tradicionais."
+    },
+    {
+      "name": "Fintech Dark",
+      "sub_sector": "Fintech, neobank, crypto, DeFi",
+      "mood": "Moderno, disruptivo, tech-forward, inovação",
+      "colors": {
+        "primary":    "#00d2ff",
+        "secondary":  "#7b2ff7",
+        "accent":     "#00ff9d",
+        "background": "#050514",
+        "surface":    "#0d0d2b",
+        "text":       "#e8e8ff",
+        "text_muted": "#6b6b9e",
+        "success":    "#00ff9d",
+        "border":     "rgba(0,210,255,0.15)"
+      },
+      "usage": "Disruption digital. Para apps de investimento, cripto, plataformas B2B de dados financeiros."
+    },
+    {
+      "name": "Wealth Gold",
+      "sub_sector": "Private banking, wealth management, family office",
+      "mood": "Exclusivo, discreto, prosperidade, legado",
+      "colors": {
+        "primary":    "#c9a96e",
+        "secondary":  "#8b6914",
+        "accent":     "#e8d5a3",
+        "background": "#0f0d0a",
+        "surface":    "#1a1712",
+        "text":       "#f0ece4",
+        "text_muted": "#8a8474",
+        "success":    "#c9a96e",
+        "border":     "rgba(201,169,110,0.2)"
+      },
+      "usage": "Ultra-premium. Para gestão de grandes fortunas, fundos exclusivos e advisory de alto nível."
+    }
+  ],
+  "typography_recommendations": {
+    "traditional": ["Playfair Display + Inter", "Libre Baskerville + Lato"],
+    "fintech": ["Space Grotesk + Inter", "Syne + DM Sans"],
+    "wealth": ["Cormorant Garamond + Neue Haas Grotesk"]
+  },
+  "animation_notes": "Trust Blue: movimentos lentos, suaves. Fintech Dark: glow effects, linhas de dados em movimento. Wealth Gold: partículas douradas muito sutis, morphing geométrico.",
+  "avoid_globally": [
+    "Vermelho como cor principal (associação com queda/perda)",
+    "Verde vibrante em interfaces de risco",
+    "Tipografia display muito casual ou humorística",
+    "Gradientes arco-íris ou muito coloridos"
+  ]
+}

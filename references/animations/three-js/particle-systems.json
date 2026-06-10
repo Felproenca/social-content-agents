@@ -1,0 +1,50 @@
+{
+  "id": "three-js-particle-systems",
+  "title": "Particle Systems",
+  "description": "Sistema de partículas flutuantes com BufferGeometry. Ideal para backgrounds ambientes, representação de dados em movimento e efeitos de profundidade.",
+  "category": "animations",
+  "subcategory": "three-js",
+  "tags": ["particles", "three.js", "background", "ambient", "generative", "WebGL", "floating", "dots", "space"],
+  "use_cases": [
+    "Background animado de hero section",
+    "Efeito ambiente para marcas tech e fintech",
+    "Visualização de rede ou conexões",
+    "Transição entre seções com dissolve de partículas"
+  ],
+  "complexity": "low",
+  "performance_cost": "low",
+  "dependencies": ["three"],
+  "install": "npm install three",
+  "visual": {
+    "mood": ["tecnológico", "etéreo", "moderno", "minimalista"],
+    "styles_pair_well": ["TECHNICAL", "DARK", "CLEAN"],
+    "best_on_backgrounds": ["dark", "deep blue", "black"]
+  },
+  "variants": [
+    {
+      "name": "Floating Dust",
+      "description": "Partículas pequenas e lentas — efeito de poeira/névoa"
+    },
+    {
+      "name": "Connected Network",
+      "description": "Partículas conectadas por linhas quando próximas — representa rede, dados, blockchain"
+    },
+    {
+      "name": "Reactive Mouse",
+      "description": "Partículas que fogem ou se aproximam do cursor"
+    }
+  ],
+  "code": {
+    "html": "<canvas id=\"canvas\"></canvas>",
+    "css": "#canvas { position: fixed; top: 0; left: 0; z-index: -1; }",
+    "js": "import * as THREE from 'three';\n\nconst scene = new THREE.Scene();\nconst camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);\nconst renderer = new THREE.WebGLRenderer({\n  canvas: document.querySelector('#canvas'),\n  alpha: true\n});\nrenderer.setSize(window.innerWidth, window.innerHeight);\nrenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));\n\n// — Partículas —\nconst COUNT = 2000;\nconst geometry = new THREE.BufferGeometry();\nconst positions = new Float32Array(COUNT * 3);\nconst speeds = new Float32Array(COUNT);\n\nfor (let i = 0; i < COUNT; i++) {\n  positions[i * 3]     = (Math.random() - 0.5) * 10;  // x\n  positions[i * 3 + 1] = (Math.random() - 0.5) * 10;  // y\n  positions[i * 3 + 2] = (Math.random() - 0.5) * 10;  // z\n  speeds[i] = Math.random() * 0.5 + 0.2;\n}\ngeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));\n\nconst material = new THREE.PointsMaterial({\n  size: 0.015,\n  color: 0xffffff,\n  transparent: true,\n  opacity: 0.55,\n  sizeAttenuation: true\n});\n\nconst particles = new THREE.Points(geometry, material);\nscene.add(particles);\ncamera.position.z = 3;\n\n// — Resize —\nwindow.addEventListener('resize', () => {\n  camera.aspect = window.innerWidth / window.innerHeight;\n  camera.updateProjectionMatrix();\n  renderer.setSize(window.innerWidth, window.innerHeight);\n});\n\n// — Loop —\nconst clock = new THREE.Clock();\nfunction animate() {\n  requestAnimationFrame(animate);\n  const elapsed = clock.getElapsedTime();\n  particles.rotation.y = elapsed * 0.05;\n  particles.rotation.x = elapsed * 0.03;\n  renderer.render(scene, camera);\n}\nanimate();",
+    "config_options": {
+      "COUNT": "Número de partículas (200–5000). Acima de 3000 verificar FPS em mobile.",
+      "size": "Tamanho de cada ponto (0.005–0.05). Menor = mais sutil.",
+      "opacity": "Transparência (0.3–0.8). Mais baixo = efeito mais etéreo.",
+      "color": "Cor em hex. Branco (0xffffff) para fundos escuros, cinza escuro para fundos claros.",
+      "rotation_speed": "Multiplique elapsed por 0.02–0.1 para velocidade de rotação."
+    }
+  },
+  "adaptation_notes": "Para trocar a cor das partículas pela cor accent do cliente, substitua `0xffffff` por `new THREE.Color(accentColor)`. Para performance em mobile, reduza COUNT para 800."
+}

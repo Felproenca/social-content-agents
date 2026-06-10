@@ -1,0 +1,56 @@
+{
+  "id": "gsap-text-reveal",
+  "title": "Text Reveal Animations",
+  "description": "Animações de entrada para textos — linha por linha, palavra por palavra ou caractere por caractere. O detalhe que diferencia um site comum de um editorial de alto nível.",
+  "category": "animations",
+  "subcategory": "gsap",
+  "tags": ["text", "gsap", "typography", "reveal", "split", "headline", "cinematic", "words", "chars"],
+  "use_cases": [
+    "Headline de hero section com entrada dramática",
+    "Subtítulos de seção com entrada por linha",
+    "Texto de manifesto da marca (palavra por palavra)",
+    "Números e métricas com contagem animada"
+  ],
+  "complexity": "low",
+  "performance_cost": "very-low",
+  "dependencies": ["gsap"],
+  "install": "npm install gsap",
+  "note_club": "SplitText é um plugin Club GreenSock (pago). As alternativas sem plugin estão incluídas abaixo.",
+  "visual": {
+    "mood": ["editorial", "premium", "cinematográfico", "impactante"],
+    "styles_pair_well": ["BOLD", "EDITORIAL", "DARK", "CLEAN"],
+    "best_on_backgrounds": ["qualquer"]
+  },
+  "variants": [
+    {
+      "name": "Line Mask Reveal",
+      "description": "Cada linha sobe de baixo de uma máscara invisible — clássico editorial"
+    },
+    {
+      "name": "Word Stagger",
+      "description": "Palavras entram em sequência com fade — moderno, ritmado"
+    },
+    {
+      "name": "Char Scale-In",
+      "description": "Caracteres entram com scale — dramático, impacto imediato"
+    },
+    {
+      "name": "Counter",
+      "description": "Número conta de 0 até o valor final — métricas e stats"
+    }
+  ],
+  "code": {
+    "setup": "import { gsap } from 'gsap';\nimport { ScrollTrigger } from 'gsap/ScrollTrigger';\ngsap.registerPlugin(ScrollTrigger);",
+    "line_mask_no_plugin": "// Sem SplitText — configurar HTML manualmente\n// HTML: <h1 class=\"headline\">\n//   <span class=\"line\"><span class=\"line__inner\">Primeira linha</span></span>\n//   <span class=\"line\"><span class=\"line__inner\">Segunda linha</span></span>\n// </h1>\n\nconst CSS = `\n.line { display: block; overflow: hidden; }\n.line__inner { display: block; }\n`;\n\ngsap.from('.line__inner', {\n  yPercent: 105,\n  duration: 0.9,\n  ease: 'power4.out',\n  stagger: 0.12,\n  scrollTrigger: {\n    trigger: '.headline',\n    start: 'top 85%',\n  }\n});",
+    "word_stagger": "// Split manual por palavras\nfunction splitWords(element) {\n  const words = element.textContent.trim().split(' ');\n  element.innerHTML = words\n    .map(w => `<span class=\"word\">${w}</span>`)\n    .join(' ');\n  return element.querySelectorAll('.word');\n}\n\ndocument.querySelectorAll('.word-reveal').forEach((el) => {\n  const words = splitWords(el);\n  gsap.from(words, {\n    opacity: 0,\n    y: 20,\n    rotateX: -30,\n    stagger: 0.06,\n    duration: 0.6,\n    ease: 'power3.out',\n    scrollTrigger: {\n      trigger: el,\n      start: 'top 85%',\n    }\n  });\n});",
+    "char_scale": "// Split por caracteres\nfunction splitChars(element) {\n  const chars = element.textContent.trim().split('');\n  element.innerHTML = chars\n    .map(c => c === ' ' ? ' ' : `<span class=\"char\">${c}</span>`)\n    .join('');\n  return element.querySelectorAll('.char');\n}\n\ndocument.querySelectorAll('.char-reveal').forEach((el) => {\n  const chars = splitChars(el);\n  gsap.from(chars, {\n    opacity: 0,\n    scale: 0,\n    y: 40,\n    stagger: 0.03,\n    duration: 0.5,\n    ease: 'back.out(1.7)',\n    scrollTrigger: {\n      trigger: el,\n      start: 'top 85%',\n    }\n  });\n});",
+    "counter": "// Contador animado para métricas\nfunction animateCounter(el) {\n  const target = parseInt(el.dataset.value, 10);\n  const suffix = el.dataset.suffix || '';\n  const obj = { val: 0 };\n\n  gsap.to(obj, {\n    val: target,\n    duration: 2,\n    ease: 'power2.out',\n    onUpdate() {\n      el.textContent = Math.round(obj.val).toLocaleString('pt-BR') + suffix;\n    },\n    scrollTrigger: {\n      trigger: el,\n      start: 'top 80%',\n      once: true,\n    }\n  });\n}\n\n// HTML: <span class=\"counter\" data-value=\"1247\" data-suffix=\"+\">0</span>\ndocument.querySelectorAll('.counter').forEach(animateCounter);",
+    "config_options": {
+      "stagger": "Tempo entre cada elemento (0.04–0.15s). Menos = mais rápido/simultâneo.",
+      "duration": "Duração de cada elemento (0.4–1.2s).",
+      "ease": "power4.out = natural e forte. back.out(1.7) = com overshoot/bounce suave.",
+      "yPercent: 105": "Garante que sai completamente da máscara. Use 110 para segurança em fontes grandes."
+    }
+  },
+  "adaptation_notes": "Para tipografia do cliente: confirmar line-height da fonte. Fontes com leading apertado podem exigir overflow: hidden no wrapper com padding extra."
+}

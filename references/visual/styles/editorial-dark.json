@@ -1,0 +1,63 @@
+{
+  "id": "editorial-dark",
+  "title": "Editorial Dark",
+  "description": "Estilo inspirado em revistas de moda e cultura de alto padrão. Fundo escuro, tipografia serif elegante, muito espaço negativo e contraste dramático. Transmite exclusividade e sofisticação.",
+  "category": "visual",
+  "subcategory": "styles",
+  "tags": ["dark", "luxury", "editorial", "serif", "high-contrast", "premium", "magazine", "fashion", "culture"],
+  "use_cases": [
+    "Marcas premium e de luxo",
+    "Moda e lifestyle",
+    "Tech de alto padrão (Apple-like)",
+    "Consultoria e serviços executivos",
+    "Eventos e experiências exclusivas"
+  ],
+  "mood": ["sofisticado", "exclusivo", "dramático", "contemporâneo", "intemporal"],
+  "palette": {
+    "background": "#0a0a0a",
+    "surface": "#141414",
+    "surface_elevated": "#1e1e1e",
+    "primary_text": "#f0ece4",
+    "secondary_text": "#8a8680",
+    "accent": "#c9a96e",
+    "accent_alt": "#e8d5b0",
+    "border": "#2a2a2a"
+  },
+  "typography": {
+    "heading_families": ["Playfair Display", "Cormorant Garamond", "DM Serif Display", "Libre Baskerville"],
+    "body_families": ["Inter", "Neue Haas Grotesk", "Helvetica Neue", "Lato"],
+    "mono_families": ["Syne Mono", "IBM Plex Mono"],
+    "weight_heading": "300–400 (light a regular — nunca bold neste estilo)",
+    "weight_body": "300–400",
+    "size_scale": "clamp(14px, 1.1vw, 16px) base, escala 1.414 (quarta aumentada)",
+    "tracking_headline": "0.05em a 0.12em (letras mais abertas na headline)",
+    "tracking_body": "-0.01em",
+    "line_height_heading": "1.1–1.25",
+    "line_height_body": "1.65–1.8"
+  },
+  "spacing": {
+    "principle": "Generoso. Pelo menos 20% do viewport em padding vertical por seção.",
+    "section_padding": "min(120px, 12vw) top/bottom",
+    "content_max_width": "760px para texto, 1200px para full-width"
+  },
+  "layout_principles": [
+    "Muito espaço negativo — o vazio é parte do design",
+    "Hierarquia forte entre headline grande e body pequeno",
+    "Imagens em full-bleed ou com moldura de espaço generoso",
+    "Grid assimétrico para composições sofisticadas",
+    "Linhas horizontais finas como separadores (1px, opacidade 20%)"
+  ],
+  "animations_pair_well": [
+    "gsap-text-reveal (line mask)",
+    "gsap-scroll-trigger (clip reveal)",
+    "three-js-particle-systems (low opacity, monochromatic)"
+  ],
+  "avoid": [
+    "Cores vibrantes ou saturadas demais",
+    "Tipografia sans-serif pesada (bold) em headlines",
+    "Bordas arredondadas grandes",
+    "Sombras muito pronunciadas",
+    "Gradientes coloridos"
+  ],
+  "css_snippet": ":root {\n  --bg: #0a0a0a;\n  --surface: #141414;\n  --text: #f0ece4;\n  --text-muted: #8a8680;\n  --accent: #c9a96e;\n  --border: rgba(255,255,255,0.08);\n\n  --font-h: 'Playfair Display', Georgia, serif;\n  --font-b: 'Inter', Helvetica, sans-serif;\n\n  --space-section: clamp(80px, 10vw, 140px);\n}\n\nbody {\n  background: var(--bg);\n  color: var(--text);\n  font-family: var(--font-b);\n  font-weight: 300;\n  letter-spacing: -0.01em;\n}\n\nh1, h2, h3 {\n  font-family: var(--font-h);\n  font-weight: 300;\n  letter-spacing: 0.05em;\n  line-height: 1.15;\n}"
+}

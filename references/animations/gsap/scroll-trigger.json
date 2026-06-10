@@ -1,0 +1,57 @@
+{
+  "id": "gsap-scroll-trigger",
+  "title": "ScrollTrigger — Reveal de Seções",
+  "description": "Animações de entrada ativadas pelo scroll. Elementos aparecem com movimento ao entrar na viewport. O padrão de engajamento mais comum em landing pages de alto nível.",
+  "category": "animations",
+  "subcategory": "gsap",
+  "tags": ["scroll", "gsap", "reveal", "entrance", "trigger", "fade", "slide", "intersection"],
+  "use_cases": [
+    "Reveal de seções em landing page",
+    "Entrada progressiva de conteúdo ao scroll",
+    "Parallax suave de elementos de fundo",
+    "Sticky elements com animação de pin"
+  ],
+  "complexity": "low",
+  "performance_cost": "very-low",
+  "dependencies": ["gsap", "gsap/ScrollTrigger"],
+  "install": "npm install gsap",
+  "visual": {
+    "mood": ["profissional", "moderno", "fluido", "editorial"],
+    "styles_pair_well": ["CLEAN", "EDITORIAL", "BOLD", "DARK"],
+    "best_on_backgrounds": ["qualquer"]
+  },
+  "variants": [
+    {
+      "name": "Fade Up",
+      "description": "Elemento sobe e aparece — o mais universal"
+    },
+    {
+      "name": "Clip Reveal",
+      "description": "Texto ou imagem revelado por clip-path — elegante, editorial"
+    },
+    {
+      "name": "Scrub Parallax",
+      "description": "Elementos movem em velocidades diferentes ao scroll — profundidade"
+    },
+    {
+      "name": "Pin Section",
+      "description": "Seção fica fixada enquanto o conteúdo interno anima — storytelling"
+    }
+  ],
+  "code": {
+    "setup": "import { gsap } from 'gsap';\nimport { ScrollTrigger } from 'gsap/ScrollTrigger';\ngsap.registerPlugin(ScrollTrigger);",
+    "fade_up": "// Revelar elementos ao entrar na viewport\ngsap.utils.toArray('[data-reveal]').forEach((el) => {\n  gsap.from(el, {\n    opacity: 0,\n    y: 50,\n    duration: 0.9,\n    ease: 'power3.out',\n    scrollTrigger: {\n      trigger: el,\n      start: 'top 85%',\n      toggleActions: 'play none none none',\n    }\n  });\n});",
+    "clip_reveal": "// Clip-path reveal — elegante para headlines e imagens\ngsap.utils.toArray('.headline-reveal').forEach((el) => {\n  gsap.from(el, {\n    clipPath: 'inset(0 100% 0 0)',\n    opacity: 0,\n    duration: 1.1,\n    ease: 'power4.inOut',\n    scrollTrigger: {\n      trigger: el,\n      start: 'top 80%',\n    }\n  });\n});",
+    "scrub_parallax": "// Parallax de background ao scroll\nconst bg = document.querySelector('.hero-bg');\ngsap.to(bg, {\n  yPercent: -30,\n  ease: 'none',\n  scrollTrigger: {\n    trigger: '.hero',\n    start: 'top top',\n    end: 'bottom top',\n    scrub: true,  // scrub: true ou número (suavidade)\n  }\n});",
+    "pin_section": "// Seção pinada com animação interna\nconst tl = gsap.timeline({\n  scrollTrigger: {\n    trigger: '.pin-section',\n    pin: true,\n    start: 'top top',\n    end: '+=200%',\n    scrub: 1,\n  }\n});\ntl.to('.pin-text', { opacity: 0, y: -50 })\n  .to('.pin-image', { scale: 1.2 }, '<')\n  .to('.pin-cta', { opacity: 1, y: 0 });",
+    "html_attributes": "<!-- Uso com data-reveal para revelar qualquer elemento -->\n<section data-reveal>\n  <h2>Título</h2>\n</section>\n\n<!-- Para clip-path reveal -->\n<h1 class=\"headline-reveal\">Título</h1>\n\n<!-- Para pin -->\n<section class=\"pin-section\">\n  <p class=\"pin-text\">Texto que sai</p>\n  <div class=\"pin-image\">Imagem que expande</div>\n  <button class=\"pin-cta\" style=\"opacity:0\">CTA</button>\n</section>",
+    "config_options": {
+      "start": "'top 85%' = começa quando o topo do elemento atinge 85% da viewport. Reduza para revelar mais tarde.",
+      "toggleActions": "'play none none reverse' para animar tanto na entrada quanto na saída.",
+      "scrub": "true = sincronizado com scroll. Número = lag em segundos. false = dispara uma vez.",
+      "pin": "true = sela o elemento enquanto o ScrollTrigger estiver ativo.",
+      "ease": "power3.out para entradas naturais. power4.inOut para revelações dramáticas."
+    }
+  },
+  "adaptation_notes": "Para usar com Intersection Observer (sem GSAP): a lógica de 'start: top 85%' equivale a `rootMargin: '0px 0px -15% 0px'`. Use GSAP quando precisar de controle fino de timing, scrub ou pin."
+}

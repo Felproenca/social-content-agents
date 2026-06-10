@@ -1,0 +1,70 @@
+{
+  "id": "bold-typographic",
+  "title": "Bold Typographic",
+  "description": "A tipografia É o design. Fontes grandes, pesadas e com presença. Cores contrastantes entre seções. Ideal para marcas que querem impacto imediato e posição forte no mercado.",
+  "category": "visual",
+  "subcategory": "styles",
+  "tags": ["bold", "typography", "impact", "high-contrast", "strong", "assertive", "brutalist", "modern"],
+  "use_cases": [
+    "Startups com posicionamento disruptivo",
+    "Marcas de esportes e performance",
+    "Agências criativas e de publicidade",
+    "Newsletters e publicações opinionadas",
+    "Produtos que querem quebrar o status quo"
+  ],
+  "mood": ["assertivo", "direto", "energético", "confiante", "provocador"],
+  "palette": {
+    "primary_light": {
+      "background": "#f5f5f0",
+      "primary_text": "#0a0a0a",
+      "accent": "#ff3300",
+      "accent_alt": "#0033ff",
+      "surface": "#e8e8e3",
+      "border": "rgba(0,0,0,0.1)"
+    },
+    "primary_dark": {
+      "background": "#0a0a0a",
+      "primary_text": "#f5f5f0",
+      "accent": "#ffdd00",
+      "accent_alt": "#ff3300",
+      "surface": "#181818",
+      "border": "rgba(255,255,255,0.1)"
+    }
+  },
+  "typography": {
+    "heading_families": ["Space Grotesk", "Syne", "Monument Extended", "Clash Display", "Cabinet Grotesk"],
+    "body_families": ["Inter", "DM Sans", "Manrope"],
+    "weight_heading": "700–900 (bold a black — quanto mais pesado melhor)",
+    "weight_body": "400–500",
+    "size_scale": "Exagerado. H1 pode ser clamp(60px, 10vw, 160px).",
+    "tracking_headline": "-0.02em a -0.04em (letras fechadas — aumenta peso visual)",
+    "tracking_body": "-0.01em",
+    "line_height_heading": "0.9–1.05 (tight — comprimido)",
+    "line_height_body": "1.5–1.65"
+  },
+  "spacing": {
+    "principle": "Contraste de escala — seções alternando muito cheias e muito vazias.",
+    "section_padding": "min(80px, 8vw)",
+    "content_max_width": "1400px — ocupar mais espaço do que o usual"
+  },
+  "layout_principles": [
+    "Texto que sangra para fora do container — deliberado",
+    "Seções com fundo alternando claro/escuro para ritmo visual",
+    "Grid com colunas de largura muito diferente (ex: 70/30 ou 80/20)",
+    "Elementos que se sobrepõem entre seções",
+    "Números e métricas em tamanho hero (gigantes)"
+  ],
+  "animations_pair_well": [
+    "gsap-text-reveal (char scale-in)",
+    "gsap-scroll-trigger (clip reveal horizontal)",
+    "gsap-stagger-entrance (random stagger)"
+  ],
+  "avoid": [
+    "Tipografia serif delicada",
+    "Muito espaço negativo sem intenção",
+    "Gradientes suaves",
+    "Arredondamentos excessivos (border-radius > 8px)",
+    "Mais de 2 famílias tipográficas"
+  ],
+  "css_snippet": ":root {\n  --bg: #f5f5f0;\n  --text: #0a0a0a;\n  --accent: #ff3300;\n  --surface: #e8e8e3;\n\n  --font-h: 'Space Grotesk', 'Arial Black', sans-serif;\n  --font-b: 'Inter', Helvetica, sans-serif;\n}\n\nbody {\n  background: var(--bg);\n  color: var(--text);\n  font-family: var(--font-b);\n}\n\nh1 {\n  font-family: var(--font-h);\n  font-weight: 800;\n  font-size: clamp(56px, 9vw, 140px);\n  line-height: 0.95;\n  letter-spacing: -0.03em;\n}\n\nh2 {\n  font-family: var(--font-h);\n  font-weight: 700;\n  font-size: clamp(36px, 5vw, 80px);\n  line-height: 1.0;\n  letter-spacing: -0.02em;\n}"
+}

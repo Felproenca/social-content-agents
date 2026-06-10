@@ -1,0 +1,85 @@
+{
+  "id": "color-wellness",
+  "title": "Sistema de Cores — Wellness & Saúde",
+  "description": "Paletas para saúde, bem-estar, fitness, nutrição e mente. Do clínico (branco, azul frio) ao holístico (terra, verde sábio). Cores que curam e acalmam.",
+  "category": "visual",
+  "subcategory": "color-systems",
+  "tags": ["wellness", "health", "fitness", "nutrition", "mental-health", "yoga", "spa", "medical", "organic"],
+  "sector_notes": "Verde = saúde, crescimento, natureza. Branco = limpeza, clareza. Evitar vermelho intenso (urgência/dor). Amarelo quente = energia sem agressividade.",
+  "palettes": [
+    {
+      "name": "Natural Earth",
+      "sub_sector": "Alimentação orgânica, nutrição, wellness holístico, yoga",
+      "mood": "Natural, autêntico, calmante, conectado à terra",
+      "colors": {
+        "primary":    "#4a7c59",
+        "secondary":  "#2d5a3d",
+        "accent":     "#c9a96e",
+        "background": "#fafaf8",
+        "surface":    "#f2f0eb",
+        "text":       "#1c2b1e",
+        "text_muted": "#6b7c6e",
+        "highlight":  "#e8f5e9",
+        "border":     "#d4e0d6"
+      },
+      "usage": "Marcas orgânicas, produtos naturais, práticas holísticas. Tom de horta e floresta."
+    },
+    {
+      "name": "Clinical Trust",
+      "sub_sector": "Saúde preventiva, telemedicina, healthtech, farmácia",
+      "mood": "Limpo, confiável, preciso, profissional",
+      "colors": {
+        "primary":    "#0284c7",
+        "secondary":  "#0369a1",
+        "accent":     "#06b6d4",
+        "background": "#ffffff",
+        "surface":    "#f0f9ff",
+        "text":       "#0c1a2e",
+        "text_muted": "#4b7a9e",
+        "success":    "#16a34a",
+        "border":     "#bae6fd"
+      },
+      "usage": "Clínicas, plataformas de saúde digital, seguros saúde. Confiança médica + tecnologia."
+    },
+    {
+      "name": "Fitness Energy",
+      "sub_sector": "Fitness, treino, suplementação, esportes",
+      "mood": "Energético, motivador, forte, focado",
+      "colors": {
+        "primary":    "#ea580c",
+        "secondary":  "#dc2626",
+        "accent":     "#fbbf24",
+        "background": "#0a0a0a",
+        "surface":    "#141414",
+        "text":       "#f5f5f5",
+        "text_muted": "#a3a3a3",
+        "success":    "#22c55e",
+        "border":     "rgba(234,88,12,0.2)"
+      },
+      "usage": "Academias, apps de treino, marcas de suplemento. Dark + fogo = performance máxima."
+    },
+    {
+      "name": "Mindful Lavender",
+      "sub_sector": "Saúde mental, meditação, sono, terapia",
+      "mood": "Calmo, seguro, acolhedor, tranquilo, gentil",
+      "colors": {
+        "primary":    "#8b5cf6",
+        "secondary":  "#7c3aed",
+        "accent":     "#c4b5fd",
+        "background": "#faf5ff",
+        "surface":    "#f3e8ff",
+        "text":       "#1e1033",
+        "text_muted": "#7c6e9a",
+        "border":     "#ddd6fe"
+      },
+      "usage": "Apps de meditação, terapia online, gestão de sono. Lavanda é clinicamente calmante."
+    }
+  ],
+  "typography_recommendations": {
+    "natural": ["Playfair Display + Lato", "Libre Baskerville + Source Sans"],
+    "clinical": ["Plus Jakarta Sans + Inter", "DM Sans + Inter"],
+    "fitness": ["Space Grotesk + Inter", "Syne + DM Sans"],
+    "mindful": ["Cormorant Garamond + Inter", "DM Serif Display + Lato"]
+  },
+  "animation_notes": "Natural: movimentos orgânicos, Spring physics lentas. Clinical: precisão, sem frescura. Fitness: rápido, impactante, stagger agressivo. Mindful: breathing animations, fade muito suave."
+}
