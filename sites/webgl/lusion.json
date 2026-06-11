@@ -1,0 +1,50 @@
+{
+  "id": "lusion",
+  "type": "site",
+  "category": "sites/webgl",
+  "name": "Lusion",
+  "source_url": "https://lusion.co",
+  "captured_at": "2026-06-10",
+  "updated_at": "2026-06-10",
+  "maturity": "stable",
+  "tags": ["webgl", "agency", "interactive", "dark", "particles", "creative", "award-winning"],
+  "tensions": [
+    "beleza técnica que não precisa de justificativa comercial",
+    "motion como linguagem nativa, não como camada decorativa"
+  ],
+  "summary": "Lusion é o estúdio que mais consistentemente transforma capacidade técnica em poesia visual. Onde outros estúdios mostram o que fizeram, Lusion mostra como pensam. O site em si é a principal obra do portfólio — partículas, física simulada e shaders customizados usados não como demonstração, mas como expressão.",
+  "use_cases": [
+    "Referência de partículas e física em WebGL com propósito estético claro",
+    "Benchmark de cursor customizado como extensão do sistema de design",
+    "Como criar portfólio que é simultaneamente produto e argumento de venda",
+    "Referência de dark com microdetalhes de qualidade (hover, transição, grain)"
+  ],
+  "related": ["active-theory", "three-js-particle-systems", "three-js-morphing-geometry"],
+  "visual": {
+    "style": "dark",
+    "mood": ["poético", "técnico", "preciso", "imersivo", "contemplativo"],
+    "palette": {
+      "background": "#0a0a0a",
+      "primary_text": "#f0f0f0",
+      "secondary_text": "#606060",
+      "accent": "variável — cor emerge da cena, não do branding"
+    },
+    "typography": {
+      "heading": "Sans-serif técnico de alta qualidade — próximo de Neue Haas ou Aktiv Grotesk",
+      "body": "Mesmo sans-serif em peso menor",
+      "weight_heading": "300–500"
+    },
+    "layout_principles": [
+      "A cena WebGL ocupa 100% do viewport — texto é overlay, não container",
+      "Grain/noise texture sobre tudo — profundidade analógica sobre digital",
+      "Projetos entram com transição única — não há template de card",
+      "Cursor leave trail de partículas — interatividade como assinatura"
+    ]
+  },
+  "motion": {
+    "library": "three-js",
+    "complexity": "high",
+    "performance_cost": "high",
+    "analysis": "Física de partículas com simulação real (força, velocidade, atrito). Shaders GLSL customizados para cada projeto. Cursor com campo de força que repele/atrai partículas. Grain animado como textura viva. A linguagem de motion é consistente mesmo com cada projeto tendo identidade própria — isso é o que separa estúdio de freelancer."
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "id": "sticky-card-stack",
+  "type": "motion",
+  "category": "motion/framer",
+  "name": "Sticky Stacking Cards com Scale",
+  "source_context": "Extraído de prompt MotionSites — Jack 3D Creator portfolio, Projects Section. Padrão de cards que ficam grudados e encolhem enquanto o próximo card sobe por cima. Variante muito usada em portfolios e features de produto.",
+  "captured_at": "2026-06-11",
+  "updated_at": "2026-06-11",
+  "maturity": "stable",
+  "tags": ["scroll", "sticky", "cards", "stack", "scale", "framer-motion", "portfolio", "product"],
+  "tensions": [
+    "profundidade sem z-index — o scroll cria a ilusão de pilha",
+    "cada card existe no tempo, não no espaço"
+  ],
+  "summary": "Cards ficam sticky (posição fixed no scroll) e encolhem progressivamente enquanto os próximos sobem por cima. O scale de cada card é calculado pela posição relativa ao topo da pilha. Framer Motion useScroll + useTransform fazem o binding. Padrão elegante para features de produto, estudos de caso, projetos de portfolio.",
+  "motion": {
+    "library": "framer-motion",
+    "technique": "sticky positioning + useScroll + useTransform scale per card",
+    "code": {
+      "parent_setup": "// Cada card precisa de um container com altura para permitir o scroll\nconst TOTAL_CARDS = 3;\n\n{cards.map((card, index) => (\n  <div key={index} style={{ height: '85vh' }}>\n    <CardItem\n      card={card}\n      index={index}\n      totalCards={TOTAL_CARDS}\n    />\n  </div>\n))}",
+      "card_component": "import { useRef } from 'react';\nimport { useScroll, useTransform, motion } from 'framer-motion';\n\nfunction CardItem({ card, index, totalCards }) {\n  const ref = useRef(null);\n\n  const { scrollYProgress } = useScroll({\n    target: ref,\n    offset: ['start start', 'end start'],\n  });\n\n  // Escala final de cada card: cards do topo encolhem mais\n  const targetScale = 1 - (totalCards - 1 - index) * 0.03;\n  const scale = useTransform(scrollYProgress, [0, 1], [1, targetScale]);\n\n  return (\n    <div ref={ref} style={{ height: '85vh' }}>\n      <motion.div\n        style={{\n          scale,\n          top: `${index * 28}px`,          // offset visual por card\n          position: 'sticky',\n          transformOrigin: 'top center',\n        }}\n        className=\"card-inner\"\n      >\n        {/* conteúdo do card */}\n      </motion.div>\n    </div>\n  );\n}",
+      "css_card": ".card-inner {\n  border-radius: 40px;\n  border: 2px solid #d7e2ea;\n  background: #0c0c0c;\n  padding: 32px;\n  will-change: transform;\n}"
+    },
+    "config_options": {
+      "scale_step": "0.03 por card — menor = pilha mais sutil, maior = encolhimento dramático",
+      "top_offset": "index * 28px — separação visual do topo de cada card sticky",
+      "card_height": "85vh por container — quanto maior, mais tempo o card fica no scroll",
+      "transform_origin": "top center — mantém o card alinhado ao topo durante o encolhimento"
+    },
+    "performance_notes": "will-change: transform no card. useScroll com target ref para não observar o documento inteiro. Evitar shadows pesados em cards que têm scale animado."
+  },
+  "use_cases": [
+    "Seção de projetos em portfolio de designer",
+    "Features de produto com detalhamento progressivo",
+    "Case studies com capítulos sequenciais",
+    "Timeline de empresa ou produto"
+  ],
+  "related": ["gsap-scroll-trigger", "scroll-marquee", "editorial-dark"]
+}

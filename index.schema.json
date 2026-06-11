@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "marketingos-references/index.schema.json",
+  "title": "MarketingOS Index Entry Schema",
+  "description": "Valida cada entrada de index.json. Memória curta do sistema — só ponteiros, sem profundidade.",
+
+  "type": "object",
+
+  "$defs": {
+    "isoDate": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "kebabId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "tagItem": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    }
+  },
+
+  "required": [
+    "id",
+    "type",
+    "category",
+    "name",
+    "maturity",
+    "tags",
+    "tensions",
+    "captured_at",
+    "updated_at",
+    "path"
+  ],
+
+  "properties": {
+    "id": {
+      "$ref": "#/$defs/kebabId",
+      "description": "Deve ser idêntico ao id do arquivo completo referenciado"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["site", "copy", "motion", "visual", "color-system", "industry", "competitor", "framework"]
+    },
+    "category": {
+      "type": "string",
+      "pattern": "^[a-z]+(/[a-z-]+)*$",
+      "description": "Categoria no formato pasta/subpasta"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80
+    },
+    "maturity": {
+      "type": "string",
+      "enum": ["seed", "growing", "stable", "outdated", "deprecated"]
+    },
+    "tags": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/tagItem" },
+      "minItems": 3,
+      "maxItems": 10,
+      "uniqueItems": true
+    },
+    "tensions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 5,
+        "maxLength": 80
+      },
+      "minItems": 1,
+      "maxItems": 3
+    },
+    "captured_at": {
+      "$ref": "#/$defs/isoDate"
+    },
+    "updated_at": {
+      "$ref": "#/$defs/isoDate"
+    },
+    "path": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9/_-]+\\.json$",
+      "description": "Caminho relativo à raiz do repo — ex: sites/saas/linear.json"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Opcional. Uma frase sobre o que esta referência ensina."
+    }
+  },
+
+  "additionalProperties": false
+}

@@ -1,0 +1,40 @@
+{
+  "id": "svg-beam-machine",
+  "type": "motion",
+  "category": "motion/vanilla",
+  "name": "SVG Beam com State Machine — Gradiente Animado em 4 Fases",
+  "source_context": "Extraído de prompt MotionSites — Xero data encryption hero. Beam de luz que percorre um path SVG entre 3 nós (pilha → centro → shield). State machine: p1 → splash → p2 → idle → loop. Ciclo de ~3.4s.",
+  "captured_at": "2026-06-11",
+  "updated_at": "2026-06-11",
+  "maturity": "stable",
+  "tags": ["svg", "animation", "state-machine", "beam", "saas", "technical", "hero", "vanilla-js"],
+  "tensions": [
+    "complexidade técnica que parece simples para quem vê",
+    "luz que conecta conceitos abstratos — o beam é a metáfora do produto"
+  ],
+  "summary": "Um beam de luz percorre um path SVG entre nós (ícones), criando uma animação de 'fluxo' que comunica integração, processamento ou conexão. State machine com 4 fases: p1 (beam chega ao centro), splash (burst ao chegar), p2 (beam sai do centro), idle (pausa). O gradiente linear do beam tem x1/x2 animados via userSpaceOnUse para criar o efeito de janela de luz deslizando. Ciclo total ~3.4s, loop infinito.",
+  "motion": {
+    "library": "other",
+    "technique": "requestAnimationFrame state machine + SVG linearGradient x1/x2 animation + neumorphic nodes",
+    "code": {
+      "state_machine": "// Estado e fases\nlet state: 'p1' | 'splash' | 'p2' | 'idle' = 'p1';\nlet lastStateChange = performance.now();\nlet percentage = 0;\n\nconst DURATIONS = { p1: 800, splash: 800, p2: 800, idle: 1000 };\n\nconst tick = (now: number) => {\n  const elapsed = now - lastStateChange;\n\n  switch (state) {\n    case 'p1': {\n      percentage = Math.min(0.5, (elapsed / DURATIONS.p1) * 0.5);\n      animateGradient(percentage);\n      if (percentage < 0.4) nodeStack.classList.add('active');\n      else nodeStack.classList.remove('active');\n      if (elapsed >= DURATIONS.p1) {\n        beamPaths.forEach(p => p.style.opacity = '0');\n        splash.classList.add('animate');\n        state = 'splash'; lastStateChange = now;\n      }\n      break;\n    }\n    case 'splash': {\n      if (elapsed >= DURATIONS.splash) {\n        beamPaths.forEach(p => p.style.opacity = '1');\n        splash.classList.remove('animate');\n        state = 'p2'; lastStateChange = now;\n      }\n      break;\n    }\n    case 'p2': {\n      percentage = 0.5 + Math.min(0.5, ((elapsed / DURATIONS.p2) * 0.5));\n      animateGradient(percentage);\n      if (percentage > 0.6) nodeShield.classList.add('active');\n      if (elapsed >= DURATIONS.p2) {\n        nodeShield.classList.remove('active');\n        state = 'idle'; lastStateChange = now;\n      }\n      break;\n    }\n    case 'idle': {\n      if (elapsed >= DURATIONS.idle) {\n        percentage = 0; state = 'p1'; lastStateChange = now;\n      }\n      break;\n    }\n  }\n  requestAnimationFrame(tick);\n};",
+      "gradient_animation": "// Mover a janela de luz ao longo do path\nconst animateGradient = (pct: number) => {\n  const center = pct * 100; // 0-100 em percentual\n  const half = 5;           // largura da janela de luz\n  gradient.setAttribute('x1', `${center - half}%`);\n  gradient.setAttribute('x2', `${center + half}%`);\n  gradient.setAttribute('y1', '0%');\n  gradient.setAttribute('y2', '0%');\n};",
+      "svg_setup": "<svg class=\"beam-svg\" style=\"position:absolute;overflow:visible;pointer-events:none\">\n  <defs>\n    <filter id=\"glow\">\n      <feGaussianBlur stdDeviation=\"2\" result=\"blur\"/>\n      <feComposite in=\"SourceGraphic\" in2=\"blur\" operator=\"over\"/>\n    </filter>\n    <linearGradient id=\"beam-gradient\" gradientUnits=\"userSpaceOnUse\"\n      x1=\"0%\" y1=\"0%\" x2=\"10%\" y2=\"0%\">\n      <stop offset=\"0%\" stop-color=\"#b04090\" stop-opacity=\"0\"/>\n      <stop offset=\"20%\" stop-color=\"#b04090\" stop-opacity=\"0.8\"/>\n      <stop offset=\"50%\" stop-color=\"#fff\" stop-opacity=\"1\"/>\n      <stop offset=\"80%\" stop-color=\"#c8a0e0\" stop-opacity=\"0.8\"/>\n      <stop offset=\"100%\" stop-color=\"#c8a0e0\" stop-opacity=\"0\"/>\n    </linearGradient>\n  </defs>\n  <!-- Glow path -->\n  <path stroke=\"url(#beam-gradient)\" stroke-width=\"2\"\n    filter=\"url(#glow)\" opacity=\"0.6\" fill=\"none\"/>\n  <!-- Core path -->\n  <path stroke=\"url(#beam-gradient)\" stroke-width=\"0.8\" fill=\"none\"/>\n</svg>",
+      "neumorphic_node_css": "/* Nó com sombra neumórfica — profundidade sem border */\n.icon-node {\n  width: 46px; height: 46px;\n  border-radius: 50%;\n  background: #1a1a24;\n  box-shadow:\n    6px 6px 12px rgba(0,0,0,0.4),\n    -4px -4px 10px rgba(255,255,255,0.03),\n    inset 1px 1px 1px rgba(255,255,255,0.05),\n    inset 4px 4px 8px rgba(0,0,0,0.4);\n  transition: box-shadow 0.3s ease, transform 0.3s ease;\n}\n.icon-node.active {\n  transform: translateY(-1px);\n  box-shadow:\n    8px 8px 16px rgba(0,0,0,0.5),\n    -4px -4px 12px rgba(255,255,255,0.05),\n    inset 2px 2px 2px rgba(255,255,255,0.08),\n    inset 4px 4px 8px rgba(0,0,0,0.3);\n}"
+    },
+    "config_options": {
+      "cycle_total": "~3.4s (800+800+800+1000ms). Ajustar idle para variar cadência",
+      "beam_window": "half=5 → janela de 10% do path. Maior = beam mais largo, menos focado",
+      "gradient_colors": "#b04090 → #fff → #c8a0e0 — substituir por cores da marca",
+      "node_count": "3 nós no original. Escala para N nós atualizando o path M/L com coordenadas de cada nó"
+    },
+    "use_when": "O produto É o fluxo — integração, processamento, encryption, transmissão de dados. Não usar quando o produto não tem metáfora de 'passagem' ou 'conexão'."
+  },
+  "use_cases": [
+    "Hero de produto de segurança, encryption ou autenticação",
+    "Landing page de API ou middleware de integração",
+    "Explicação visual de fluxo de dados em SaaS técnico",
+    "Hero de produto de automação ou pipeline"
+  ],
+  "related": ["gsap-scroll-trigger", "morphing-geometry", "sites/saas/stripe"]
+}

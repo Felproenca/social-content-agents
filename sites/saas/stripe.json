@@ -1,0 +1,69 @@
+{
+  "id": "stripe",
+  "type": "site",
+  "category": "sites/saas",
+  "name": "Stripe",
+  "source_url": "https://stripe.com",
+  "captured_at": "2026-06-10",
+  "updated_at": "2026-06-10",
+  "maturity": "stable",
+  "tags": ["saas", "fintech", "trust", "b2b", "payments", "clean", "gradient"],
+  "tensions": [
+    "infraestrutura bancária que parece produto de design",
+    "confiança que não pede permissão — ela já está lá"
+  ],
+  "summary": "Stripe redefiniu como produtos financeiros se comunicam. Onde bancos tradicionais empilham selos de segurança, Stripe usa design e copy preciso para comunicar confiança. O iridescent gradient é o asset de marca mais reconhecível do SaaS moderno — não é decoração, é posicionamento.",
+  "use_cases": [
+    "Benchmark de landing page para fintech que quer sair do visual bancário",
+    "Referência de como apresentar produto técnico complexo com clareza visual",
+    "Padrão de hero com split layout — copy à esquerda, produto à direita",
+    "Como usar gradiente como identidade sem parecer genérico"
+  ],
+  "related": ["linear", "vercel"],
+  "visual": {
+    "style": "clean",
+    "mood": ["confiante", "preciso", "sofisticado", "acessível"],
+    "palette": {
+      "background": "#ffffff",
+      "surface": "#f6f9fc",
+      "primary_text": "#0a2540",
+      "accent": "#635bff",
+      "gradient_signature": "linear-gradient(135deg, #00d4ff 0%, #7b2ff7 50%, #ff6b6b 100%)"
+    },
+    "typography": {
+      "heading": "Sohne (custom) — fallback system-ui",
+      "body": "Inter, system-ui",
+      "weight_heading": "600–700",
+      "size_scale": "Moderado — H1 ~52px, nunca exagerado"
+    },
+    "layout_principles": [
+      "Hero split: copy 50% esquerda, produto animado 50% direita",
+      "Gradiente iridescente como background de seções — não como CTA",
+      "Cards com borda suave e sombra muito leve — nunca flat demais",
+      "Produto dentro de browser/device mockup — ancora o abstrato no concreto"
+    ]
+  },
+  "copy": {
+    "headline_style": "Funcional e específico — descreve o que faz, não como vai te fazer sentir",
+    "cta_style": "Dois CTAs sempre: primário sólido + secundário ghost com 'Fale com vendas'",
+    "voice": "Técnico sem jargão. Direto sem ser frio. Nunca exclamações.",
+    "examples": [
+      {
+        "text": "Financial infrastructure for the internet.",
+        "context": "Hero headline histórico — 5 palavras que definem uma categoria inteira",
+        "source_url": "https://stripe.com"
+      },
+      {
+        "text": "Millions of companies of all sizes use Stripe to accept payments, send payouts, and manage their businesses online.",
+        "context": "Sub-headline — proof of scale como primeira linha de copy após o manifesto"
+      }
+    ]
+  },
+  "motion": {
+    "library": "css",
+    "complexity": "medium",
+    "performance_cost": "low",
+    "analysis": "O gradiente animado de fundo é a assinatura de motion — oscila lentamente, quase imperceptível. Demos de produto dentro de mockups animam em loop discreto. Hover states em cards são rápidos (150ms) e funcionais. A regra não escrita: nenhuma animação deve desviar atenção do produto."
+  },
+  "notes": "O Stripe Docs (stripe.com/docs) é referência separada de design de documentação técnica — clareza e navegação raramente igualadas."
+}

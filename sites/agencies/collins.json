@@ -1,0 +1,62 @@
+{
+  "id": "collins",
+  "type": "site",
+  "category": "sites/agencies",
+  "name": "Collins",
+  "source_url": "https://collins.as",
+  "captured_at": "2026-06-10",
+  "updated_at": "2026-06-10",
+  "maturity": "stable",
+  "tags": ["agency", "branding", "editorial", "dark", "bold", "typography", "systematic"],
+  "tensions": [
+    "branding sistemático que parece instintivo",
+    "identidade que funciona antes de você entender por quê"
+  ],
+  "summary": "Collins é o estúdio que mais influenciou o design de marca dos últimos 10 anos sem que a maioria das pessoas soubesse o nome. Spotify, FX, Mailchimp, Twitter — todos passaram por lá. O site reflete a filosofia: case study como argumento, não como portfólio. Cada projeto é explicado com tanta profundidade que você entende o sistema antes de admirar a execução.",
+  "use_cases": [
+    "Referência de como apresentar case study como argumento de capacidade",
+    "Benchmark de tipografia bold editorial em dark background",
+    "Como uma agência comunica processo sem mostrar miolo da cozinha",
+    "Padrão de portfólio que educa enquanto impressiona"
+  ],
+  "related": ["basic-agency", "bold-typographic"],
+  "visual": {
+    "style": "dark",
+    "mood": ["assertivo", "sistemático", "editorial", "premium", "intelectual"],
+    "palette": {
+      "background": "#0a0a0a",
+      "surface": "#141414",
+      "primary_text": "#f5f5f5",
+      "secondary_text": "#888888",
+      "accent": "variável por projeto — sem cor de agência fixa"
+    },
+    "typography": {
+      "heading": "Fontes bold variáveis por projeto — mas sempre presença forte",
+      "body": "Sans-serif neutro de alta qualidade",
+      "weight_heading": "700–900",
+      "size_scale": "Grande — títulos de projeto dominam o viewport"
+    },
+    "layout_principles": [
+      "Imagem de projeto em full-bleed antes de qualquer texto — deixa o trabalho falar",
+      "Tipografia como elemento de design da página, não só do projeto",
+      "Scroll long-form por case — profundidade como diferencial",
+      "Grid que quebra para criar dinâmica — assimetria deliberada"
+    ]
+  },
+  "copy": {
+    "headline_style": "Nome do projeto + cliente. Zero hype. A obra carrega o peso.",
+    "voice": "Estratégico e preciso. Explica o problema antes da solução. Nunca 'beautiful brand'.",
+    "examples": [
+      {
+        "text": "We help brands find their voice, and amplify it.",
+        "context": "Positioning — processo antes de resultado"
+      }
+    ]
+  },
+  "motion": {
+    "library": "gsap",
+    "complexity": "medium",
+    "performance_cost": "low",
+    "analysis": "Hover em projeto com reveal suave de informação adicional. Page transitions com corte limpo — sem excesso. O motion serve a edição, não ao entretenimento. Velocidade alta, duração curta — agência que respeita o tempo do cliente."
+  }
+}

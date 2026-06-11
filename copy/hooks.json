@@ -1,0 +1,75 @@
+{
+  "id": "hooks-collection",
+  "type": "copy",
+  "category": "copy",
+  "name": "Hooks — Coleção de Padrões de Abertura",
+  "source_context": "Compilação de padrões observados em conteúdo de alta performance em LinkedIn, Instagram e emails de SaaS. Fontes: swiped.co, marketingexamples.com, análise direta de posts virais 2023-2025.",
+  "captured_at": "2026-06-10",
+  "updated_at": "2026-06-10",
+  "maturity": "stable",
+  "tags": ["copy", "hook", "headline", "social", "linkedin", "opening", "engagement"],
+  "tensions": [
+    "parar o scroll sem mentir",
+    "criar curiosidade sem clickbait"
+  ],
+  "summary": "Os primeiros 8 segundos decidem tudo. Esta coleção mapeia os padrões de abertura com maior taxa de retenção observados em conteúdo B2B e B2C. Cada padrão inclui estrutura abstrata, exemplo e quando usar.",
+  "use_cases": [
+    "Geração de hooks para posts de LinkedIn e Instagram",
+    "Abertura de emails de nutrição",
+    "Primeiro slide de carrossel",
+    "Headline de hero section"
+  ],
+  "copy": {
+    "patterns": [
+      {
+        "name": "Dado Contraintuitivo",
+        "structure": "[Número ou % surpreendente] + [fato que vai contra o senso comum]",
+        "example": "73% das pessoas que começam um negócio online abandonam antes de 6 meses. Não por falta de produto. Por falta de distribuição.",
+        "when_to_use": "Quando o tema tem percepção popular errada. Posicionamento de autoridade."
+      },
+      {
+        "name": "Confissão Vulnerável",
+        "structure": "Eu [admissão de erro ou falha passada]. Aprendi que [insight que redimiu o erro].",
+        "example": "Passei 3 anos construindo produto que ninguém queria. Não porque era ruim. Porque eu nunca perguntei para quem era.",
+        "when_to_use": "Quando quer criar conexão emocional antes de entregar valor. Funciona para fundadores e consultores."
+      },
+      {
+        "name": "Pergunta Incomoda",
+        "structure": "Por que [comportamento comum que ninguém questiona] + [implicação perturbadora]?",
+        "example": "Por que você contrata por currículo mas dispensa por comportamento?",
+        "when_to_use": "Para audiências que se identificam com a contradição apontada. Alto engajamento em comentários."
+      },
+      {
+        "name": "Declaração com Posição",
+        "structure": "[Afirmação direta que metade vai discordar] + [primeira linha de argumento]",
+        "example": "Produtividade não é sobre fazer mais. É sobre decidir o que não fazer. Todo o resto é ilusão de controle.",
+        "when_to_use": "Para construir autoridade com ponto de vista. Aceitar que vai polarizar é parte do mecanismo."
+      },
+      {
+        "name": "Antes e Depois Comprimido",
+        "structure": "[Estado anterior ruim] → [gatilho] → [estado atual bom]",
+        "example": "6 meses atrás: 80h/semana, 3 clientes, R$8k/mês. Hoje: 30h/semana, 12 clientes, R$38k/mês. O que mudou? Preço.",
+        "when_to_use": "Para demonstrar transformação de forma rápida e verificável. Prova social embutida."
+      },
+      {
+        "name": "Lista com Traição",
+        "structure": "[Número] de [coisas esperadas]. Mas [item X] vai te surpreender.",
+        "example": "5 formas de aumentar conversão. A #3 é contra-intuitiva e a maioria resiste.",
+        "when_to_use": "Para conteúdo de lista onde um item genuinamente foge do óbvio. Não fabricar traição — só usar quando existe."
+      },
+      {
+        "name": "Premissa Invertida",
+        "structure": "Todos dizem [conselho comum]. [Grupo específico de sucesso] faz o oposto.",
+        "example": "Todo coach diz: foque no seu nicho. As agências que mais cresceram em 2024 fizeram o oposto.",
+        "when_to_use": "Para posicionamento anti-mainstream. Exige prova ou exemplo específico na sequência."
+      },
+      {
+        "name": "Urgência Específica",
+        "structure": "[Prazo ou mudança real] + [consequência concreta para quem ignorar]",
+        "example": "O algoritmo do LinkedIn mudou em março. Quem ainda posta link na legenda perdeu 60% do alcance.",
+        "when_to_use": "Quando existe uma mudança real e verificável. Não usar com urgência fabricada — destrói credibilidade."
+      }
+    ]
+  },
+  "notes": "A eficácia de cada padrão depende da audiência e da autenticidade da voz. Padrões de confissão funcionam mal para marcas corporativas. Declaração com posição funciona mal para quem ainda está construindo autoridade."
+}

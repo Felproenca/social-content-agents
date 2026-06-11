@@ -1,0 +1,67 @@
+{
+  "id": "raycast",
+  "type": "site",
+  "category": "sites/saas",
+  "name": "Raycast",
+  "source_url": "https://raycast.com",
+  "captured_at": "2026-06-10",
+  "updated_at": "2026-06-10",
+  "maturity": "stable",
+  "tags": ["saas", "productivity", "dark", "mac", "developer", "community", "b2c"],
+  "tensions": [
+    "ferramenta de sistema que tem mais personalidade que a maioria dos produtos de consumo",
+    "power user tool que parece bem-vindo desde o primeiro segundo"
+  ],
+  "summary": "Raycast construiu um launcher para Mac e transformou em movimento. O produto é técnico mas o marketing é humano — extensões da comunidade, changelog com humor, design que respeita o sistema operacional sem ser genérico. Referência de como um produto devtools pode ter fãs, não só usuários.",
+  "use_cases": [
+    "Referência de dark UI com blur/frosted glass executado com precisão",
+    "Benchmark de como communidade vira canal de distribuição e identidade",
+    "Padrão de changelog como peça de conteúdo com voz própria",
+    "Como apresentar extensibility como proposta de valor sem complicar"
+  ],
+  "related": ["linear", "vercel"],
+  "visual": {
+    "style": "dark",
+    "mood": ["focado", "elegante", "rápido", "pessoal", "mac-native"],
+    "palette": {
+      "background": "#1c1c1e",
+      "surface": "#2c2c2e",
+      "surface_blur": "rgba(28,28,30,0.85)",
+      "primary_text": "#ffffff",
+      "secondary_text": "#ebebf5",
+      "accent": "#ff6363",
+      "accent_alt": "#bf5af2",
+      "border": "rgba(255,255,255,0.08)"
+    },
+    "typography": {
+      "heading": "SF Pro Display (system font stack para Mac)",
+      "body": "SF Pro Text, -apple-system, system-ui",
+      "weight_heading": "600–700",
+      "size_scale": "Segue Human Interface Guidelines — hierarquia por peso, não por tamanho extremo"
+    },
+    "layout_principles": [
+      "Produto centralizado no hero — sem split, sem copy concorrendo com a interface",
+      "Backdrop blur generoso — profundidade sem sombra pesada",
+      "Extensões como grid visual — comunidade como feature demonstrável",
+      "Screenshots do produto em alta fidelidade com contexto Mac real"
+    ]
+  },
+  "copy": {
+    "headline_style": "Benefício direto + para quem — sem metáforas, sem superlativo",
+    "cta_style": "Download para Mac — fricção zero, disponibilidade imediata como prova",
+    "voice": "Amigável, técnico, com humor sutil. Escreve como developer que tem bom gosto, não como copywriter.",
+    "examples": [
+      {
+        "text": "Your shortcut to everything.",
+        "context": "Tagline que joga com shortcut — literal (atalho de teclado) e figurado",
+        "source_url": "https://raycast.com"
+      }
+    ]
+  },
+  "motion": {
+    "library": "css",
+    "complexity": "medium",
+    "performance_cost": "low",
+    "analysis": "Spring physics nos hover states — sensação física de resistência e snap. Blur animado ao abrir o launcher. Transições de extensão com entrada rápida e saída instantânea. O motion imita o comportamento do macOS — familiar antes mesmo de usar."
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "id": "gsap-stagger-entrance",
+  "title": "Stagger Entrance — Cards e Listas",
+  "description": "Entrada em cascata para grupos de elementos — cards, items de lista, features, membros de time. Transforma uma lista comum em apresentação ritmada e profissional.",
+  "category": "animations",
+  "subcategory": "gsap",
+  "tags": ["stagger", "gsap", "cards", "grid", "list", "entrance", "cascade", "reveal", "items"],
+  "use_cases": [
+    "Grid de cards de produto ou serviço",
+    "Lista de features com ícones",
+    "Time / membros da empresa",
+    "Portfólio em grid",
+    "Resultados de busca ou feed"
+  ],
+  "complexity": "low",
+  "performance_cost": "very-low",
+  "dependencies": ["gsap", "gsap/ScrollTrigger"],
+  "install": "npm install gsap",
+  "visual": {
+    "mood": ["organizado", "profissional", "ritmado", "moderno"],
+    "styles_pair_well": ["CLEAN", "TECHNICAL", "BOLD", "WARM"],
+    "best_on_backgrounds": ["qualquer"]
+  },
+  "variants": [
+    {
+      "name": "Linear Stagger",
+      "description": "Esquerda para direita, um de cada vez — mais legível"
+    },
+    {
+      "name": "Grid Stagger",
+      "description": "Do centro para fora em grid — visualmente rico"
+    },
+    {
+      "name": "Random Stagger",
+      "description": "Ordem aleatória — caótico de forma controlada, criativo"
+    },
+    {
+      "name": "Flip Cards",
+      "description": "Cards entram com flip 3D — impressionante, use com moderação"
+    }
+  ],
+  "code": {
+    "setup": "import { gsap } from 'gsap';\nimport { ScrollTrigger } from 'gsap/ScrollTrigger';\ngsap.registerPlugin(ScrollTrigger);",
+    "linear": "// Linear — esquerda para direita\ngsap.from('.card', {\n  opacity: 0,\n  y: 50,\n  scale: 0.96,\n  stagger: {\n    amount: 0.5,   // tempo total distribuído (todos os cards em 0.5s)\n    from: 'start', // 'start' | 'end' | 'center' | 'random'\n  },\n  duration: 0.65,\n  ease: 'power3.out',\n  scrollTrigger: {\n    trigger: '.cards-grid',\n    start: 'top 78%',\n  }\n});",
+    "grid_from_center": "// Grid stagger — do centro para fora (ex: 3 colunas x 4 linhas)\nconst COLS = 3;\nconst ROWS = Math.ceil(document.querySelectorAll('.grid-item').length / COLS);\n\ngsap.from('.grid-item', {\n  opacity: 0,\n  scale: 0.85,\n  y: 30,\n  stagger: {\n    amount: 0.8,\n    grid: [ROWS, COLS],\n    from: 'center',\n  },\n  duration: 0.55,\n  ease: 'back.out(1.4)',\n  scrollTrigger: {\n    trigger: '.grid-container',\n    start: 'top 75%',\n  }\n});",
+    "random": "// Stagger aleatório — caótico mas controlado\ngsap.from('.feature-item', {\n  opacity: 0,\n  y: 40,\n  rotation: () => Math.random() * 6 - 3,\n  stagger: {\n    amount: 0.6,\n    from: 'random',\n  },\n  duration: 0.7,\n  ease: 'power2.out',\n  scrollTrigger: {\n    trigger: '.features',\n    start: 'top 80%',\n  }\n});",
+    "flip_3d": "// Flip 3D — usar com moderação (máx 4-6 cards)\ngsap.from('.flip-card', {\n  rotateY: 90,\n  opacity: 0,\n  transformOrigin: 'left center',\n  stagger: 0.15,\n  duration: 0.7,\n  ease: 'power3.out',\n  scrollTrigger: {\n    trigger: '.flip-container',\n    start: 'top 80%',\n  }\n});\n// Requer no CSS: .flip-container { perspective: 1200px; }",
+    "config_options": {
+      "amount": "Tempo total distribuído entre todos os elementos. 0.3 = rápido, 1.0 = lento e dramático.",
+      "from: 'center'": "Funciona especialmente bem em grids. Cria sensação de expansão.",
+      "from: 'random'": "Ótimo para feeds e resultados onde ordem não é linear.",
+      "scale: 0.96": "Scale sutil (0.92-0.98) + opacity dá sensação de 'material'."
+    }
+  },
+  "css_helpers": "/* Container com perspectiva para efeitos 3D */\n.flip-container {\n  perspective: 1200px;\n}\n\n/* Gap consistente para grids */\n.cards-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));\n  gap: 1.5rem;\n}",
+  "adaptation_notes": "Para cards de clientes com imagem: animar também a imagem interna com um segundo gsap.from com delay maior para efeito de profundidade entre card e conteúdo interno."
+}

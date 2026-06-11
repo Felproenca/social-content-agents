@@ -1,0 +1,39 @@
+{
+  "id": "magnetic-cursor",
+  "type": "motion",
+  "category": "motion/framer",
+  "name": "Magnetic Cursor — Efeito de Atração por Proximidade",
+  "source_context": "Extraído de prompt MotionSites — Jack 3D Creator portfolio, componente Magnet. Padrão clássico de interactive design. Botões, ícones e CTAs que se movem em direção ao cursor quando ele se aproxima.",
+  "captured_at": "2026-06-11",
+  "updated_at": "2026-06-11",
+  "maturity": "stable",
+  "tags": ["hover", "interactive", "cursor", "magnetic", "framer-motion", "cta", "premium"],
+  "tensions": [
+    "elemento que se move para quem está indo buscá-lo",
+    "interatividade que parece física, não código"
+  ],
+  "summary": "Elemento se move em direção ao cursor quando ele entra em uma zona de ativação (padding ao redor do elemento). A atração é proporcional à distância — quanto mais perto do centro, mais o elemento se desloca. Transição suave na entrada (0.3s) e mais lenta na saída (0.6s). Padrão de alto impacto em CTAs, logos e portrait photos.",
+  "motion": {
+    "library": "framer-motion",
+    "technique": "mousemove → distance to center → translate3d proportional to delta",
+    "code": {
+      "component": "import { useRef, useState, useCallback } from 'react';\n\ninterface MagnetProps {\n  children: React.ReactNode;\n  padding?: number;     // zona de ativação em px\n  strength?: number;   // divisor — maior = movimento menor\n  activeTransition?: string;\n  inactiveTransition?: string;\n}\n\nexport function Magnet({\n  children,\n  padding = 100,\n  strength = 3,\n  activeTransition = 'transform 0.3s ease-out',\n  inactiveTransition = 'transform 0.6s ease-in-out',\n}: MagnetProps) {\n  const ref = useRef<HTMLDivElement>(null);\n  const [style, setStyle] = useState({ transform: 'translate3d(0,0,0)', transition: inactiveTransition });\n\n  const handleMouseMove = useCallback((e: MouseEvent) => {\n    if (!ref.current) return;\n    const rect = ref.current.getBoundingClientRect();\n    const centerX = rect.left + rect.width / 2;\n    const centerY = rect.top + rect.height / 2;\n    const dx = e.clientX - centerX;\n    const dy = e.clientY - centerY;\n    const dist = Math.sqrt(dx * dx + dy * dy);\n    const activation = Math.max(rect.width, rect.height) / 2 + padding;\n\n    if (dist < activation) {\n      setStyle({\n        transform: `translate3d(${dx / strength}px, ${dy / strength}px, 0)`,\n        transition: activeTransition,\n      });\n    } else {\n      setStyle({\n        transform: 'translate3d(0,0,0)',\n        transition: inactiveTransition,\n      });\n    }\n  }, [padding, strength, activeTransition, inactiveTransition]);\n\n  const reset = useCallback(() => {\n    setStyle({ transform: 'translate3d(0,0,0)', transition: inactiveTransition });\n  }, [inactiveTransition]);\n\n  return (\n    <div\n      ref={ref}\n      onMouseMove={handleMouseMove as any}\n      onMouseLeave={reset}\n      style={{ ...style, willChange: 'transform', display: 'inline-block' }}\n    >\n      {children}\n    </div>\n  );\n}",
+      "usage": "// Envolver qualquer elemento com Magnet\n<Magnet padding={150} strength={3}>\n  <button className=\"cta-button\">Contact Me</button>\n</Magnet>\n\n<Magnet padding={100} strength={5}>\n  <img src=\"/portrait.png\" alt=\"portrait\" />\n</Magnet>"
+    },
+    "config_options": {
+      "padding": "150px para CTAs grandes, 80px para ícones — define o raio de ativação",
+      "strength": "3 = 33% do delta. 5 = 20% do delta. Menor = mais dramático",
+      "activeTransition": "'transform 0.3s ease-out' — entrada rápida cria responsividade",
+      "inactiveTransition": "'transform 0.6s ease-in-out' — saída lenta cria peso físico",
+      "tip": "Para uso em mobile: detectar touch e desativar (no-op no handleMouseMove)"
+    },
+    "performance_notes": "willChange: 'transform'. Usar passiveEvent listeners ou onMouseMove do React (já batched). Evitar usar em listas longas — um listener por elemento."
+  },
+  "use_cases": [
+    "CTA principal de hero section (máximo impacto)",
+    "Portrait ou imagem de produto em about section",
+    "Logo em navbar — toque de personalidade",
+    "Social icons em rodapé ou hero"
+  ],
+  "related": ["sticky-card-stack", "scroll-marquee"]
+}

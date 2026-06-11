@@ -1,0 +1,58 @@
+{
+  "id": "figma",
+  "type": "competitor",
+  "category": "competitors",
+  "name": "Figma",
+  "source_url": "https://figma.com",
+  "captured_at": "2026-06-10",
+  "updated_at": "2026-06-10",
+  "maturity": "stable",
+  "tags": ["design-tool", "saas", "b2b", "collaboration", "ui-design", "prototyping"],
+  "tensions": [
+    "ferramenta que virou a conversa de design — não só a ferramenta",
+    "colaboração como feature que se tornou a categoria inteira"
+  ],
+  "summary": "Figma não ganhou por ser tecnicamente superior ao Sketch — ganhou por tornar colaboração em tempo real o padrão da indústria. O produto e o marketing são inseparáveis: 'design together' não é slogan, é a feature diferenciadora. Referência de como uma decisão de produto pode reposicionar uma categoria inteira.",
+  "use_cases": [
+    "Benchmark de como colaboração vira posicionamento de produto",
+    "Referência de freemium bem executado — valor antes da conversão",
+    "Como comunidade de plugins vira canal de distribuição e retenção"
+  ],
+  "competitor": {
+    "positioning": "The collaborative interface design tool. Design, prototype, and gather feedback in one place.",
+    "target_audience": "Designers de produto, UI/UX, times de produto e engenharia — B2B e B2C",
+    "strengths": [
+      "Colaboração em tempo real como padrão — concurrent editing pioneiro",
+      "Comunidade de plugins e templates que cria ecossistema próprio",
+      "Plano gratuito generoso que cria hábito antes da conversão",
+      "Browser-based — zero instalação, zero barrier to entry",
+      "FigJam expandiu o usuário além de designers — PMs, researchers",
+      "Integração profunda com Slack, Notion, GitHub, Jira"
+    ],
+    "weaknesses": [
+      "Performance degrada em arquivos muito grandes (centenas de frames)",
+      "Prototipagem avançada ainda aquém de ProtoPie ou Principle",
+      "IA adicionada como feature, não como redesign do fluxo de trabalho",
+      "Tentativa de aquisição pela Adobe criou incerteza de longo prazo",
+      "Dev mode bom mas não substitui inspeção real com handoff especializado"
+    ],
+    "key_pages": [
+      {
+        "label": "Home",
+        "url": "https://figma.com",
+        "notes": "Hero focado em colaboração — sempre duas ou mais pessoas no mockup de produto"
+      },
+      {
+        "label": "Community",
+        "url": "https://figma.com/community",
+        "notes": "Canal de distribuição mais poderoso — templates e plugins como argumento de ecossistema"
+      },
+      {
+        "label": "Pricing",
+        "url": "https://figma.com/pricing",
+        "notes": "Estrutura freemium agressiva — 3 projetos gratuitos foi o hook histórico"
+      }
+    ],
+    "last_reviewed": "2026-06-10"
+  }
+}

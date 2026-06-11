@@ -1,0 +1,63 @@
+{
+  "id": "basic-agency",
+  "type": "site",
+  "category": "sites/agencies",
+  "name": "Basic Agency",
+  "source_url": "https://basicagency.com",
+  "captured_at": "2026-06-10",
+  "updated_at": "2026-06-10",
+  "maturity": "stable",
+  "tags": ["agency", "branding", "clean", "minimal", "light", "product", "b2b"],
+  "tensions": [
+    "confiança por ausência de tentativa",
+    "agência que não precisa gritar para ser ouvida"
+  ],
+  "summary": "Basic Agency representa a escola oposta ao Collins: fundo claro, tipografia limpa, portfólio sem drama. O nome é o argumento — 'basic' como profissionalismo destilado. Referência de agência que atende clientes de produto tech e usa a clareza visual para comunicar que entende o problema antes de resolver.",
+  "use_cases": [
+    "Referência de portfólio de agência para clientes tech e produto",
+    "Benchmark de clean/light para serviços profissionais B2B",
+    "Como apresentar capabilidades sem lista de bullets ou ícones",
+    "Padrão de tipografia sóbria como argumento de maturidade"
+  ],
+  "related": ["collins", "clean-minimal"],
+  "visual": {
+    "style": "clean",
+    "mood": ["profissional", "confiável", "direto", "maduro", "sem frescura"],
+    "palette": {
+      "background": "#ffffff",
+      "surface": "#f5f5f5",
+      "primary_text": "#111111",
+      "secondary_text": "#666666",
+      "accent": "#000000",
+      "border": "#e0e0e0"
+    },
+    "typography": {
+      "heading": "Tipografia sans-serif de alta qualidade — próximo de Aktiv Grotesk ou Neue Haas",
+      "body": "Mesmo sistema em peso menor",
+      "weight_heading": "500–600",
+      "size_scale": "Moderado — impacto pelo espaço, não pelo tamanho"
+    },
+    "layout_principles": [
+      "Projetos em grid limpo com thumbnail grande — foco na obra",
+      "Muito espaço entre elementos — breathing room como sinal de cuidado",
+      "Sem gradiente, sem sombra pesada — plano e honesto",
+      "Copy curto por projeto — confiança que o trabalho explica por si"
+    ]
+  },
+  "copy": {
+    "headline_style": "Direto ao posicionamento — sem manifesto, sem promessa emocional",
+    "voice": "Claro, profissional, específico. Fala de resultado e processo.",
+    "examples": [
+      {
+        "text": "Brand and digital design for ambitious companies.",
+        "context": "Positioning — audiência (ambitious companies) + entrega (brand and digital design)"
+      }
+    ]
+  },
+  "motion": {
+    "library": "css",
+    "complexity": "low",
+    "performance_cost": "very-low",
+    "analysis": "Hover states limpos com transição de opacidade ou escala mínima. Sem animações de scroll. Page transitions com fade suave. O motion é tão clean quanto o visual — imperceptível quando certo, perturbador quando errado."
+  }
+}

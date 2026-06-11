@@ -1,0 +1,48 @@
+{
+  "id": "three-js-scroll-scene",
+  "title": "Scroll-Driven 3D Scene",
+  "description": "Cena 3D que reage ao scroll da página — câmera orbita, objetos giram e escalam conforme o usuário desce. Cria profundidade e engajamento editorial.",
+  "category": "animations",
+  "subcategory": "three-js",
+  "tags": ["scroll", "three.js", "camera", "parallax", "3D", "WebGL", "gsap", "storytelling"],
+  "use_cases": [
+    "Hero de landing page com produto 3D giratório",
+    "Storytelling progressivo por scroll",
+    "Apresentação de produto ou feature de forma imersiva",
+    "Portfolio com transições de seção em 3D"
+  ],
+  "complexity": "medium",
+  "performance_cost": "medium",
+  "dependencies": ["three", "gsap", "gsap/ScrollTrigger"],
+  "install": "npm install three gsap",
+  "visual": {
+    "mood": ["imersivo", "premium", "tecnológico", "épico"],
+    "styles_pair_well": ["DARK", "EDITORIAL", "BOLD"],
+    "best_on_backgrounds": ["dark", "gradient", "black"]
+  },
+  "variants": [
+    {
+      "name": "Product Showcase",
+      "description": "Produto (GLTF) gira 360° enquanto o usuário faz scroll"
+    },
+    {
+      "name": "Camera Fly-through",
+      "description": "Câmera percorre um túnel ou espaço 3D ao longo do scroll"
+    },
+    {
+      "name": "Geometry Sequence",
+      "description": "Formas geométricas entram/saem por seção como capítulos visuais"
+    }
+  ],
+  "code": {
+    "html": "<div id=\"webgl-container\"></div>\n<section class=\"panel\" data-color=\"#0a0a0a\">\n  <h1>Capítulo 1</h1>\n</section>\n<section class=\"panel\" data-color=\"#1a1a2e\">\n  <h1>Capítulo 2</h1>\n</section>",
+    "css": "#webgl-container {\n  position: fixed;\n  top: 0; left: 0;\n  width: 100%; height: 100%;\n  z-index: -1;\n}\n.panel {\n  height: 100vh;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}",
+    "js": "import * as THREE from 'three';\nimport { gsap } from 'gsap';\nimport { ScrollTrigger } from 'gsap/ScrollTrigger';\ngsap.registerPlugin(ScrollTrigger);\n\n// — Setup —\nconst scene = new THREE.Scene();\nconst camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100);\ncamera.position.set(0, 0, 5);\n\nconst renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });\nrenderer.setSize(window.innerWidth, window.innerHeight);\nrenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));\ndocument.getElementById('webgl-container').appendChild(renderer.domElement);\n\n// — Objeto principal —\nconst geometry = new THREE.TorusKnotGeometry(1, 0.3, 128, 16);\nconst material = new THREE.MeshNormalMaterial();\nconst mesh = new THREE.Mesh(geometry, material);\nscene.add(mesh);\n\n// — Luz —\nconst ambientLight = new THREE.AmbientLight(0xffffff, 0.5);\nconst pointLight = new THREE.PointLight(0xffffff, 1);\npointLight.position.set(2, 3, 4);\nscene.add(ambientLight, pointLight);\n\n// — Scroll animations —\nconst sections = document.querySelectorAll('.panel');\n\ngsap.to(mesh.rotation, {\n  x: Math.PI * 2,\n  y: Math.PI * 1.5,\n  ease: 'none',\n  scrollTrigger: {\n    trigger: 'body',\n    start: 'top top',\n    end: 'bottom bottom',\n    scrub: 1.5,\n  }\n});\n\ngsap.to(mesh.position, {\n  x: 2,\n  ease: 'none',\n  scrollTrigger: {\n    trigger: sections[1],\n    start: 'top bottom',\n    end: 'top top',\n    scrub: 1,\n  }\n});\n\ngsap.to(mesh.scale, {\n  x: 0.5, y: 0.5, z: 0.5,\n  ease: 'none',\n  scrollTrigger: {\n    trigger: sections[sections.length - 1],\n    start: 'top bottom',\n    end: 'top top',\n    scrub: 1,\n  }\n});\n\n// — Loop —\nfunction animate() {\n  requestAnimationFrame(animate);\n  renderer.render(scene, camera);\n}\nanimate();\n\n// — Resize —\nwindow.addEventListener('resize', () => {\n  camera.aspect = window.innerWidth / window.innerHeight;\n  camera.updateProjectionMatrix();\n  renderer.setSize(window.innerWidth, window.innerHeight);\n});",
+    "config_options": {
+      "scrub": "Suavidade do scroll (0.5 = responsivo, 2 = lento e cinematográfico).",
+      "geometry": "Troque TorusKnotGeometry por qualquer outra. Para produto real, usar GLTFLoader.",
+      "MeshNormalMaterial": "Use MeshStandardMaterial com color do cliente para identidade visual."
+    }
+  },
+  "adaptation_notes": "Para carregar um modelo GLTF do produto do cliente, substitua a geometria por `new GLTFLoader().load(url, (gltf) => scene.add(gltf.scene))`. Ajuste o material para MeshStandardMaterial com a cor primária do cliente."
+}

@@ -1,0 +1,61 @@
+{
+  "id": "active-theory",
+  "type": "site",
+  "category": "sites/webgl",
+  "name": "Active Theory",
+  "source_url": "https://activetheory.net",
+  "captured_at": "2026-06-10",
+  "updated_at": "2026-06-10",
+  "maturity": "stable",
+  "tags": ["webgl", "agency", "interactive", "dark", "three-js", "creative", "experiential"],
+  "tensions": [
+    "agência que existe para provar o que a web é capaz de ser",
+    "portfólio que é a tese — não o currículo"
+  ],
+  "summary": "Active Theory é a referência mundial de experiências web imersivas. O portfólio não lista trabalhos — demonstra capacidade em tempo real. Cada visita ao site é uma experiência WebGL. Referência obrigatória para entender o teto do que é tecnicamente possível no browser, e como transformar capacidade técnica em identidade criativa.",
+  "use_cases": [
+    "Teto de referência para projetos WebGL — o que é possível com orçamento e tempo",
+    "Benchmark de como agência criativa usa o próprio site como case permanente",
+    "Referência de dark + WebGL com identidade visual consistente",
+    "Inspiração para transições de projeto e navegação não-convencional"
+  ],
+  "related": ["lusion", "resn", "three-js-scroll-scene"],
+  "visual": {
+    "style": "dark",
+    "mood": ["imersivo", "técnico", "premium", "experimental", "cinematográfico"],
+    "palette": {
+      "background": "#000000",
+      "primary_text": "#ffffff",
+      "secondary_text": "#888888",
+      "accent": "variável por projeto — sem cor de marca fixa"
+    },
+    "typography": {
+      "heading": "Tipografia customizada por projeto — sem família fixa",
+      "body": "Neutral ou similar sans-serif técnico",
+      "weight_heading": "300–400 — o WebGL faz o peso visual"
+    },
+    "layout_principles": [
+      "A cena 3D É o layout — não há container, não há grid convencional",
+      "Texto como overlay na geometria — hierarquia pelo plano de profundidade",
+      "Navegação minimalista que não compete com a experiência",
+      "Cursor customizado como extensão do sistema de identidade"
+    ]
+  },
+  "copy": {
+    "headline_style": "Ultra curto — uma palavra ou frase de impacto. O visual faz o trabalho.",
+    "voice": "Direto e confiante. A obra fala mais que o texto.",
+    "examples": [
+      {
+        "text": "We build the web of the future.",
+        "context": "Positioning statement — declaração de capacidade, não de serviço"
+      }
+    ]
+  },
+  "motion": {
+    "library": "three-js",
+    "complexity": "high",
+    "performance_cost": "high",
+    "analysis": "WebGL como interface principal. Geometrias customizadas com shaders GLSL. Transições de projeto usando dissolve de partículas ou morph de cena. Cursor que interage com a geometria. Nível de produção cinematográfico — cada projeto tem linguagem motion própria."
+  },
+  "notes": "Ver trabalhos: Nike House of Innovation, Netflix special projects. Servem como referências de execução para clientes com orçamento de agência top-tier."
+}

@@ -1,0 +1,72 @@
+{
+  "id": "vercel",
+  "type": "site",
+  "category": "sites/saas",
+  "name": "Vercel",
+  "source_url": "https://vercel.com",
+  "captured_at": "2026-06-10",
+  "updated_at": "2026-06-10",
+  "maturity": "stable",
+  "tags": ["saas", "devtools", "dark", "technical", "deploy", "b2b", "minimal"],
+  "tensions": [
+    "velocidade como estética, não como feature",
+    "devtool que parece manifesto de como a web deveria funcionar"
+  ],
+  "summary": "Vercel transformou deploy em identidade de marca. O triângulo, o dark absoluto e o copy 'Develop. Preview. Ship.' comunicam que a empresa acredita no que faz antes de tentar vender. É uma das poucas marcas tech onde a landing page parece escrita por engenheiro com bom gosto — não por marketing.",
+  "use_cases": [
+    "Referência de dark devtools premium — paleta mínima, máximo impacto",
+    "Benchmark de hero com tagline de 3 verbos como estrutura de produto",
+    "Como apresentar infraestrutura técnica sem desenhar arquitetura de servidor",
+    "Padrão de logo mark simples com reconhecimento imediato"
+  ],
+  "related": ["linear", "stripe"],
+  "visual": {
+    "style": "dark",
+    "mood": ["técnico", "veloz", "preciso", "austero", "confiante"],
+    "palette": {
+      "background": "#000000",
+      "surface": "#111111",
+      "surface_elevated": "#1a1a1a",
+      "primary_text": "#ededed",
+      "secondary_text": "#888888",
+      "accent": "#ffffff",
+      "border": "rgba(255,255,255,0.1)"
+    },
+    "typography": {
+      "heading": "Geist (própria fonte open-source)",
+      "body": "Geist, system-ui",
+      "mono": "Geist Mono",
+      "weight_heading": "700",
+      "size_scale": "H1 grande mas não exagerado — ~56px. Impacto vem do contraste, não do tamanho."
+    },
+    "layout_principles": [
+      "Fundo preto absoluto — sem superfície, sem sombra",
+      "Grid de logos de clientes como prova social silenciosa",
+      "Código e terminal como elementos visuais de primeiro nível",
+      "Separadores só por espaço — zero linhas decorativas"
+    ]
+  },
+  "copy": {
+    "headline_style": "Três verbos. Sempre. Develop. Preview. Ship. — estrutura que define o fluxo do produto",
+    "cta_style": "Deploy direto — sem friction, sem formulário. 'Start Deploying'",
+    "voice": "Declarativo. Sem sujeito na frase principal. Confiante até a arrogância — mas nunca prepotente.",
+    "examples": [
+      {
+        "text": "Develop. Preview. Ship.",
+        "context": "Tagline — três verbos que descrevem o loop completo do produto",
+        "source_url": "https://vercel.com"
+      },
+      {
+        "text": "Your complete platform for the web.",
+        "context": "Sub-headline — abrangência declarada sem defensiva"
+      }
+    ]
+  },
+  "motion": {
+    "library": "css",
+    "complexity": "low",
+    "performance_cost": "very-low",
+    "analysis": "Animações mínimas e funcionais. A visualização de deploy (log em tempo real, barra de progresso) é o único elemento animado com destaque. Page transitions são instantâneas — a velocidade do produto demonstrada no próprio site."
+  },
+  "notes": "A Geist, fonte open-source lançada pela Vercel, virou referência de tipografia técnica. Vale uma entrada separada em frameworks/."
+}

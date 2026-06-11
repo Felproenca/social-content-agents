@@ -1,0 +1,93 @@
+{
+  "id": "color-tech-saas",
+  "title": "Sistema de Cores — Tech & SaaS",
+  "description": "Paletas para produtos de software, plataformas B2B e ferramentas tech. Do SaaS corporativo austero ao devtool com personalidade. Prioriza legibilidade e conversão.",
+  "category": "visual",
+  "subcategory": "color-systems",
+  "tags": ["tech", "saas", "software", "b2b", "startup", "devtools", "platform", "product", "dashboard"],
+  "sector_notes": "Tech tolera mais ousadia que finanças. Dark mode é expectativa em devtools. SaaS corporativo precisa de sobriedade; startups B2C podem ser mais vibrantes.",
+  "palettes": [
+    {
+      "name": "Corporate SaaS",
+      "sub_sector": "B2B enterprise, HR tech, ERP, CRM",
+      "mood": "Profissional, confiável, produtivo, neutro",
+      "colors": {
+        "primary":    "#2563eb",
+        "secondary":  "#1e40af",
+        "accent":     "#7c3aed",
+        "background": "#ffffff",
+        "surface":    "#f8fafc",
+        "text":       "#1e293b",
+        "text_muted": "#64748b",
+        "success":    "#16a34a",
+        "warning":    "#d97706",
+        "error":      "#dc2626",
+        "border":     "#e2e8f0"
+      },
+      "usage": "Padrão seguro para SaaS B2B. Funciona para qualquer produto de produtividade."
+    },
+    {
+      "name": "Dev Dark",
+      "sub_sector": "Devtools, CLI, APIs, infra, monitoring",
+      "mood": "Técnico, focado, noturno, eficiente, hacker",
+      "colors": {
+        "primary":    "#61dafb",
+        "secondary":  "#764abc",
+        "accent":     "#f7df1e",
+        "background": "#0d1117",
+        "surface":    "#161b22",
+        "text":       "#e6edf3",
+        "text_muted": "#7d8590",
+        "success":    "#3fb950",
+        "warning":    "#d29922",
+        "error":      "#f85149",
+        "border":     "#30363d"
+      },
+      "usage": "Devtools, produtos de infra, CLIs. Usuário vai passar horas olhando — dark é ergonômico."
+    },
+    {
+      "name": "Startup Vibrant",
+      "sub_sector": "Consumer tech, produtividade pessoal, apps B2C",
+      "mood": "Energético, otimista, amigável, moderno",
+      "colors": {
+        "primary":    "#ff6b6b",
+        "secondary":  "#4ecdc4",
+        "accent":     "#ffe66d",
+        "background": "#f7f7f7",
+        "surface":    "#ffffff",
+        "text":       "#2d3436",
+        "text_muted": "#636e72",
+        "success":    "#00b894",
+        "warning":    "#fdcb6e",
+        "error":      "#e17055",
+        "border":     "#dfe6e9"
+      },
+      "usage": "Apps consumer, ferramentas pessoais. Quando a marca precisa parecer acessível e divertida."
+    },
+    {
+      "name": "AI Native",
+      "sub_sector": "Produtos de IA, LLMs, automação, copilots",
+      "mood": "Inteligente, futurista, misterioso, capaz",
+      "colors": {
+        "primary":    "#a78bfa",
+        "secondary":  "#6d28d9",
+        "accent":     "#34d399",
+        "background": "#030712",
+        "surface":    "#111827",
+        "text":       "#f9fafb",
+        "text_muted": "#9ca3af",
+        "glow":       "rgba(167,139,250,0.4)",
+        "success":    "#34d399",
+        "border":     "rgba(167,139,250,0.15)"
+      },
+      "usage": "Produtos de IA e ML. Roxo/lavanda comunica 'capacidade' sem ser agressivo."
+    }
+  ],
+  "typography_recommendations": {
+    "corporate": ["Plus Jakarta Sans + Inter", "Outfit + Inter"],
+    "devtools": ["Syne Mono + Inter", "JetBrains Mono + System UI"],
+    "startup": ["Space Grotesk + DM Sans", "Nunito Sans + Inter"],
+    "ai": ["Syne + Inter", "Space Grotesk + Inter"]
+  },
+  "animation_notes": "Corporate: suave, funcional. Dev Dark: linhas de código/terminal animadas, scan effects. Startup: bouncy, Spring physics. AI Native: glow pulsante, particles roxas, typewriter effects."
+}

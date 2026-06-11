@@ -1,0 +1,63 @@
+{
+  "id": "loro-piana",
+  "type": "site",
+  "category": "sites/luxury",
+  "name": "Loro Piana",
+  "source_url": "https://loropiana.com",
+  "captured_at": "2026-06-10",
+  "updated_at": "2026-06-10",
+  "maturity": "stable",
+  "tags": ["luxury", "fashion", "editorial", "clean", "premium", "heritage", "minimal"],
+  "tensions": [
+    "qualidade que não precisa do comparativo — ela é o standard",
+    "marca que existe para quem já sabe, não para quem precisa ser convencido"
+  ],
+  "summary": "Loro Piana não tenta vender. Apresenta. Há uma diferença enorme entre os dois — e o site executa essa diferença em cada pixel. Espaço negativo generoso, fotografia que mostra textura como argumento, copy que nunca usa a palavra 'melhor'. A identidade é construída por omissão: o que eles não dizem é tão importante quanto o que dizem.",
+  "use_cases": [
+    "Referência de luxury que usa espaço como argumento de qualidade",
+    "Benchmark de fotografia de produto focada em textura e material",
+    "Como comunicar herança e tradição sem parecer museu",
+    "Padrão de editorial clean para marcas de moda premium"
+  ],
+  "related": ["aesop", "editorial-dark"],
+  "visual": {
+    "style": "clean",
+    "mood": ["atemporal", "discreto", "sofisticado", "heritage", "natural"],
+    "palette": {
+      "background": "#f9f7f4",
+      "surface": "#f0ede8",
+      "primary_text": "#1a1a1a",
+      "secondary_text": "#8a8078",
+      "accent": "#8a7560",
+      "border": "rgba(26,26,26,0.08)"
+    },
+    "typography": {
+      "heading": "Serif customizado leve — próximo de Garamond ou Caslon",
+      "body": "Sans-serif neutro de alta qualidade",
+      "weight_heading": "300 (light) — o peso do tecido, não do grito",
+      "tracking_headline": "0.08em — aberto, aristocrático"
+    },
+    "layout_principles": [
+      "Imagens grandes de textura — a lã como argumento visual primário",
+      "Copy curtíssimo por produto — uma frase, talvez duas",
+      "Hierarquia de preço nunca em destaque — contexto antes de conversão",
+      "Navegação minimalista — sem mega menu, sem promoções em banner"
+    ]
+  },
+  "copy": {
+    "headline_style": "Nome do produto + material + origem. Nunca adjetivo superlativo.",
+    "voice": "Factual e preciso. A qualidade dos materiais é o argumento — não precisa de retórica.",
+    "examples": [
+      {
+        "text": "Baby Cashmere. Harvested once in a lifetime.",
+        "context": "Produto + proveniência como argumento emocional — sem adjetivo"
+      }
+    ]
+  },
+  "motion": {
+    "library": "css",
+    "complexity": "low",
+    "performance_cost": "very-low",
+    "analysis": "Hover em produto revela segundo ângulo ou detalhe de textura. Scroll suave. Nenhuma animação de entrada. A interação mais sofisticada é o zoom suave em imagem — que revela fio por fio do tecido. O motion serve o material, não a marca."
+  }
+}

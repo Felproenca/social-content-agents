@@ -1,0 +1,38 @@
+{
+  "id": "liquid-glass",
+  "type": "visual",
+  "category": "visual/styles",
+  "name": "Liquid Glass — Vidro com Borda Gradiente via Mask",
+  "source_context": "Extraído de prompt MotionSites — Orbis.Nft landing page. CSS puro: backdrop-filter blur + borda gradiente via ::before mask-composite:exclude. Aplicado em navbar, cards, botões e overlays.",
+  "captured_at": "2026-06-11",
+  "updated_at": "2026-06-11",
+  "maturity": "stable",
+  "tags": ["css-only", "glass", "blur", "dark", "premium", "nft", "web3", "technical"],
+  "tensions": [
+    "transparência que tem textura — o vidro não é vazio, é material",
+    "borda que aparece por subtração, não por adição"
+  ],
+  "summary": "Efeito de vidro com borda gradiente usando apenas CSS. O backdrop-filter cria o desfoque. A borda é criada via ::before com background gradiente mascarado por mask-composite: exclude — técnica que faz o gradiente aparecer apenas na borda (padding) e não no interior. Não requer SVG, canvas ou JS. Compatível com Chrome/Safari. Firefox partial (sem mask-composite).",
+  "visual": {
+    "mood": ["dark", "premium", "technical", "depth"],
+    "palette": {
+      "background": "rgba(255,255,255,0.01) — quase invisível, serve como base para backdrop-filter",
+      "border_gradient": "rgba(255,255,255,0.45) no topo → transparente no meio → rgba(255,255,255,0.45) no fundo",
+      "shadow": "inset 0 1px 1px rgba(255,255,255,0.1)"
+    },
+    "code": {
+      "base_class": "/* Classe reutilizável — aplicar em qualquer elemento com position:relative */\n.liquid-glass {\n  background: rgba(255, 255, 255, 0.01);\n  background-blend-mode: luminosity;\n  backdrop-filter: blur(4px);\n  -webkit-backdrop-filter: blur(4px);\n  border: none;  /* borda é feita via ::before */\n  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);\n  position: relative;\n  overflow: hidden;\n}",
+      "gradient_border": "/* Borda gradiente — técnica mask-composite */\n.liquid-glass::before {\n  content: '';\n  position: absolute;\n  inset: 0;\n  border-radius: inherit;  /* herda border-radius do elemento pai */\n  padding: 1.4px;          /* espessura da borda */\n  background: linear-gradient(\n    180deg,\n    rgba(255,255,255,0.45) 0%,\n    rgba(255,255,255,0.15) 20%,\n    rgba(255,255,255,0)    40%,\n    rgba(255,255,255,0)    60%,\n    rgba(255,255,255,0.15) 80%,\n    rgba(255,255,255,0.45) 100%\n  );\n  /* Máscara que exclui o interior — sobra apenas o padding = borda */\n  -webkit-mask:\n    linear-gradient(#fff 0 0) content-box,\n    linear-gradient(#fff 0 0);\n  -webkit-mask-composite: xor;\n  mask-composite: exclude;\n  pointer-events: none;\n}",
+      "variations": "/* Variação: borda mais fina e sutil */\n.liquid-glass-subtle::before { padding: 0.8px; }\n\n/* Variação: blur mais forte para overlays */\n.liquid-glass-heavy {\n  backdrop-filter: blur(12px);\n  background: rgba(255,255,255,0.05);\n}\n\n/* Variação: tint colorido para contexto de cor */\n.liquid-glass-tinted {\n  background: rgba(115, 66, 226, 0.08); /* tint roxo */\n  backdrop-filter: blur(8px);\n}"
+    },
+    "usage_examples": "/* Navbar pill */\n<nav className=\"liquid-glass\" style={{ borderRadius: '28px', padding: '24px 52px' }}>\n\n/* Card */\n<div className=\"liquid-glass\" style={{ borderRadius: '32px', padding: '18px' }}>\n\n/* Botão */\n<button className=\"liquid-glass\" style={{ borderRadius: '50%', width: '56px', height: '56px' }}>"
+  },
+  "browser_support": "Chrome 76+, Safari 9+ (prefixado), Edge 17+. Firefox: backdrop-filter funciona, mas mask-composite:exclude não — fallback com border: 1px solid rgba(255,255,255,0.2).",
+  "use_cases": [
+    "Navbar flotante em hero com fundo escuro ou vídeo",
+    "Cards de NFT, produto ou feature sobre fundo dinâmico",
+    "Overlays de stat ou rarity score sobre vídeo/imagem",
+    "Social icon buttons em hero com fundo complexo"
+  ],
+  "related": ["editorial-dark", "sites/webgl/lusion", "sites/webgl/active-theory"]
+}

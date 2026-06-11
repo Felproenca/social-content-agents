@@ -1,0 +1,38 @@
+{
+  "id": "typewriter",
+  "type": "motion",
+  "category": "motion/vanilla",
+  "name": "Typewriter com Cursor Piscante e startDelay",
+  "source_context": "Extraído de prompt MotionSites — Mainframe creative agency hero. Hook useTypewriter com speed por caractere, startDelay, cursor blink, e flag done para remover cursor ao terminar.",
+  "captured_at": "2026-06-11",
+  "updated_at": "2026-06-11",
+  "maturity": "stable",
+  "tags": ["text", "typewriter", "hero", "interactive", "entrance", "vanilla-js", "copy"],
+  "tensions": [
+    "texto que aparece em tempo real — a espera é parte da mensagem",
+    "cursor que some quando termina — o silêncio confirma que foi dito"
+  ],
+  "summary": "Hook React que revela texto caractere por caractere com velocidade configurável e delay inicial. Cursor piscante (blink) acompanha a digitação e desaparece quando o texto está completo. Funciona independentemente de outros elementos da página — CTA buttons aparecem em paralelo sem esperar o typewriter terminar. Padrão para hero sections conversacionais ou com 'AI persona'.",
+  "motion": {
+    "library": "other",
+    "technique": "setInterval incrementando índice de caractere + CSS blink animation",
+    "code": {
+      "hook": "import { useState, useEffect } from 'react';\n\ninterface UseTypewriterReturn {\n  displayed: string;\n  done: boolean;\n}\n\nexport function useTypewriter(\n  text: string,\n  speed = 38,        // ms por caractere\n  startDelay = 600,  // ms antes de começar\n): UseTypewriterReturn {\n  const [displayed, setDisplayed] = useState('');\n  const [done, setDone] = useState(false);\n\n  useEffect(() => {\n    setDisplayed('');\n    setDone(false);\n    let index = 0;\n\n    const startTimer = setTimeout(() => {\n      const interval = setInterval(() => {\n        index++;\n        setDisplayed(text.slice(0, index));\n        if (index >= text.length) {\n          clearInterval(interval);\n          setDone(true);\n        }\n      }, speed);\n\n      return () => clearInterval(interval);\n    }, startDelay);\n\n    return () => clearTimeout(startTimer);\n  }, [text, speed, startDelay]);\n\n  return { displayed, done };\n}",
+      "cursor_css": "/* Cursor piscante */\n@keyframes blink {\n  0%, 100% { opacity: 1; }\n  50% { opacity: 0; }\n}\n\n.typewriter-cursor {\n  display: inline-block;\n  width: 2px;\n  height: 1.1em;\n  background: currentColor;\n  vertical-align: middle;\n  margin-left: 2px;\n  animation: blink 1s step-end infinite;\n}",
+      "usage": "const { displayed, done } = useTypewriter(\n  \"Glad you stopped in. Good taste tends to find us. Now, what are we building?\",\n  38,   // velocidade: 38ms = natural, 20ms = rápido, 60ms = pensativo\n  600,  // delay inicial: tempo para o usuário ler o heading primeiro\n);\n\n<p style={{ minHeight: '54px' }}>\n  {displayed}\n  {!done && <span className=\"typewriter-cursor\" />}\n</p>\n\n// CTAs aparecem independentemente — NÃO esperar done para mostrar\n<div style={{\n  opacity: ctaVisible ? 1 : 0,\n  transform: ctaVisible ? 'translateY(0)' : 'translateY(8px)',\n  transition: 'opacity 0.4s ease, transform 0.4s ease',\n}}>\n  <button>Pitch us an idea</button>\n</div>"
+    },
+    "config_options": {
+      "speed": "38ms = conversacional natural. 20ms = máquina/AI. 60ms = pensativo/dramático",
+      "startDelay": "600ms = tempo para o usuário processar o heading antes do texto começar",
+      "minHeight": "Definir minHeight no container para evitar layout shift durante a digitação",
+      "cta_timing": "CTAs devem aparecer 400ms após mount — NÃO aguardar done. Frustração cresce se o CTA depende do typewriter"
+    }
+  },
+  "use_cases": [
+    "Hero de produto com AI persona ou chatbot",
+    "Mensagem de boas-vindas em SaaS onboarding",
+    "Tagline de agência criativa com personalidade",
+    "Splash page com uma frase de impacto"
+  ],
+  "related": ["char-scroll-reveal", "magnetic-cursor", "sites/agencies/basic-agency"]
+}

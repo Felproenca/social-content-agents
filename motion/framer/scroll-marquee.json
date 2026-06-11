@@ -1,0 +1,40 @@
+{
+  "id": "scroll-marquee",
+  "type": "motion",
+  "category": "motion/framer",
+  "name": "Scroll-Driven Horizontal Marquee",
+  "source_context": "Extraído de prompt MotionSites — Jack 3D Creator portfolio. Duas linhas de imagens movem em direções opostas conforme o scroll. Padrão recorrente em portfólios e showcases de produto.",
+  "captured_at": "2026-06-11",
+  "updated_at": "2026-06-11",
+  "maturity": "stable",
+  "tags": ["scroll", "marquee", "horizontal", "parallax", "gallery", "framer-motion", "interactive"],
+  "tensions": [
+    "movimento controlado por quem lê, não por timer",
+    "galeria que existe enquanto você scrolla — desaparece se parar"
+  ],
+  "summary": "Duas linhas de imagens que se movem horizontalmente em direções opostas conforme o scroll avança. Offset calculado a partir da posição do scroll relativa ao topo da seção. Diferente do marquee com CSS animation — aqui o usuário controla a velocidade. Ideal para galerias de preview, showcases de trabalho, portfólios.",
+  "motion": {
+    "library": "framer-motion",
+    "technique": "scroll-position to translateX via useRef + passive scroll listener",
+    "code": {
+      "react_hook": "// Vanilla JS (adaptável a GSAP scrub ou Framer useScroll)\nconst sectionRef = useRef(null);\nconst [offset, setOffset] = useState(0);\n\nuseEffect(() => {\n  const handleScroll = () => {\n    if (!sectionRef.current) return;\n    const rect = sectionRef.current.getBoundingClientRect();\n    const sectionTop = rect.top + window.scrollY;\n    const newOffset = (window.scrollY - sectionTop + window.innerHeight) * 0.3;\n    setOffset(newOffset);\n  };\n  window.addEventListener('scroll', handleScroll, { passive: true });\n  handleScroll();\n  return () => window.removeEventListener('scroll', handleScroll);\n}, []);",
+      "markup": "// Row 1 — move RIGHT\n<div\n  style={{\n    transform: `translateX(${offset - 200}px)`,\n    willChange: 'transform',\n    display: 'flex',\n    gap: '12px'\n  }}\n>\n  {[...images, ...images, ...images].map((src, i) => (\n    <img key={i} src={src} width={420} height={270}\n      style={{ borderRadius: '12px', objectFit: 'cover', flexShrink: 0 }}\n      loading=\"lazy\" />\n  ))}\n</div>\n\n// Row 2 — move LEFT\n<div\n  style={{\n    transform: `translateX(${-(offset - 200)}px)`,\n    willChange: 'transform',\n    display: 'flex',\n    gap: '12px'\n  }}\n>\n  {[...imagesB, ...imagesB, ...imagesB].map((src, i) => (\n    <img key={i} src={src} width={420} height={270}\n      style={{ borderRadius: '12px', objectFit: 'cover', flexShrink: 0 }}\n      loading=\"lazy\" />\n  ))}\n</div>"
+    },
+    "config_options": {
+      "scroll_multiplier": "0.3 — velocidade relativa ao scroll (0.1 lento, 0.5 rápido)",
+      "initial_offset": "-200 — deslocamento inicial das rows (evita gap no início)",
+      "tile_size": "420×270px (16:10) — ou ajustar para 16:9 (420×236)",
+      "image_repeat": "Triplicar array para seamless — nunca menos de 3x",
+      "gap": "gap-3 (12px) — aumentar para dar mais respiro"
+    },
+    "performance_notes": "willChange: 'transform' em cada row. Scroll listener passive: true obrigatório. Não usar CSS transitions nas rows — conflita com JS transform. Overflow hidden no container pai.",
+    "gsap_alternative": "gsap.to(row1, { x: () => offset, ease: 'none', scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: true } })"
+  },
+  "use_cases": [
+    "Portfolio com preview de projetos anteriores",
+    "Showcase de clientes ou logos em homepage SaaS",
+    "Galeria de produtos em landing page de e-commerce",
+    "Preview de templates em ferramenta no-code"
+  ],
+  "related": ["gsap-scroll-trigger", "editorial-dark", "bold-typographic"]
+}

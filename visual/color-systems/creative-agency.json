@@ -1,0 +1,65 @@
+{
+  "id": "color-creative-agency",
+  "title": "Sistema de Cores — Agências Criativas",
+  "description": "Paletas para agências de publicidade, design, marketing e produtoras. O setor que pode — e deve — ser mais ousado. Identidade forte, sem medo de personalidade.",
+  "category": "visual",
+  "subcategory": "color-systems",
+  "tags": ["creative", "agency", "design", "advertising", "marketing", "bold", "personality", "branding"],
+  "sector_notes": "Agências criativas não têm paleta 'certa' — a paleta É a declaração de posicionamento. O mais importante: ser coerente e inconfundível.",
+  "palettes": [
+    {
+      "name": "Brutalist Pop",
+      "sub_sector": "Agência de brand, design editorial, cultura",
+      "mood": "Ousado, irreverente, direto, sem filtro, autêntico",
+      "colors": {
+        "primary":    "#ff0066",
+        "secondary":  "#ffcc00",
+        "accent":     "#0033ff",
+        "background": "#f5f5f0",
+        "surface":    "#ffffff",
+        "text":       "#000000",
+        "border":     "#000000"
+      },
+      "usage": "Agências com ponto de vista forte. Cores primárias puras + muito preto = brutalismo gráfico."
+    },
+    {
+      "name": "Digital Noir",
+      "sub_sector": "Produtora, motion graphics, video, música",
+      "mood": "Misterioso, premium, nocturno, artístico",
+      "colors": {
+        "primary":    "#ffffff",
+        "secondary":  "#cccccc",
+        "accent":     "#ff3300",
+        "background": "#000000",
+        "surface":    "#0d0d0d",
+        "text":       "#f0f0f0",
+        "text_muted": "#666666",
+        "border":     "rgba(255,255,255,0.1)"
+      },
+      "usage": "Produtoras de vídeo, studios de motion, agências de conteúdo premium."
+    },
+    {
+      "name": "Vibrant Studio",
+      "sub_sector": "Agência de performance, growth, conteúdo social",
+      "mood": "Energético, confiante, humano, criativo, viral",
+      "colors": {
+        "primary":    "#7c3aed",
+        "secondary":  "#db2777",
+        "accent":     "#f59e0b",
+        "gradient":   "linear-gradient(135deg, #7c3aed 0%, #db2777 50%, #f59e0b 100%)",
+        "background": "#ffffff",
+        "surface":    "#fafaff",
+        "text":       "#1a1a2e",
+        "text_muted": "#6b7280",
+        "border":     "#ede9fe"
+      },
+      "usage": "Agências de social media, growth e performance. Gradient como asset identitário."
+    }
+  ],
+  "typography_recommendations": {
+    "brutalist": ["Space Grotesk + Space Mono", "Monument Extended + Inter"],
+    "noir": ["Cormorant Garamond + Syne", "Playfair Display + Inter"],
+    "vibrant": ["Syne + DM Sans", "Clash Display + Inter"]
+  },
+  "animation_notes": "Brutalist: cursor customizado, hover states exagerados, transições de página full-screen. Noir: fades lentos, grain overlay. Vibrant: gradiente animado, stagger dinâmico."
+}
