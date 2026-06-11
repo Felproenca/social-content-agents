@@ -1,0 +1,39 @@
+{
+  "id": "mouse-scrub-video",
+  "type": "motion",
+  "category": "motion/vanilla",
+  "name": "Mouse Scrub Video — Movimento Horizontal Controla o Vídeo",
+  "source_context": "Extraído de prompt MotionSites — Mainframe creative agency hero. Vídeo de background não faz autoplay — avança ou retrocede conforme o mouse se move horizontalmente. SENSITIVITY = 0.8.",
+  "captured_at": "2026-06-11",
+  "updated_at": "2026-06-11",
+  "maturity": "stable",
+  "tags": ["video", "interactive", "cursor", "scrub", "hero", "vanilla-js", "agency", "premium"],
+  "tensions": [
+    "vídeo que você controla sem saber que está controlando",
+    "conteúdo que se revela pelo movimento, não pelo tempo"
+  ],
+  "summary": "O vídeo de background não tem autoplay. O movimento horizontal do mouse avança ou retrocede o vídeo proporcionalmente ao delta de posição. onSeeked faz queue do próximo seek para evitar flooding de seeks simultâneos. O resultado é uma experiência de 'video scrubbing' onde explorar a página revela frames do vídeo como se fosse uma animação frame-a-frame controlada pelo usuário.",
+  "motion": {
+    "library": "other",
+    "technique": "mousemove delta X → video.currentTime seek com onSeeked queue",
+    "code": {
+      "react_implementation": "import { useRef, useEffect } from 'react';\n\nexport function ScrubVideo({ src }: { src: string }) {\n  const videoRef = useRef<HTMLVideoElement>(null);\n  const prevXRef = useRef<number | null>(null);\n  const targetTimeRef = useRef(0);\n  const pendingSeekRef = useRef(false);\n  const SENSITIVITY = 0.8;\n\n  useEffect(() => {\n    const video = videoRef.current;\n    if (!video) return;\n\n    const handleMouseMove = (e: MouseEvent) => {\n      if (prevXRef.current === null) { prevXRef.current = e.clientX; return; }\n      const delta = e.clientX - prevXRef.current;\n      prevXRef.current = e.clientX;\n\n      if (!video.duration) return;\n      const timeOffset = (delta / window.innerWidth) * SENSITIVITY * video.duration;\n      targetTimeRef.current = Math.max(0, Math.min(video.duration, targetTimeRef.current + timeOffset));\n\n      if (!pendingSeekRef.current) {\n        pendingSeekRef.current = true;\n        video.currentTime = targetTimeRef.current;\n      }\n    };\n\n    const handleSeeked = () => {\n      // Se o alvo mudou enquanto seekava, faz o próximo seek\n      if (Math.abs(video.currentTime - targetTimeRef.current) > 0.01) {\n        video.currentTime = targetTimeRef.current;\n      } else {\n        pendingSeekRef.current = false;\n      }\n    };\n\n    window.addEventListener('mousemove', handleMouseMove);\n    video.addEventListener('seeked', handleSeeked);\n\n    return () => {\n      window.removeEventListener('mousemove', handleMouseMove);\n      video.removeEventListener('seeked', handleSeeked);\n    };\n  }, []);\n\n  return (\n    <video\n      ref={videoRef}\n      src={src}\n      muted\n      playsInline\n      preload=\"auto\"\n      style={{\n        position: 'fixed',\n        inset: 0,\n        width: '100%',\n        height: '100%',\n        objectFit: 'cover',\n        objectPosition: '70% center',\n        zIndex: 0,\n      }}\n    />\n  );\n}"
+    },
+    "config_options": {
+      "sensitivity": "0.8 = 80% da duração com um movimento full-screen. Maior = mais rápido",
+      "object_position": "'70% center' para focar no lado direito do frame (ex: pessoa ou objeto)",
+      "preload": "preload='auto' obrigatório — sem isso o seek não funciona no início",
+      "no_autoplay": "NÃO usar autoPlay. Este padrão depende de vídeo parado no currentTime 0",
+      "video_duration": "Vídeos de 3-8s funcionam melhor — muito longo dilui o efeito"
+    },
+    "performance_notes": "onSeeked queue impede seek flooding — sem ele, múltiplos seeks simultâneos causam travamentos. Não usar em mobile (sem mousemove). Detectar touch e mostrar autoplay loop como fallback. Vídeo deve ser preload=auto para garantir buffer completo.",
+    "mobile_fallback": "// Em mobile, cair para loop normal\n<video\n  {...(isMobile ? { autoPlay: true, loop: true } : {})}\n  muted playsInline\n/>"
+  },
+  "use_cases": [
+    "Hero de agência criativa ou estúdio de design",
+    "Showcase de produto físico — explorar vídeo = explorar produto",
+    "Splash page com conteúdo revelado por interação",
+    "Portfolio de motion designer ou cinematógrafo"
+  ],
+  "related": ["video-fade-loop", "magnetic-cursor", "sites/agencies/collins"]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "video-fade-loop",
+  "type": "motion",
+  "category": "motion/vanilla",
+  "name": "Video Loop com Fade Manual via requestAnimationFrame",
+  "source_context": "Extraído de prompt MotionSites — Aethera hero section (cinematic hero with looping video). Padrão: rAF monitora currentTime → fade in 0.5s no início, fade out 0.5s antes do fim → restart seamless.",
+  "captured_at": "2026-06-11",
+  "updated_at": "2026-06-11",
+  "maturity": "stable",
+  "tags": ["video", "loop", "fade", "hero", "vanilla-js", "cinematic", "background"],
+  "tensions": [
+    "loop que não parece loop — a costura é invisível",
+    "performance de cinema com comportamento de background"
+  ],
+  "summary": "Video background que faz fade in no início e fade out antes do fim, criando um loop seamless sem o corte abrupto do loop nativo do browser. requestAnimationFrame monitora currentTime a cada frame. onEnded reinicia o vídeo com opacity 0, aguarda 100ms, e faz play novamente. Padrão para hero sections com vídeo cinematic onde o corte do loop quebraria o mood.",
+  "motion": {
+    "library": "other",
+    "technique": "requestAnimationFrame + opacity animation via direct DOM style mutation",
+    "code": {
+      "react_implementation": "import { useRef, useEffect } from 'react';\n\nexport function CinematicVideo({ src }: { src: string }) {\n  const videoRef = useRef<HTMLVideoElement>(null);\n  const rafRef = useRef<number>(0);\n  const FADE_DURATION = 0.5; // segundos\n\n  useEffect(() => {\n    const video = videoRef.current;\n    if (!video) return;\n\n    const tick = () => {\n      const { currentTime, duration, style } = video;\n      if (!duration) { rafRef.current = requestAnimationFrame(tick); return; }\n\n      // Fade in no início\n      if (currentTime < FADE_DURATION) {\n        style.opacity = String(currentTime / FADE_DURATION);\n      }\n      // Fade out antes do fim\n      else if (currentTime > duration - FADE_DURATION) {\n        style.opacity = String((duration - currentTime) / FADE_DURATION);\n      }\n      // Visível no meio\n      else {\n        style.opacity = '1';\n      }\n\n      rafRef.current = requestAnimationFrame(tick);\n    };\n\n    const handleEnded = () => {\n      video.style.opacity = '0';\n      setTimeout(() => {\n        video.currentTime = 0;\n        video.play();\n      }, 100);\n    };\n\n    video.addEventListener('ended', handleEnded);\n    video.play().then(() => {\n      rafRef.current = requestAnimationFrame(tick);\n    });\n\n    return () => {\n      cancelAnimationFrame(rafRef.current);\n      video.removeEventListener('ended', handleEnded);\n    };\n  }, []);\n\n  return (\n    <video\n      ref={videoRef}\n      src={src}\n      muted\n      playsInline\n      style={{\n        position: 'absolute',\n        inset: 'auto 0 0 0',\n        top: '300px',        // ajustar conforme layout\n        width: '100%',\n        height: 'auto',\n        opacity: 0,\n        objectFit: 'cover',\n      }}\n    />\n  );\n}",
+      "gradient_overlay": "// Overlay para suavizar bordas do vídeo no background\n<div\n  style={{\n    position: 'absolute',\n    inset: 0,\n    background: 'linear-gradient(to bottom, var(--bg) 0%, transparent 30%, transparent 70%, var(--bg) 100%)',\n    pointerEvents: 'none',\n    zIndex: 1,\n  }}\n/>"
+    },
+    "config_options": {
+      "fade_duration": "0.5s — fade mais longo (0.8s) para mood mais cinematográfico",
+      "restart_delay": "100ms após ended — necessário para o browser resetar o buffer",
+      "video_position": "top: 300px para vídeo que começa abaixo do navbar. Ajustar para layout",
+      "alternative": "Para loops simples sem fade, usar autoPlay loop native é mais eficiente. Este padrão só vale quando o corte visual importa."
+    },
+    "performance_notes": "rAF roda a 60fps — não é pesado para leitura de currentTime. Cancelar rAF no cleanup do useEffect obrigatório. Video deve estar em CDN (CloudFront, Cloudinary) — nunca servido pelo app server."
+  },
+  "use_cases": [
+    "Hero section com vídeo ambiente de fundo",
+    "Splash page de produto premium",
+    "Background de seção de testemunhos ou about",
+    "Landing pages de eventos com mood cinematográfico"
+  ],
+  "related": ["mouse-scrub-video", "editorial-dark", "clean-minimal"]
+}

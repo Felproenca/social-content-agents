@@ -1,0 +1,39 @@
+{
+  "id": "role-carousel",
+  "type": "motion",
+  "category": "motion/vanilla",
+  "name": "Role-Based Carousel — Centro/Esquerda/Direita/Fundo",
+  "source_context": "Extraído de prompt MotionSites — TOONHUB figurines carousel. 4 itens com papéis semânticos (center, left, right, back). Background color transiciona junto com o item ativo. Padrão para showcases de produto com forte identidade visual.",
+  "captured_at": "2026-06-11",
+  "updated_at": "2026-06-11",
+  "maturity": "stable",
+  "tags": ["carousel", "interactive", "hover", "transition", "product", "b2c", "vanilla-js"],
+  "tensions": [
+    "galeria onde cada posição tem um papel, não apenas um índice",
+    "fundo que muda de cor junto com o item — o contexto é parte do produto"
+  ],
+  "summary": "Carousel de N itens onde cada item assume um papel semântico: center (hero), left (esquerda diminuída), right (direita diminuída), back (fundo central). Ao navegar, os papéis são redistribuídos e todas as propriedades (escala, opacidade, blur, posição, cor de fundo) transicionam simultaneamente em 650ms com cubic-bezier(0.4,0,0.2,1). Padrão de alto impacto para produtos físicos ou coleções com identidade visual forte.",
+  "motion": {
+    "library": "other",
+    "technique": "state machine com roles semânticos + CSS transitions simultâneas",
+    "code": {
+      "state_logic": "const ITEMS = [\n  { src: '/img1.png', bg: '#F4845F' },\n  { src: '/img2.png', bg: '#6BBF7A' },\n  { src: '/img3.png', bg: '#E882B4' },\n  { src: '/img4.png', bg: '#6EB5FF' },\n];\n\n// Roles derivados do índice ativo\nconst getRoles = (activeIndex: number, total: number) => ({\n  center: activeIndex,\n  left:  (activeIndex + total - 1) % total,\n  right: (activeIndex + 1) % total,\n  back:  (activeIndex + 2) % total,\n});\n\n// Lock de animação — ignora cliques durante transição\nconst [activeIndex, setActiveIndex] = useState(0);\nconst [isAnimating, setIsAnimating] = useState(false);\n\nconst navigate = (dir: 'next' | 'prev') => {\n  if (isAnimating) return;\n  setIsAnimating(true);\n  setActiveIndex(prev => dir === 'next'\n    ? (prev + 1) % ITEMS.length\n    : (prev + ITEMS.length - 1) % ITEMS.length\n  );\n  setTimeout(() => setIsAnimating(false), 650);\n};",
+      "role_styles": "// Estilos por papel — aplicados via object spread\nconst roleStyles = (role: string, isMobile: boolean) => {\n  const T = 'transform 650ms cubic-bezier(0.4,0,0.2,1), filter 650ms cubic-bezier(0.4,0,0.2,1), opacity 650ms cubic-bezier(0.4,0,0.2,1), left 650ms cubic-bezier(0.4,0,0.2,1)';\n  switch (role) {\n    case 'center': return {\n      left: '50%',\n      height: isMobile ? '60%' : '92%',\n      bottom: isMobile ? '22%' : 0,\n      transform: `translateX(-50%) scale(${isMobile ? 1.25 : 1.68})`,\n      filter: 'none',\n      opacity: 1,\n      zIndex: 20,\n      transition: T,\n    };\n    case 'left': return {\n      left: isMobile ? '20%' : '30%',\n      height: isMobile ? '16%' : '28%',\n      bottom: isMobile ? '32%' : '12%',\n      transform: 'translateX(-50%) scale(1)',\n      filter: 'blur(2px)',\n      opacity: 0.85,\n      zIndex: 10,\n      transition: T,\n    };\n    case 'right': return {\n      left: isMobile ? '80%' : '70%',\n      height: isMobile ? '16%' : '28%',\n      bottom: isMobile ? '32%' : '12%',\n      transform: 'translateX(-50%) scale(1)',\n      filter: 'blur(2px)',\n      opacity: 0.85,\n      zIndex: 10,\n      transition: T,\n    };\n    case 'back': return {\n      left: '50%',\n      height: isMobile ? '13%' : '22%',\n      bottom: isMobile ? '32%' : '12%',\n      transform: 'translateX(-50%) scale(1)',\n      filter: 'blur(4px)',\n      opacity: 1,\n      zIndex: 5,\n      transition: T,\n    };\n    default: return {};\n  }\n};",
+      "background_transition": "// Background color transiciona com o item ativo\n<div\n  style={{\n    backgroundColor: ITEMS[activeIndex].bg,\n    transition: 'background-color 650ms cubic-bezier(0.4,0,0.2,1)',\n  }}\n>"
+    },
+    "config_options": {
+      "transition_duration": "650ms — suficiente para perceber, rápido o suficiente para não frustrar",
+      "easing": "cubic-bezier(0.4,0,0.2,1) — ease in-out suave (Material Design standard)",
+      "blur_side": "2px para left/right, 4px para back — escala de profundidade visual",
+      "scale_center": "1.68 desktop, 1.25 mobile — proporção hero vs coadjuvantes",
+      "animation_lock": "650ms — igual à duração da transição. Impede double-click durante animação"
+    }
+  },
+  "use_cases": [
+    "Showcase de coleção de produtos físicos (roupas, toys, food)",
+    "Galeria de personagens ou avatares",
+    "Seletor de planos ou tiers com visual forte",
+    "Hero interativo de landing page de produto DTC"
+  ],
+  "related": ["scroll-marquee", "magnetic-cursor", "bold-typographic"]
+}

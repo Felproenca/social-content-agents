@@ -1,0 +1,39 @@
+{
+  "id": "char-scroll-reveal",
+  "type": "motion",
+  "category": "motion/framer",
+  "name": "Character-by-Character Scroll Reveal",
+  "source_context": "Extraído de prompt MotionSites — Jack 3D Creator portfolio (AnimatedText) e Mentality hero (mental health SaaS). Padrão de reveal de texto por caractere conforme o scroll avança.",
+  "captured_at": "2026-06-11",
+  "updated_at": "2026-06-11",
+  "maturity": "stable",
+  "tags": ["scroll", "text", "reveal", "character", "framer-motion", "hero", "about"],
+  "tensions": [
+    "texto que você lê ao mesmo tempo em que é revelado pelo scroll",
+    "leitura forçada — não dá para pular o que ainda não apareceu"
+  ],
+  "summary": "Cada caractere de um parágrafo anima de opacity 0.2 para 1 conforme o scroll avança através do elemento. O progresso do scroll é mapeado para o índice de cada caractere — os primeiros aparecem no início do scroll, os últimos no final. Framer Motion useScroll + useTransform por caractere. Padrão de alto impacto para about sections e manifestos.",
+  "motion": {
+    "library": "framer-motion",
+    "technique": "useScroll targeting paragraph element → map progress to per-character opacity",
+    "code": {
+      "component": "import { useRef } from 'react';\nimport { useScroll, useTransform, motion } from 'framer-motion';\n\ninterface AnimatedTextProps {\n  text: string;\n  className?: string;\n}\n\nexport function AnimatedText({ text, className }: AnimatedTextProps) {\n  const ref = useRef<HTMLParagraphElement>(null);\n  const { scrollYProgress } = useScroll({\n    target: ref,\n    offset: ['start 0.8', 'end 0.2'],  // começa quando 80% visível, termina a 20%\n  });\n\n  const words = text.split(' ');\n\n  return (\n    <p ref={ref} className={className} style={{ position: 'relative' }}>\n      {words.map((word, wordIndex) => {\n        const chars = word.split('');\n        const wordStart = wordIndex / words.length;\n        const wordEnd = (wordIndex + 1) / words.length;\n\n        return (\n          <span key={wordIndex} style={{ display: 'inline-block', marginRight: '0.3em' }}>\n            {chars.map((char, charIndex) => {\n              const charStart = wordStart + (charIndex / chars.length) * (wordEnd - wordStart);\n              const charEnd = wordStart + ((charIndex + 1) / chars.length) * (wordEnd - wordStart);\n\n              // eslint-disable-next-line react-hooks/rules-of-hooks\n              const opacity = useTransform(\n                scrollYProgress,\n                [charStart, charEnd],\n                [0.2, 1]\n              );\n\n              return (\n                <motion.span\n                  key={charIndex}\n                  style={{ opacity, display: 'inline-block' }}\n                >\n                  {char}\n                </motion.span>\n              );\n            })}\n          </span>\n        );\n      })}\n    </p>\n  );\n}",
+      "usage": "<AnimatedText\n  text=\"With more than five years of experience in design, I focus on branding, web design, and user experience.\"\n  className=\"text-lg leading-relaxed max-w-xl text-center\"\n/>"
+    },
+    "config_options": {
+      "scroll_offset_start": "'start 0.8' — começa quando o elemento está 80% visível na viewport",
+      "scroll_offset_end": "'end 0.2' — termina quando o elemento saiu 80% da viewport",
+      "opacity_from": "0.2 — opacidade dos caracteres não revelados (0 é muito agressivo)",
+      "opacity_to": "1 — opacidade final dos caracteres revelados",
+      "granularity": "Por palavra (mais performático) ou por caractere (mais dramático). Troque split(' ') por split('')"
+    },
+    "performance_notes": "Muitos motion.span criam muitos observers. Para textos longos (>200 chars), prefer split por palavra. Para textos curtos (<80 chars), split por caractere é aceitável. willChange: 'opacity' implícito no motion.span."
+  },
+  "use_cases": [
+    "About section com texto longo e emocional",
+    "Manifesto de marca em hero ou splash page",
+    "Quote de fundador ou testemunho em destaque",
+    "Missão/visão em página institucional"
+  ],
+  "related": ["gsap-text-reveal", "scroll-marquee", "sticky-card-stack"]
+}

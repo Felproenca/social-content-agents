@@ -50,6 +50,8 @@ copy/                    ← arquivos de coleção de padrões
 
 motion/gsap
 motion/three-js
+motion/framer
+motion/vanilla
 motion/reels
 motion/transitions
 
