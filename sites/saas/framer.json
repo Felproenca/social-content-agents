@@ -1,0 +1,65 @@
+{
+  "id": "framer",
+  "type": "site",
+  "category": "sites/saas",
+  "name": "Framer",
+  "source_url": "https://framer.com",
+  "captured_at": "2026-06-10",
+  "updated_at": "2026-06-10",
+  "maturity": "stable",
+  "tags": ["saas", "design", "no-code", "motion", "b2c", "dark", "creative"],
+  "tensions": [
+    "o produto usa a si mesmo como portfólio — e isso é o melhor argumento de venda",
+    "design e código que param de fingir que são categorias diferentes"
+  ],
+  "summary": "O site do Framer é construído no Framer. Esse detalhe não é trivial — é a estratégia toda. Cada animação, cada transição, cada interação é prova viva do que o produto faz. Referência obrigatória de como produto e marketing colapsam em uma única experiência quando a proposta de valor é o próprio meio.",
+  "use_cases": [
+    "Referência de site construído com a própria ferramenta como argumento de credibilidade",
+    "Benchmark de motion em SaaS — animações ricas sem perder performance",
+    "Como apresentar templates como canal de aquisição e onboarding simultâneos",
+    "Padrão de dark hero com gradiente de identidade forte"
+  ],
+  "related": ["webflow", "linear"],
+  "visual": {
+    "style": "dark",
+    "mood": ["criativo", "fluido", "premium", "moderno", "inspirador"],
+    "palette": {
+      "background": "#0a0a0a",
+      "surface": "#141414",
+      "primary_text": "#ffffff",
+      "secondary_text": "#999999",
+      "accent": "#0099ff",
+      "gradient_hero": "radial-gradient at top, deep blue to black"
+    },
+    "typography": {
+      "heading": "Custom display + Inter",
+      "body": "Inter",
+      "weight_heading": "700–800",
+      "size_scale": "Grande — H1 pode chegar a 72px no hero"
+    },
+    "layout_principles": [
+      "Hero com produto em motion imediato — o produto anima antes da página terminar de carregar",
+      "Grid de templates como vitrine — variedade como argumento de flexibilidade",
+      "Scroll experience rica — seções com transições de identidade própria",
+      "Dark com acents de cor por feature — cada seção tem um accent diferente"
+    ]
+  },
+  "copy": {
+    "headline_style": "Declaração do resultado final — não do processo, não da ferramenta",
+    "cta_style": "Start for free — baixo comprometimento, alta disponibilidade",
+    "voice": "Inspirador sem ser vago. Criativo sem ser artístico demais. Fala com designers e founders.",
+    "examples": [
+      {
+        "text": "Ship sites that move.",
+        "context": "Tagline que brinca com 'move' — movimento e emoção simultaneamente",
+        "source_url": "https://framer.com"
+      }
+    ]
+  },
+  "motion": {
+    "library": "other",
+    "complexity": "high",
+    "performance_cost": "medium",
+    "analysis": "O site inteiro é uma demonstração de motion. Page transitions com morph entre seções. Componentes que seguem o cursor. Scroll-driven animations em praticamente toda seção. Referência de até onde você pode levar motion sem sacrificar usabilidade — e onde o limite está."
+  }
+}

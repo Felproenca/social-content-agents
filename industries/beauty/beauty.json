@@ -1,0 +1,62 @@
+{
+  "id": "beauty",
+  "type": "industry",
+  "category": "industries/beauty",
+  "name": "Indústria de Beleza",
+  "source_context": "Análise de comportamento visual e copy das principais marcas do setor: Glossier, Fenty, Rare Beauty, Aesop, Byredo, Tatcha, L'Oréal, Neutrogena. Fontes: Mintel Beauty Reports, análise direta de sites e campanhas 2022-2025.",
+  "captured_at": "2026-06-10",
+  "updated_at": "2026-06-10",
+  "maturity": "stable",
+  "tags": ["beauty", "cosmetics", "skincare", "makeup", "b2c", "lifestyle", "visual-heavy"],
+  "tensions": [
+    "produto que vende transformação mas não pode prometer transformação",
+    "industria que precisa de diversidade mas ainda não sabe mostrar sem parecer campanha"
+  ],
+  "summary": "Beleza é o setor onde visual e copy têm menos margem para erro — a audiência treinou o olho em anos de consumo de conteúdo de beleza e identifica genérico em segundos. A fragmentação é extrema: luxury beauty (Aesop, Byredo) opera em lógica completamente diferente de mass beauty (L'Oréal, Neutrogena) e de beauty inclusiva (Fenty, Rare Beauty).",
+  "industry": {
+    "description": "Setor de cosméticos, skincare, maquiagem e fragrâncias. Mercado global de ~$600B. Alta fragmentação por posicionamento: luxury, prestige, masstige, mass e independente/DTC.",
+    "typical_brands": [
+      "Luxury: Aesop, Byredo, La Mer, Creed",
+      "Prestige: Charlotte Tilbury, NARS, Urban Decay",
+      "Masstige: Glossier, Rare Beauty, Rhode",
+      "Mass: L'Oréal, Maybelline, Neutrogena",
+      "DTC indie: Drunk Elephant, Paula's Choice"
+    ],
+    "visual_conventions": [
+      "Product shot limpo em fundo branco ou neutro — padrão de e-commerce",
+      "Lifestyle com modelo usando produto em luz natural",
+      "Before/after para skincare — resultado como argumento",
+      "Paleta rosé/bege/dourada para feminino mainstream",
+      "Embalagem como hero visual — o design do frasco vende antes do conteúdo",
+      "UGC e influencer content como prova social primária"
+    ],
+    "visual_opportunities": [
+      "Dark e editorial para posicionamento premium fora do luxury tradicional",
+      "Ingrediente como hero visual — close-up de matéria-prima em vez de resultado",
+      "Tipografia bold como design em vez de fotografia de produto",
+      "Paleta não-convencional (verde escuro, azul, preto) para ruptura de categoria",
+      "Motion de produto — textura, aplicação, dissolve — diferencial de digital vs impresso"
+    ],
+    "copy_conventions": [
+      "Resultado + ingrediente ativo — 'Hidrata por 72h com ácido hialurônico'",
+      "Inclusividade declarada — 'Para todos os tipos de pele'",
+      "Dermatologist tested / Clinically proven como trust signal",
+      "Clean beauty language: sem parabenos, cruelty-free, vegan",
+      "Rotina como narrativa — produto como parte de self-care"
+    ],
+    "trust_signals": [
+      "Certificações: cruelty-free, vegan, dermatologista testado",
+      "Ingredientes com dosagem — transparência científica",
+      "Reviews com foto de resultado — UGC como prova",
+      "Número de reviews visível no produto",
+      "Refund policy sem fricção — reduz risco de primeira compra"
+    ],
+    "regulatory_notes": "Claims de resultado são regulados (Anvisa no Brasil, FDA nos EUA). Não usar: 'elimina', 'cura', 'trata' para cosméticos. Usar: 'ajuda a reduzir aparência de', 'promove sensação de'. Claims médicos exigem produto de categoria diferente (medicamento)."
+  },
+  "use_cases": [
+    "Criar identidade visual para marca indie de skincare",
+    "Posicionar produto de beleza fora do padrão bege/rosé mainstream",
+    "Definir tom de copy que equilibra aspiração e regulação"
+  ],
+  "related": ["aesop", "color-wellness", "editorial-dark"]
+}

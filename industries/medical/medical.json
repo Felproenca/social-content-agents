@@ -1,0 +1,61 @@
+{
+  "id": "medical",
+  "type": "industry",
+  "category": "industries/medical",
+  "name": "Saúde & MedTech",
+  "source_context": "Análise de marcas do setor: Hims, Ro.co, Headspace, Calm, ZocDoc, Oscar Health, One Medical. Fontes: análise direta de sites, campanhas e landing pages 2022-2025.",
+  "captured_at": "2026-06-10",
+  "updated_at": "2026-06-10",
+  "maturity": "stable",
+  "tags": ["health", "medical", "healthtech", "wellness", "telemedicine", "b2c", "trust"],
+  "tensions": [
+    "cuidado que precisa parecer clínico sem parecer frio",
+    "tecnologia que promete acesso mas precisa construir confiança antes de qualquer promessa"
+  ],
+  "summary": "Saúde é o setor onde o erro de comunicação tem custo real. Copy errado pode gerar ansiedade ou falsa expectativa em pessoas vulneráveis. Visual errado pode parecer spam ou golpe. O maior desafio não é criatividade — é construir confiança suficiente para que alguém entregue seus dados de saúde ou siga uma orientação médica.",
+  "industry": {
+    "description": "Healthtech, telemedicina, apps de saúde mental, planos de saúde digitais, clínicas online, wellness digital. Mercado de alto crescimento pós-pandemia com fragmentação por sub-setor.",
+    "typical_brands": [
+      "Telehealth: Hims, Ro, Teladoc, Dr. Consulta",
+      "Saúde mental: Headspace, Calm, BetterHelp, Zenklub",
+      "Plano de saúde: Oscar Health, Cigna, Amil",
+      "Fitness tech: Peloton, Whoop, Garmin",
+      "Nutrição: Noom, MyFitnessPal, Carbo"
+    ],
+    "visual_conventions": [
+      "Azul clínico + branco — paleta padrão de confiança médica",
+      "Fotografia de pessoas reais em contexto cotidiano (não hospital)",
+      "Ícones de escudo, coração, check — trust signals visuais",
+      "Logos de parceiros/seguradoras como prova de legitimidade",
+      "Antes/depois para programas de saúde com disclaimer legal"
+    ],
+    "visual_opportunities": [
+      "Warm neutral (creme, terracota suave) para saúde preventiva e mental",
+      "Dark premium para clínicas e procedimentos estéticos de alto padrão",
+      "Ilustração em vez de fotografia para comunicar leveza em saúde mental",
+      "Tipografia humanista que transmite cuidado sem infantilizar",
+      "Motion suave que comunica calma — oposto de urgência de e-commerce"
+    ],
+    "copy_conventions": [
+      "Empowerment language — 'Você merece cuidar de você'",
+      "Accessibilidade como argumento — 'Consulta em minutos, de onde você estiver'",
+      "Credencial implícita — 'Médicos licenciados', 'CRM verificado'",
+      "Jornada, não produto — 'Comece sua jornada de saúde'",
+      "Privacidade como feature — 'Seus dados são seus. Sempre.'"
+    ],
+    "trust_signals": [
+      "Registro nos órgãos reguladores (CFM, CRM, Anvisa) visível",
+      "Número de pacientes atendidos — prova social por escala",
+      "Tempo de resposta garantido — 'Médico disponível em até 15 minutos'",
+      "Avaliações com nome real e condição tratada (com consentimento)",
+      "Política de privacidade e LGPD/HIPAA em destaque no rodapé"
+    ],
+    "regulatory_notes": "Claims de resultado médico são altamente regulados (CFM, Anvisa, CONAR no Brasil). Proibido: diagnóstico online, promessa de cura, comparação com medicamento. Obrigatório: disclaimer 'não substitui consulta médica' em qualquer orientação de saúde. Imagem de médico exige CRM visível ou stock photography genérica."
+  },
+  "use_cases": [
+    "Criar landing page para clínica ou serviço de saúde digital",
+    "Posicionar produto de saúde mental fora da estética clínica fria",
+    "Equilibrar copy aspiracional com compliance regulatório"
+  ],
+  "related": ["color-wellness", "clean-minimal"]
+}

@@ -1,0 +1,69 @@
+{
+  "id": "aesop",
+  "type": "site",
+  "category": "sites/luxury",
+  "name": "Aesop",
+  "source_url": "https://aesop.com",
+  "captured_at": "2026-06-10",
+  "updated_at": "2026-06-10",
+  "maturity": "stable",
+  "tags": ["luxury", "beauty", "editorial", "warm", "copy-driven", "premium", "minimal"],
+  "tensions": [
+    "luxo que recusa o vocabulário do luxo",
+    "produto que prefere que você leia do que compre"
+  ],
+  "summary": "Aesop é a prova de que copy pode ser o design. Enquanto concorrentes de luxo mostram produtos em pedestais com iluminação dramática, Aesop escreve como se estivesse numa conversa com alguém que lê. Nenhuma exclamação, nenhuma promessa de transformação — só contexto, ingrediente e convite. A identidade visual é a contenção.",
+  "use_cases": [
+    "Referência máxima de copy como identidade de marca",
+    "Benchmark de luxury que não usa os códigos visuais do luxury",
+    "Como apresentar produto sem mostrar resultado — só processo e ingrediente",
+    "Padrão de paleta quente neutra com tipografia como elemento primário"
+  ],
+  "related": ["loro-piana", "editorial-dark"],
+  "visual": {
+    "style": "editorial",
+    "mood": ["intelectual", "quente", "artesanal", "contemplativo", "sem pressa"],
+    "palette": {
+      "background": "#f4f0e8",
+      "surface": "#ede8de",
+      "primary_text": "#1a1a1a",
+      "secondary_text": "#6b6560",
+      "accent": "#a0855a",
+      "border": "rgba(26,26,26,0.1)"
+    },
+    "typography": {
+      "heading": "Freight Display Pro (serif elegante, não dramático)",
+      "body": "GT America (sans-serif neutro de qualidade)",
+      "weight_heading": "300–400 (light — nunca bold)",
+      "size_scale": "Moderado. O tamanho não faz o impacto — a qualidade do texto faz.",
+      "tracking_headline": "0.05em — levemente aberto, aristocrático"
+    },
+    "layout_principles": [
+      "Produto em still life — contexto, não close-up de resultado",
+      "Muito espaço — cada produto respira como objeto de museu",
+      "Texto longo é esperado e respeitado — não há medo de parágrafo",
+      "Nenhuma imagem de pessoa usando o produto — o produto existe por si"
+    ]
+  },
+  "copy": {
+    "headline_style": "Descritivo e preciso — ingredientes, origem, processo. Nunca promessa de resultado.",
+    "cta_style": "Simples e sem urgência — 'Add to cart' sem artifício. A urgência nunca existe aqui.",
+    "voice": "Literário sem ser pedante. Conhecedor sem ser esnobe. Escreve como botânico apaixonado.",
+    "examples": [
+      {
+        "text": "A nourishing body cleanser formulated with botanical ingredients.",
+        "context": "Descrição de produto — específico, sem hipérbole, sem promessa de transformação"
+      },
+      {
+        "text": "For those who find pleasure in the rituals of daily life.",
+        "context": "Posicionamento de audiência — define o cliente por valores, não por demografia"
+      }
+    ]
+  },
+  "motion": {
+    "library": "css",
+    "complexity": "low",
+    "performance_cost": "very-low",
+    "analysis": "Praticamente nenhuma animação. Hover revela um segundo plano de produto. Scroll é linear, sem parallax. A ausência de motion é intencional — ansiedade visual seria incompatível com o posicionamento. A única 'animação' é o tempo que você passa lendo."
+  }
+}

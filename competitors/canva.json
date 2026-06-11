@@ -1,0 +1,60 @@
+{
+  "id": "canva",
+  "type": "competitor",
+  "category": "competitors",
+  "name": "Canva",
+  "source_url": "https://canva.com",
+  "captured_at": "2026-06-10",
+  "updated_at": "2026-06-10",
+  "maturity": "stable",
+  "tags": ["design-tool", "saas", "b2c", "templates", "social-media", "accessible", "mass-market"],
+  "tensions": [
+    "design democratizado ao custo do teto de qualidade",
+    "a ferramenta que ensinou o mundo a criar e criou o problema do genérico"
+  ],
+  "summary": "Canva venceu pela distribuição, não pelo produto. 150M+ usuários que nunca estudaram design agora produzem visuais — com resultados previsíveis. O paradoxo do Canva: ao tornar design acessível, criou uma saturação visual onde tudo parece igual. Para o MarketingOS, é simultaneamente o concorrente mais perigoso em volume e o que cria mais oportunidade de diferenciação.",
+  "use_cases": [
+    "Referência de onboarding que converte não-designers em usuários recorrentes",
+    "Benchmark de template como canal de aquisição em escala",
+    "Entender o teto do que a audiência já sabe fazer — e onde diferenciar"
+  ],
+  "competitor": {
+    "positioning": "Create anything. Publish anywhere. The all-in-one visual communication platform.",
+    "target_audience": "Qualquer pessoa que precisa de visual — PMEs, criadores, educadores, RH, marketing sem budget",
+    "strengths": [
+      "Barreira de entrada zero — template + arrastar = resultado imediato",
+      "Distribuição massiva — presente em 190 países, 100+ idiomas",
+      "Brand Kit que resolve identidade para PMEs sem designer",
+      "Magic Studio (IA) integrado nativamente — geração de imagem, copy, apresentação",
+      "Plano gratuito generoso com upgrade natural por necessidade",
+      "Canva for Education e Nonprofit — penetração em instituições"
+    ],
+    "weaknesses": [
+      "Teto de qualidade baixo — resultado sempre 'parece Canva'",
+      "Templates reconhecíveis — saturação visual pelo uso massivo dos mesmos assets",
+      "Customização profunda requer contornar as limitações da interface",
+      "Tipografia e grid sem controle real — não é ferramenta de design, é ferramenta de conteúdo",
+      "Percepção de amadorismo por profissionais de design",
+      "Não serve para produto digital (UI, app, site)"
+    ],
+    "key_pages": [
+      {
+        "label": "Home",
+        "url": "https://canva.com",
+        "notes": "Hero com editor visível — template como hook imediato, sem friction"
+      },
+      {
+        "label": "Templates",
+        "url": "https://canva.com/templates",
+        "notes": "Canal de SEO mais forte — milhões de busca por 'template de [tipo]'"
+      },
+      {
+        "label": "Magic Studio",
+        "url": "https://canva.com/magic-studio",
+        "notes": "IA como argumento de retenção — quem já usa não migra pela IA integrada"
+      }
+    ],
+    "last_reviewed": "2026-06-10"
+  },
+  "notes": "A oportunidade real contra o Canva não é qualidade vs quantidade — é especificidade vs genérico. Canva não consegue gerar identidade de marca consistente, só peças isoladas. Esse é o gap."
+}

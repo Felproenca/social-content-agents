@@ -1,0 +1,57 @@
+{
+  "id": "webflow",
+  "type": "competitor",
+  "category": "competitors",
+  "name": "Webflow",
+  "source_url": "https://webflow.com",
+  "captured_at": "2026-06-10",
+  "updated_at": "2026-06-10",
+  "maturity": "stable",
+  "tags": ["no-code", "website-builder", "saas", "cms", "b2b", "design", "agency"],
+  "tensions": [
+    "poder sem código — até onde o poder acaba",
+    "liberdade visual máxima com teto de complexidade bem definido"
+  ],
+  "summary": "Webflow é a ferramenta que deu a designers o controle que sempre quiseram — e o preso que agências às vezes não esperavam. É simultaneamente a melhor ferramenta de site profissional no-code e a mais difícil de justificar para clientes que comparam com WordPress. Referência de produto que capturou um segmento específico com fidelidade extrema.",
+  "use_cases": [
+    "Benchmark de landing page para produto no-code com alta sofisticação visual",
+    "Referência de como comunidade de agências parceiras vira canal de distribuição",
+    "Como comunicar poder técnico para audiência não-técnica"
+  ],
+  "competitor": {
+    "positioning": "The platform to build, launch, and scale your website. For designers, marketers, and enterprises.",
+    "target_audience": "Designers web, agências criativas, marketing teams — fuga do developer dependency",
+    "strengths": [
+      "Visual development mais poderoso do mercado — CSS real gerado por interface",
+      "CMS e hosting integrados — produto completo sem dependência externa",
+      "Comunidade de agências certificadas com marketplace próprio",
+      "Webflow University — currículo de educação que cria evangelistas",
+      "Templates premium com design de alto nível — argumento de resultado imediato"
+    ],
+    "weaknesses": [
+      "Curva de aprendizado íngreme — não é realmente 'no-code' para iniciantes",
+      "Pricing alto para agências que escalam projetos de clientes",
+      "Aplicações complexas (autenticação, e-commerce avançado) ainda limitadas",
+      "Lógica condicional e interatividade complexa requerem Webflow Logic ou JavaScript externo",
+      "Percepção de lock-in — saída do Webflow é complicada"
+    ],
+    "key_pages": [
+      {
+        "label": "Home",
+        "url": "https://webflow.com",
+        "notes": "Hero demonstra o editor visualmente — produto como argumento imediato"
+      },
+      {
+        "label": "Showcase",
+        "url": "https://webflow.com/made-in-webflow",
+        "notes": "Galeria de sites feitos em Webflow — prova social mais eficaz"
+      },
+      {
+        "label": "Enterprise",
+        "url": "https://webflow.com/enterprise",
+        "notes": "Pivô recente para enterprise — mudança de posicionamento relevante"
+      }
+    ],
+    "last_reviewed": "2026-06-10"
+  }
+}
