@@ -1,0 +1,67 @@
+{
+  "id": "acquisition-content-model",
+  "type": "framework",
+  "category": "frameworks/acquisition",
+  "name": "Modelo de Conteúdo para Aquisição — 70/20/10",
+  "source_context": "Framework interno MarketingOS. Distribuição de conteúdo orientada por aquisição, não por engajamento. Regra: conteúdo existe para demonstrar capacidade de diagnóstico, não capacidade de produção.",
+  "captured_at": "2026-06-11",
+  "updated_at": "2026-06-11",
+  "maturity": "stable",
+  "tags": ["content", "acquisition", "framework", "distribution", "b2b", "social"],
+  "tensions": [
+    "conteúdo que fala para problemas, não para nichos",
+    "distribuição como sistema, não como calendário editorial"
+  ],
+  "summary": "A régua de conteúdo do MarketingOS. 70% sobre problemas universais de aquisição — fala com qualquer empresa com gargalo. 20% build in public — mostra o sistema evoluindo. 10% casos específicos — prova aplicada a contextos reais. A regra principal: nenhum conteúdo existe para demonstrar que você sabe produzir. Existe para demonstrar que você entende diagnosticar.",
+  "use_cases": [
+    "Planejamento de conteúdo para o MarketingOS como produto",
+    "Template de distribuição para clientes em fase de geração de demanda",
+    "Resposta quando cliente pergunta 'sobre o que devo postar'",
+    "Priorização de temas quando há múltiplas possibilidades"
+  ],
+  "framework": {
+    "rule": "Não falamos para nichos. Falamos para problemas.",
+    "distribution": {
+      "70_universal": {
+        "label": "Problemas Universais",
+        "themes": [
+          "aquisição imprevisível",
+          "marketing desconectado do comercial",
+          "falta de posicionamento claro",
+          "dependência excessiva de indicação",
+          "falhas de follow-up e conversão",
+          "ausência de sistema — tudo na cabeça do dono"
+        ],
+        "format": "Diagnóstico público — mostra o problema, nomeia o padrão, aponta a causa raiz. NÃO vende solução."
+      },
+      "20_build_in_public": {
+        "label": "Build In Public",
+        "themes": [
+          "evolução do MarketingOS como sistema",
+          "decisões tomadas e por quê",
+          "aprendizados de clientes (anonimizados)",
+          "bastidores de diagnóstico",
+          "frameworks em desenvolvimento"
+        ],
+        "format": "Narrativa de construção — mostra processo, não só resultado. Cria investimento emocional no sistema."
+      },
+      "10_specific": {
+        "label": "Casos Específicos",
+        "themes": [
+          "clínicas e saúde",
+          "advogados e escritórios",
+          "consultores e especialistas",
+          "empresas de serviço B2B",
+          "análise de empresas públicas"
+        ],
+        "format": "Análise aplicada — 'aqui está o gargalo de aquisição que eu identificaria nessa empresa'. Prova específica, não generalização."
+      }
+    },
+    "metrics": {
+      "wrong": ["seguidores", "curtidas", "alcance", "visualizações"],
+      "right": ["conversas iniciadas", "reuniões geradas", "diagnósticos realizados", "fechamentos atribuíveis a conteúdo"]
+    },
+    "north_star_question": "Esse conteúdo inicia uma conversa sobre aquisição ou só demonstra que sei produzir conteúdo?"
+  },
+  "acquisition_role": "Conteúdo como canal de aquisição direto — cada peça é um diagnóstico público que qualifica leads ao demonstrar profundidade de análise antes do contato"
+}

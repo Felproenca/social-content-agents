@@ -19,6 +19,7 @@
     "Como apresentar infraestrutura técnica sem desenhar arquitetura de servidor",
     "Padrão de logo mark simples com reconhecimento imediato"
   ],
+  "acquisition_role": "Deploy instantâneo como prova do produto — o usuário experimenta antes de avaliar, tornando a aquisição um ato de descoberta e não de convencimento",
   "related": ["linear", "stripe"],
   "visual": {
     "style": "dark",

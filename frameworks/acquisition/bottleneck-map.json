@@ -1,0 +1,84 @@
+{
+  "id": "bottleneck-map",
+  "type": "framework",
+  "category": "frameworks/acquisition",
+  "name": "Mapa de Gargalos de Aquisição → Intervenção",
+  "source_context": "Framework interno MarketingOS. Estrutura de decisão: dado o gargalo identificado no diagnóstico, qual intervenção tem maior alavancagem? O sistema se adapta ao gargalo, não o contrário.",
+  "captured_at": "2026-06-11",
+  "updated_at": "2026-06-11",
+  "maturity": "stable",
+  "tags": ["acquisition", "framework", "diagnostic", "strategy", "bottleneck", "intervention"],
+  "tensions": [
+    "intervenção que muda conforme o problema — sem produto fixo",
+    "sistema que diagnostica antes de vender qualquer solução"
+  ],
+  "summary": "Após o diagnóstico de 30 dias, esse mapa orienta os próximos 60 dias de implementação. Cada gargalo identificado mapeia para um conjunto de intervenções prioritárias. A sequência importa: resolver posicionamento antes de tráfego, resolver conversão antes de volume, resolver produto antes de distribuição.",
+  "use_cases": [
+    "Priorização de intervenções nos 60 dias pós-diagnóstico",
+    "Argumento de venda: mostrar que a solução depende do diagnóstico",
+    "Resposta quando cliente quer tudo ao mesmo tempo",
+    "Framework para call de diagnóstico inicial com prospect"
+  ],
+  "framework": {
+    "principle": "O sistema se adapta ao gargalo. Não o contrário.",
+    "bottlenecks": {
+      "posicionamento": {
+        "sintomas": [
+          "Leads chegam sem entender o que você faz",
+          "Concorrentes são percebidos como equivalentes",
+          "Copy do site descreve features, não problemas resolvidos",
+          "Cada venda exige explicação longa do modelo"
+        ],
+        "intervencoes": ["Perception Engine", "Reposicionamento de copy", "Conteúdo de diagnóstico público", "Revisão de proposta de valor"],
+        "nao_adianta_agora": ["Mais tráfego", "Mais conteúdo sem posição", "CRM avançado"]
+      },
+      "confianca": {
+        "sintomas": [
+          "Leads qualificados somem após primeira reunião",
+          "Ciclo de vendas longo sem objeção clara",
+          "Pedidos de mais exemplos ou referências antes de decidir",
+          "Presença digital fraca vs ticket cobrado"
+        ],
+        "intervencoes": ["Cases documentados", "Conteúdo de autoridade no problema", "Diagnóstico como entregável de entrada", "Social proof estruturado"],
+        "nao_adianta_agora": ["Outbound em volume", "Anúncios para audiência fria"]
+      },
+      "friccao_conversao": {
+        "sintomas": [
+          "Leads interessados que não fecham por processo",
+          "Follow-up irregular ou inexistente",
+          "Proposta enviada, silêncio depois",
+          "Taxa de conversão reunião → fechamento baixa"
+        ],
+        "intervencoes": ["CRM estruturado", "Sequência de follow-up", "Revisão de proposta", "Automação de nurturing"],
+        "nao_adianta_agora": ["Mais leads", "Mais conteúdo — o problema é o processo, não o volume"]
+      },
+      "geracao_demanda": {
+        "sintomas": [
+          "Pouco ou nenhum lead chegando de forma previsível",
+          "90%+ de aquisição via indicação (dependência)",
+          "Sem presença relevante em canais de descoberta",
+          "Nome desconhecido fora da rede próxima"
+        ],
+        "intervencoes": ["Conteúdo de diagnóstico público", "Distribuição multicanal", "Parcerias estratégicas", "Outbound qualificado"],
+        "nao_adianta_agora": ["CRM sofisticado sem volume de entrada", "Automação de nurturing sem leads"]
+      },
+      "previsibilidade": {
+        "sintomas": [
+          "Meses bons e meses ruins sem explicação",
+          "Sem métrica clara de onde o próximo cliente vai vir",
+          "Atividade existe mas pipeline é opaco",
+          "Aquisição depende de energia do dono, não do sistema"
+        ],
+        "intervencoes": ["Mapa de aquisição documentado", "Métricas de pipeline definidas", "Rituais de revisão semanal", "Sistema observável de oportunidades"],
+        "nao_adianta_agora": ["Mais ferramentas sem processo", "Mais canais sem dados dos atuais"]
+      }
+    },
+    "sequencia_recomendada": [
+      "1. Posicionamento — se não está claro, nada mais funciona",
+      "2. Conversão — resolver o que vaza antes de aumentar o volume",
+      "3. Geração de demanda — só depois de saber que o funil retém",
+      "4. Previsibilidade — instrumentar o sistema para observar e ajustar"
+    ]
+  },
+  "acquisition_role": "Estrutura de decisão que transforma diagnóstico em plano — remove a paralisia de 'por onde começo' e justifica cada intervenção com evidência do gargalo"
+}

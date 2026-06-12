@@ -2,9 +2,9 @@
   "$schema": "./index.schema.json",
   "version": "2.0",
   "description": "Índice de todas as referências do MarketingOS. Carregue este arquivo primeiro — é a memória curta do sistema. Depois abra os arquivos completos para memória profunda.",
-  "updated_at": "2026-06-11",
+  "updated_at": "2026-06-12",
   "stats": {
-    "total": 42,
+    "total": 45,
     "by_type": {
       "site": 10,
       "copy": 1,
@@ -13,17 +13,57 @@
       "color-system": 0,
       "industry": 2,
       "competitor": 4,
-      "framework": 0
+      "framework": 3
     },
     "by_maturity": {
       "seed": 0,
       "growing": 0,
-      "stable": 42,
+      "stable": 45,
       "outdated": 0,
       "deprecated": 0
     }
   },
   "entries": [
+
+    {
+      "id": "acquisition-diagnostic",
+      "type": "framework",
+      "category": "frameworks/acquisition",
+      "name": "Diagnóstico de Aquisição — 30 Dias",
+      "maturity": "stable",
+      "tags": ["acquisition", "diagnostic", "framework", "b2b", "consulting", "strategy"],
+      "tensions": ["responder antes de produzir — o diagnóstico é o entregável", "sistema que se adapta ao gargalo, não o contrário"],
+      "captured_at": "2026-06-11",
+      "updated_at": "2026-06-11",
+      "path": "frameworks/acquisition/acquisition-diagnostic.json",
+      "description": "30 dias de diagnóstico: mapa de aquisição, 5 diagnósticos, plano de priorização."
+    },
+    {
+      "id": "acquisition-content-model",
+      "type": "framework",
+      "category": "frameworks/acquisition",
+      "name": "Modelo de Conteúdo para Aquisição — 70/20/10",
+      "maturity": "stable",
+      "tags": ["content", "acquisition", "framework", "distribution", "b2b", "social"],
+      "tensions": ["conteúdo que fala para problemas, não para nichos", "distribuição como sistema, não como calendário editorial"],
+      "captured_at": "2026-06-11",
+      "updated_at": "2026-06-11",
+      "path": "frameworks/acquisition/acquisition-content-model.json",
+      "description": "70% problemas universais, 20% build in public, 10% casos específicos. Métrica: conversas, não curtidas."
+    },
+    {
+      "id": "bottleneck-map",
+      "type": "framework",
+      "category": "frameworks/acquisition",
+      "name": "Mapa de Gargalos de Aquisição → Intervenção",
+      "maturity": "stable",
+      "tags": ["acquisition", "framework", "diagnostic", "strategy", "bottleneck", "intervention"],
+      "tensions": ["intervenção que muda conforme o problema — sem produto fixo", "sistema que diagnostica antes de vender qualquer solução"],
+      "captured_at": "2026-06-11",
+      "updated_at": "2026-06-11",
+      "path": "frameworks/acquisition/bottleneck-map.json",
+      "description": "5 gargalos (posicionamento, confiança, conversão, demanda, previsibilidade) com sintomas e intervenções."
+    },
 
     {
       "id": "scroll-marquee",

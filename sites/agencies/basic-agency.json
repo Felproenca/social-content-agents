@@ -19,6 +19,7 @@
     "Como apresentar capabilidades sem lista de bullets ou ícones",
     "Padrão de tipografia sóbria como argumento de maturidade"
   ],
+  "acquisition_role": "Clareza visual como sinal de competência — a ausência de ruído comunica que a agência entende o problema antes de vender a solução",
   "related": ["collins", "clean-minimal"],
   "visual": {
     "style": "clean",

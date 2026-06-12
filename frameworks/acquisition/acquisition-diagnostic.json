@@ -1,0 +1,65 @@
+{
+  "id": "acquisition-diagnostic",
+  "type": "framework",
+  "category": "frameworks/acquisition",
+  "name": "Diagnóstico de Aquisição — 30 Dias",
+  "source_context": "Framework interno MarketingOS. Primeira fase de todo engajamento: mapear onde a aquisição acontece, onde falha e onde existem gargalos antes de qualquer execução.",
+  "captured_at": "2026-06-11",
+  "updated_at": "2026-06-11",
+  "maturity": "stable",
+  "tags": ["acquisition", "diagnostic", "framework", "b2b", "consulting", "strategy"],
+  "tensions": [
+    "responder antes de produzir — o diagnóstico é o entregável",
+    "sistema que se adapta ao gargalo, não o contrário"
+  ],
+  "summary": "Primeiro 30 dias de todo engajamento MarketingOS. Objetivo único: descobrir por que a aquisição é imprevisível. Não produzir, não otimizar — diagnosticar. O mapa de aquisição resultante orienta toda execução posterior. Sem diagnóstico, qualquer produção é ruído.",
+  "use_cases": [
+    "Primeiro passo em qualquer novo cliente MarketingOS",
+    "Resposta ao cliente que quer 'melhorar o marketing' sem saber o quê",
+    "Argumento de venda do engajamento inicial — o diagnóstico é o produto",
+    "Base para priorização de intervenções nos 60 dias seguintes"
+  ],
+  "framework": {
+    "objective": "Responder: onde a aquisição acontece? Onde ela falha? Onde estão os gargalos e desperdícios?",
+    "duration": "30 dias",
+    "deliverables": [
+      "Mapa de aquisição — fluxo visual de onde os clientes vêm e onde somem",
+      "Diagnóstico operacional — como o sistema atual funciona (ou não funciona)",
+      "Diagnóstico de posicionamento — o cliente consegue explicar o que faz em 10 segundos?",
+      "Diagnóstico de conteúdo — o que está sendo produzido vs o que gera aquisição",
+      "Diagnóstico comercial — onde o funil perde leads qualificados",
+      "Plano de priorização — o que atacar primeiro com maior alavancagem"
+    ],
+    "diagnostic_questions": {
+      "acquisition": [
+        "Qual canal gera a maioria dos leads hoje?",
+        "Qual canal gera os melhores clientes (LTV, ticket, fit)?",
+        "O que aconteceu para cada cliente dos últimos 10 ter chegado até você?",
+        "Qual percentual vem de indicação? Isso é intencional ou acidental?"
+      ],
+      "positioning": [
+        "Se eu perguntar para 5 clientes o que você faz, as respostas são consistentes?",
+        "Você perde para concorrentes específicos? Por quê, na sua avaliação?",
+        "Você já perdeu um lead que não entendia o que você oferecia?"
+      ],
+      "conversion": [
+        "Onde você tem mais leads parados sem decisão?",
+        "Qual a duração média do ciclo de vendas?",
+        "Em qual etapa do funil você perde mais?"
+      ],
+      "content": [
+        "Qual conteúdo gerou mais conversas ou reuniões nos últimos 90 dias?",
+        "Alguém já chegou até você citando um conteúdo específico?",
+        "Você publica pensando em quê — visibilidade, credibilidade ou conversão?"
+      ]
+    },
+    "gargalo_map": {
+      "posicionamento": "Cliente não consegue explicar o problema que você resolve → trabalhar Perception + copy de posicionamento",
+      "confianca": "Leads chegam mas não avançam sem mais provas → trabalhar cases, proof points, autoridade de conteúdo",
+      "friccao_conversao": "Leads qualificados saem no processo comercial → trabalhar CRM, follow-up, proposta",
+      "geracao_demanda": "Poucos leads chegando → trabalhar conteúdo, distribuição, outbound, parcerias",
+      "dependencia_indicacao": "90%+ vem de indicação → estruturar canais complementares para previsibilidade"
+    }
+  },
+  "acquisition_role": "O diagnóstico É a aquisição inicial — transforma curiosidade em compromisso ao mostrar que você entende o problema antes de vender a solução"
+}

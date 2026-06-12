@@ -20,6 +20,7 @@
     "Exemplo de como vender velocidade sem mostrar benchmarks",
     "Padrão de changelog como asset de marketing"
   ],
+  "acquisition_role": "Posicionamento premium filtra o cliente certo antes do trial — o design qualifica o lead e reduz custo de conversão ao atrair quem já valoriza qualidade",
   "related": ["vercel", "stripe", "raycast"],
   "visual": {
     "style": "dark",

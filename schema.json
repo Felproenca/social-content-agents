@@ -132,6 +132,12 @@
       "description": "Observações livres — contexto de captura, nuances, cuidados de uso"
     },
 
+    "acquisition_role": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "Como esta referência contribui para aquisição — o que ela remove ou resolve no funil"
+    },
+
     "visual": {
       "type": "object",
       "description": "Dados visuais da referência (obrigatório para types: site, visual)",
@@ -294,6 +300,10 @@
             }
           }
         },
+        "acquisition_model": {
+          "type": "string",
+          "description": "Como o concorrente adquire clientes — PLG, outbound, comunidade, parceiros, etc."
+        },
         "last_reviewed": { "$ref": "#/$defs/isoDate" }
       }
     },
@@ -328,6 +338,10 @@
         "regulatory_notes": {
           "type": "string",
           "description": "Restrições legais ou regulatórias que afetam copy e visual"
+        },
+        "acquisition_model": {
+          "type": "string",
+          "description": "Modelo predominante de aquisição nessa indústria — referral, search, eventos, outbound, etc."
         }
       }
     }
