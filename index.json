@@ -4,9 +4,9 @@
   "description": "Índice de todas as referências do MarketingOS. Carregue este arquivo primeiro — é a memória curta do sistema. Depois abra os arquivos completos para memória profunda.",
   "updated_at": "2026-06-12",
   "stats": {
-    "total": 45,
+    "total": 44,
     "by_type": {
-      "site": 10,
+      "site": 11,
       "copy": 1,
       "motion": 15,
       "visual": 8,
@@ -18,7 +18,7 @@
     "by_maturity": {
       "seed": 0,
       "growing": 0,
-      "stable": 45,
+      "stable": 44,
       "outdated": 0,
       "deprecated": 0
     }
