@@ -19,6 +19,7 @@
     "Referência de dark + WebGL com identidade visual consistente",
     "Inspiração para transições de projeto e navegação não-convencional"
   ],
+  "acquisition_role": "Portfólio como filtro de budget — cliente que visita o site e admira o nível de execução já self-seleciona como comprador de alto ticket",
   "related": ["lusion", "resn", "three-js-scroll-scene"],
   "visual": {
     "style": "dark",

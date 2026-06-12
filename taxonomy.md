@@ -66,6 +66,7 @@ industries/local-services
 
 competitors/
 frameworks/
+frameworks/acquisition
 ```
 
 **Regra:** Novas categorias só são criadas quando pelo menos 3 referências

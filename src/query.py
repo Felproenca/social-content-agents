@@ -68,18 +68,35 @@ def search(
 def search_for_agent(brief: dict) -> list[dict]:
     """
     Entry point para o MarketingOS.
-    Recebe campos do brief e retorna referências relevantes.
+    Recebe campos do brief e retorna referências relevantes ranqueadas.
+
+    Campos suportados:
+        sector         — setor da empresa (ex: "saas", "fintech", "beauty")
+        style          — estilo visual desejado (ex: "dark", "clean", "editorial")
+        mood           — mood/tom (ex: "luxury premium", "technical confident")
+        tags           — lista de tags específicas
+        industry       — nome da indústria
+        acquisition_objective — o que está tentando resolver na aquisição
+                                 (ex: "converter demanda existente", "gerar awareness",
+                                  "reduzir fricção de avaliação", "construir confiança")
+        bottleneck     — gargalo identificado (ex: "posicionamento", "confiança",
+                          "fricção de conversão", "geração de demanda")
+        stage          — etapa do funil (ex: "awareness", "consideration", "conversion")
+        type           — tipo de referência (site, motion, visual, competitor, industry...)
+        category       — categoria específica (ex: "motion/framer", "sites/saas")
+        maturity       — nível de maturidade (default: "stable")
 
     Exemplo:
         refs = search_for_agent({
-            "sector": "finance",
-            "style": "dark",
-            "mood": "luxury premium",
-            "type": "visual"
+            "acquisition_objective": "reduzir fricção de avaliação",
+            "bottleneck": "confiança",
+            "sector": "fintech",
+            "style": "dark"
         })
     """
     keywords = []
-    for field in ["sector", "style", "mood", "tags", "industry"]:
+    for field in ["sector", "style", "mood", "tags", "industry",
+                  "acquisition_objective", "bottleneck", "stage"]:
         val = brief.get(field)
         if val:
             if isinstance(val, list):
@@ -87,12 +104,29 @@ def search_for_agent(brief: dict) -> list[dict]:
             else:
                 keywords.extend(str(val).split())
 
-    return search(
+    results = search(
         keywords,
         category=brief.get("category"),
         ref_type=brief.get("type"),
         maturity=brief.get("maturity", "stable"),
     )
+
+    # Boost entradas com acquisition_role quando há objetivo de aquisição
+    if brief.get("acquisition_objective") or brief.get("bottleneck"):
+        acq_kws = []
+        for field in ["acquisition_objective", "bottleneck", "stage"]:
+            val = brief.get(field)
+            if val:
+                acq_kws.extend(str(val).lower().split())
+
+        boosted = []
+        for entry in results:
+            acq_role = entry.get("acquisition_role", "").lower()
+            boost = sum(1 for kw in acq_kws if kw in acq_role)
+            boosted.append((boost, entry))
+        results = [e for _, e in sorted(boosted, key=lambda x: -x[0])]
+
+    return results
 
 
 # ── CLI commands ──────────────────────────────────────────────────────────────
