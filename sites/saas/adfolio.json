@@ -1,0 +1,31 @@
+{
+  "id": "adfolio",
+  "type": "site",
+  "category": "sites/saas",
+  "name": "Adfolio",
+  "source_url": "https://adfolio.design",
+  "source_context": "Biblioteca curada de B2B ads e inspiração criativa — capturado em navegação direta",
+  "captured_at": "2026-06-14",
+  "updated_at": "2026-06-14",
+  "maturity": "stable",
+  "tags": ["b2b", "ads", "creative-inspiration", "curated", "reference-library", "design-tool", "marketing"],
+  "tensions": [
+    "biblioteca de ads que justifica por comparação, não por conceito",
+    "criatividade B2B que precisa ver para existir — e aqui está"
+  ],
+  "summary": "Biblioteca curada de anúncios B2B organizados por categoria, setor e formato. Referência direta para ver o que funciona visualmente antes de criar briefings de campanha. Interface limpa, foco na peça — sem ruído de SEO nem e-commerce.",
+  "use_cases": [
+    "Briefing de campanha B2B — ver padrões de creative antes de escrever",
+    "Validação de direção visual com cliente antes de executar",
+    "Benchmark de qualidade de creative por segmento ou formato"
+  ],
+  "acquisition_role": "Ver padrões de creative B2B de alta performance antes de criar briefing — reduz fricção de validação interna e alinha expectativas de qualidade antes da execução",
+  "key_pages": [
+    {
+      "label": "Home",
+      "url": "https://adfolio.design",
+      "notes": "Grid de ads filtráveis — formato, setor, estilo. Navegação por comparação."
+    }
+  ],
+  "notes": "Equivalente ao Dribbble para ads B2B. Complementa o repositório quando o brief precisa de inspiração de campanha real, não de padrão visual genérico."
+}

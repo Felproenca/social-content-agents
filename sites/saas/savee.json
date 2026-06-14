@@ -1,0 +1,36 @@
+{
+  "id": "savee",
+  "type": "site",
+  "category": "sites/saas",
+  "name": "Savee",
+  "source_url": "https://savee.it",
+  "source_context": "Mood board tool com curadoria profissional para criativos — alternativa ao Pinterest",
+  "captured_at": "2026-06-14",
+  "updated_at": "2026-06-14",
+  "maturity": "stable",
+  "tags": ["visual-inspiration", "mood-board", "curation", "design-tool", "minimal", "creative", "references"],
+  "tensions": [
+    "curadoria que resiste ao algoritmo — o humano filtra antes que o feed decida",
+    "inspiração que não vende nada, só mostra"
+  ],
+  "summary": "Tool de mood board com curadoria profissional para designers e criativos. Interface minimal, coleções organizadas por estilo e criador. Alternativa ao Pinterest sem ruído de e-commerce, ads e SEO. O que fica é só o visual.",
+  "use_cases": [
+    "Exploração visual antes de iniciar um projeto — mood board limpo",
+    "Referência de tendência visual curada por profissionais de design",
+    "Benchmark de estética quando o repositório local não cobre o estilo buscado"
+  ],
+  "acquisition_role": "Fonte de referência visual curada para expandir repertório além do que está mapeado — útil quando a busca precisa de ampliação criativa fora do índice local",
+  "key_pages": [
+    {
+      "label": "Home",
+      "url": "https://savee.it",
+      "notes": "Feed de imagens curadas por outros criativos. Filtro por coleção e criador."
+    },
+    {
+      "label": "Explorar",
+      "url": "https://savee.it/explore",
+      "notes": "Descoberta por categoria visual — typography, color, layout, photography."
+    }
+  ],
+  "notes": "Funciona como extensão do repositório: o índice local tem contexto e análise, o Savee tem volume e descoberta. Usar para ampliar antes de refinar."
+}

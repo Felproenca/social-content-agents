@@ -2,11 +2,11 @@
   "$schema": "./index.schema.json",
   "version": "2.0",
   "description": "Índice de todas as referências do MarketingOS. Carregue este arquivo primeiro — é a memória curta do sistema. Depois abra os arquivos completos para memória profunda.",
-  "updated_at": "2026-06-12",
+  "updated_at": "2026-06-14",
   "stats": {
-    "total": 44,
+    "total": 46,
     "by_type": {
-      "site": 11,
+      "site": 13,
       "copy": 1,
       "motion": 15,
       "visual": 8,
@@ -18,7 +18,7 @@
     "by_maturity": {
       "seed": 0,
       "growing": 0,
-      "stable": 44,
+      "stable": 46,
       "outdated": 0,
       "deprecated": 0
     }
@@ -326,6 +326,33 @@
       "path": "sites/agencies/basic-agency.json",
       "description": "Portfólio clean/light para clientes tech. O nome é o posicionamento."
     },
+    {
+      "id": "adfolio",
+      "type": "site",
+      "category": "sites/saas",
+      "name": "Adfolio",
+      "maturity": "stable",
+      "tags": ["b2b", "ads", "creative-inspiration", "curated", "reference-library", "design-tool", "marketing"],
+      "tensions": ["biblioteca de ads que justifica por comparação, não por conceito", "criatividade B2B que precisa ver para existir — e aqui está"],
+      "captured_at": "2026-06-14",
+      "updated_at": "2026-06-14",
+      "path": "sites/saas/adfolio.json",
+      "description": "Biblioteca curada de B2B ads por categoria, setor e formato. Referência antes de briefings de campanha."
+    },
+    {
+      "id": "savee",
+      "type": "site",
+      "category": "sites/saas",
+      "name": "Savee",
+      "maturity": "stable",
+      "tags": ["visual-inspiration", "mood-board", "curation", "design-tool", "minimal", "creative", "references"],
+      "tensions": ["curadoria que resiste ao algoritmo — o humano filtra antes que o feed decida", "inspiração que não vende nada, só mostra"],
+      "captured_at": "2026-06-14",
+      "updated_at": "2026-06-14",
+      "path": "sites/saas/savee.json",
+      "description": "Mood board com curadoria profissional. Alternativa ao Pinterest sem ruído — só o visual."
+    },
+
     {
       "id": "figma",
       "type": "competitor",
